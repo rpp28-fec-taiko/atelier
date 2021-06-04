@@ -1,9 +1,51 @@
+/*------ APP --------*/
 .app {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
+/*------ REVIEWS & RATINGS --------*/
 .reviews-body {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
+  border: 1px solid black;
+}
+
+.reviews-breakdown {
+  display: grid;
+  grid-template-rows: 40px 40px;
+  border: 2px solid red;
+  margin: 5px;
+}
+
+.reviews-main {
+  display: grid;
+  grid-template-rows: 40px 40px 40px;
+  border: 2px solid red;
+  margin: 5px;
+}
+
+.reviews-ratings-breakdown {
+  border: 1px solid green;
+  margin: 5px;
+}
+
+.reviews-pdt-breakdown {
+  border: 1px solid green;
+  margin: 5px;
+}
+
+.reviews-sort {
+  border: 1px solid green;
+  margin: 5px;
+}
+
+.reviews-list {
+  border: 1px solid green;
+  margin: 5px;
+}
+
+.reviews-btns {
+  border: 1px solid green;
+  margin: 5px;
 }

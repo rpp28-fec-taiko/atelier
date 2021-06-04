@@ -13,5 +13,5 @@ test('adds 1 + 2 to equal 3', () => {
 
 test('checks that app component is rendering', () => {
   const wrapper = shallow(<App />);
-  expect(wrapper.text()).toContain('HELLO');
+  expect(wrapper.text()).toContain('Overview');
 });

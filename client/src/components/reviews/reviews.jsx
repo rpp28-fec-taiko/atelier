@@ -7,8 +7,12 @@ class Reviews extends React.Component {
 
   render () {
     return (
-      <div>
-        REVIEWS
+      <div className='reviews-main'>
+        <h2>RATINGS & REVIEWS</h2>
+        <div className='reviews-body'>
+          <div> ONE </div>
+          <div> TWO </div>
+        </div>
       </div>
     );
   }

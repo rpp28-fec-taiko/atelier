@@ -58,9 +58,6 @@
 .reviews-tile {
   border: 1px solid blue;
   margin: 5px;
-}
-
-.reviews-tile {
   display: grid;
   grid-template-rows: auto;
 }

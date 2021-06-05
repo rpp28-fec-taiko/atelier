@@ -7,6 +7,22 @@ import Search from './search.jsx';
 class Reviews extends React.Component {
   constructor (props) {
     super(props);
+    this.state = {
+      reviews: []
+    };
+  }
+
+  componentDidMount () {
+    fetch ('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?count=2&product_id=22122', {
+      headers: {
+        'Authorization': '174f55864f5cb5bae656435a5d6a85ad57d595b4'
+      },
+    })
+      .then((resp) => resp.json())
+      .then((reviews) => {
+        console.log('reviews', reviews);
+        this.setState({reviews: reviews.results}, () => console.log('state', this.state));
+      });
   }
 
   render () {
@@ -23,7 +39,7 @@ class Reviews extends React.Component {
               No. of reviews, sorted by dropdown
             </div>
             <Search />
-            <ReviewsList />
+            <ReviewsList reviews={this.state.reviews}/>
             <div className='reviews-btns'>
               BUTTONS
             </div>

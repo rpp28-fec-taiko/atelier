@@ -13,15 +13,11 @@ class Reviews extends React.Component {
   }
 
   componentDidMount () {
-    fetch ('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?count=2&product_id=22122', {
-      headers: {
-        'Authorization': '174f55864f5cb5bae656435a5d6a85ad57d595b4'
-      },
-    })
+    fetch (`http://localhost:3000/reviews?count=2&productId=22122`)
       .then((resp) => resp.json())
       .then((reviews) => {
         console.log('reviews', reviews);
-        this.setState({reviews: reviews.results}, () => console.log('state', this.state));
+        this.setState({reviews}, () => console.log('state', this.state));
       });
   }
 
@@ -34,16 +30,20 @@ class Reviews extends React.Component {
             <RatingsBreakdown />
             <PdtBreakdown />
           </div>
-          <div className='reviews-main'>
-            <div className='reviews-sort'>
-              No. of reviews, sorted by dropdown
-            </div>
-            <Search />
-            <ReviewsList reviews={this.state.reviews}/>
-            <div className='reviews-btns'>
-              BUTTONS
-            </div>
-          </div>
+          {
+            this.state.reviews.length === 0 ?
+              <div> ADD A REVIEW </div> :
+              <div className='reviews-main'>
+                <div className='reviews-sort'>
+                  No. of reviews, sorted by dropdown
+                </div>
+                <Search />
+                <ReviewsList reviews={this.state.reviews}/>
+                <div className='reviews-btns'>
+                  BUTTONS
+                </div>
+              </div>
+          }
         </div>
       </div>
     );

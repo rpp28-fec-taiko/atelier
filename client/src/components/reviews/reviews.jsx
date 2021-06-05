@@ -2,6 +2,7 @@ import React from 'react';
 import RatingsBreakdown from './ratingsBreakdown.jsx';
 import PdtBreakdown from './pdtBreakdown.jsx';
 import ReviewsList from './reviewsList.jsx';
+import Search from './search.jsx';
 
 class Reviews extends React.Component {
   constructor (props) {
@@ -21,6 +22,7 @@ class Reviews extends React.Component {
             <div className='reviews-sort'>
               No. of reviews, sorted by dropdown
             </div>
+            <Search />
             <ReviewsList />
             <div className='reviews-btns'>
               BUTTONS

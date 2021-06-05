@@ -14,7 +14,7 @@ console.log(gitToken);
 app.get('/reviews', (req, res) => {
   return axios.get (`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?count=${req.query.count}&product_id=${req.query.productId}`, {
     headers: {
-      'Authorization': process.env.GITHUB_TOKEN
+      'Authorization': gitToken
     }
   })
   .then((resp) => res.status(200).send(resp.data.results))

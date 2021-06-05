@@ -1,7 +1,7 @@
 /*------ APP --------*/
 .app {
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
 }
 
 /*------ REVIEWS & RATINGS --------*/
@@ -13,14 +13,14 @@
 
 .reviews-breakdown {
   display: grid;
-  grid-template-rows: 40px 40px;
+  grid-template-rows: 1fr 1fr;
   border: 2px solid red;
   margin: 5px;
 }
 
 .reviews-main {
   display: grid;
-  grid-template-rows: 40px 40px 40px;
+  grid-template-rows: 1fr 1fr 5fr 1fr;
   border: 2px solid red;
   margin: 5px;
 }
@@ -48,4 +48,25 @@
 .reviews-btns {
   border: 1px solid green;
   margin: 5px;
+}
+
+.reviews-search {
+  border: 1px solid green;
+  margin: 5px;
+}
+
+.reviews-tile {
+  border: 1px solid blue;
+  margin: 5px;
+  display: grid;
+  grid-template-rows: auto;
+}
+
+.reviews-tile-stars-date {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.reviews-tile-usernameDate {
+  justify-self: end;
 }

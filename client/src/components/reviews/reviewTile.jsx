@@ -1,6 +1,7 @@
 import React from 'react';
 import Stars from '../stars/stars.jsx';
 import Modal from './modal.jsx';
+import CheckCircle from './checkCircle.jsx';
 
 class ReviewTile extends React.Component {
   constructor (props) {
@@ -60,7 +61,7 @@ class ReviewTile extends React.Component {
             this.state.showModal ? <Modal url={this.state.url} hideModal={this.hideModal}/> : null
           }
         </div>
-        {recommend ? <div>I RECOMMEND THIS PDT </div> : null}
+        {recommend ? <div> <CheckCircle /> I RECOMMEND THIS PDT </div> : null}
         {response}
         <div>HELPFUL YES OR NO | REPORT</div>
       </div>

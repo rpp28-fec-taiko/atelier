@@ -12,6 +12,6 @@ test('adds 1 + 2 to equal 3', () => {
 });
 
 test('checks that app component is rendering', () => {
-  const wrapper = shallow(<App />);
+  const wrapper = shallow(<App />, {disableLifecycleMethods: true});
   expect(wrapper.text()).toContain('Overview');
 });

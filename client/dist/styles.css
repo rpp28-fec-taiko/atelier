@@ -84,6 +84,7 @@
 .reviews-tile-body-images {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  /* cursor: pointer; */
 }
 
 .review-tile-body-modal {
@@ -97,17 +98,12 @@
 
 .review-tile-body-modal-main {
   display: grid;
-  grid-template-rows: 12fr 1fr;
+  grid-template-rows: 1fr 50px;
   position:fixed;
   background: white;
-  width: 80%;
+  width: auto;
   height: auto;
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
 }
-
-/* .review-tile-body-modal-btn {
-  width: 20px;
-  height: 20px;
-} */

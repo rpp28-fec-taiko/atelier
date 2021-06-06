@@ -11,7 +11,7 @@ const Modal = ({ url, hideModal }) => {
         <div className='review-tile-body-modal-img'>
           <img src={url} height='100%' width='100%'/>
         </div>
-        <button type='button' onClick={handleModalBtnClick}>  CLOSE </button>
+        <button type='button' onClick={handleModalBtnClick} style={{cursor: 'pointer'}}>  CLOSE </button>
       </div>
     </div>
   )

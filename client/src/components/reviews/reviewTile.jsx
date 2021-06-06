@@ -53,7 +53,7 @@ class ReviewTile extends React.Component {
             {
               photos.length === 0
                 ? null
-                : photos.map((photo) => <img key={photo.id} src={photo.url} height='60px' width='60px' onClick={() => this.displayModal(photo.url)}/>)
+                : photos.map((photo) => <img key={photo.id} src={photo.url} height='60px' width='60px' onClick={() => this.displayModal(photo.url)} style={{cursor: 'pointer'}}/>)
             }
           </div>
           {

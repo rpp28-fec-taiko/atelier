@@ -5,7 +5,7 @@ const ReviewTile = ({ review }) => {
   return (
     <div className='reviews-tile'>
       <div className='reviews-tile-stars-date'>
-        <div className='reviews-tile-stars'>STARS {review.rating} <Stars size={40} rating={2}/></div>
+        <div className='reviews-tile-stars'> <Stars size={40} rating={4.39}/> </div>
         <div className='reviews-tile-usernameDate'>{review.reviewer_name} , {review.date}</div>
       </div>
       <div>SUMMARY {review.summary}</div>

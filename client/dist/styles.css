@@ -75,3 +75,8 @@
   font-size: 20px;
   font-weight: bold;
 }
+
+.reviews-tile-body-expand {
+  cursor: pointer;
+  text-decoration: underline;
+}

@@ -7,18 +7,6 @@ import Search from './search.jsx';
 class Reviews extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {
-      reviews: []
-    };
-  }
-
-  componentDidMount () {
-    fetch (`http://localhost:3000/reviews?count=2&productId=22122`)
-      .then((resp) => resp.json())
-      .then((reviews) => {
-        console.log('reviews', reviews);
-        this.setState({reviews}, () => console.log('state', this.state));
-      });
   }
 
   render () {
@@ -31,14 +19,14 @@ class Reviews extends React.Component {
             <PdtBreakdown />
           </div>
           {
-            this.state.reviews.length === 0 ?
+            this.props.reviews.length === 0 ?
               <div> ADD A REVIEW </div> :
               <div className='reviews-main'>
                 <div className='reviews-sort'>
                   No. of reviews, sorted by dropdown
                 </div>
                 <Search />
-                <ReviewsList reviews={this.state.reviews}/>
+                <ReviewsList reviews={this.props.reviews}/>
                 <div className='reviews-btns'>
                   BUTTONS
                 </div>

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Item from './Item.jsx';
-// import './relatedItems.css';
 
 class RelatedItems extends React.Component {
   constructor(props) {
@@ -11,6 +10,7 @@ class RelatedItems extends React.Component {
   }
 
   componentDidMount() {
+    console.log('card_container children: ', this.card_container.children[0]);
     let first_card_clone = this.card_container.children[0].cloneNode(true);
     let last_card_clone = this.card_container.children[this.card_container.children.length - 1].cloneNode(true);
 
@@ -83,7 +83,7 @@ class RelatedItems extends React.Component {
         <button onClick={this.handle_next}>Next</button>
         </div>
         <div className="viewPort">
-          <div ref={ref_id => this.card_container = ref_id} className="card-container" style={styles.card_container}>
+          <div ref={ref_id => this.card_container = ref_id} className="card_container">
           {/* <div ref={ref_id => this.card_container = ref_id} className="cardContainer"> */}
           {/* <i class="fa fa-chevron-left"></i> */}
             <Item itemNumber={0}/>
@@ -99,22 +99,22 @@ class RelatedItems extends React.Component {
   }
 }
 
-const styles = {
-  view_port: {
-    position: 'absolute',
-    // top: '50%',
-    // left: '50%',
-    // transform: 'translate(0%, -50%)',
-    width: '350px',
-    height: '100px',
-    backgroundColor: 'red',
-    overflow: 'hidden',
-  },
-  card_container: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: 'fit-content'
-  }
-}
+// const styles = {
+  // view_port: {
+  //   position: 'absolute',
+  //   // top: '50%',
+  //   // left: '50%',
+  //   // transform: 'translate(0%, -50%)',
+  //   width: '350px',
+  //   height: '100px',
+  //   backgroundColor: 'red',
+  //   overflow: 'hidden',
+  // },
+  // card_container: {
+  //   display: 'flex',
+  //   flexDirection: 'row',
+  //   width: 'fit-content'
+  // }
+// }
 
 export default RelatedItems;

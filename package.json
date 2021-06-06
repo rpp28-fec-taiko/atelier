@@ -6,7 +6,11 @@
   "jest": {
     "setupFilesAfterEnv": [
       "<rootDir>/test/enzyme.config.js"
-    ]
+    ],
+    "verbose": true,
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "<rootDir>/test/CSSStub.js"
+    }
   },
   "scripts": {
     "test": "jest",

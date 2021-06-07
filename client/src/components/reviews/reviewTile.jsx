@@ -2,6 +2,7 @@ import React from 'react';
 import Stars from '../stars/stars.jsx';
 import Modal from './modal.jsx';
 import CheckCircle from './checkCircle.jsx';
+import Response from './response.jsx';
 
 class ReviewTile extends React.Component {
   constructor (props) {
@@ -62,7 +63,7 @@ class ReviewTile extends React.Component {
           }
         </div>
         {recommend ? <div> <CheckCircle /> I RECOMMEND THIS PDT </div> : null}
-        {response}
+        {response ? <Response response={response}/> : null}
         <div>HELPFUL YES OR NO | REPORT</div>
       </div>
     );

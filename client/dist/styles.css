@@ -107,3 +107,18 @@
   left:50%;
   transform: translate(-50%,-50%);
 }
+
+.reviews-tile-response {
+  background-color: rgba(112, 103, 103, 0.6);
+}
+
+.review-tile-response-main {
+  display: grid;
+  grid-template-rows: auto;
+  padding: 10px;
+}
+
+.review-tile-response-main p{
+  padding: 0;
+  margin-bottom: 0;
+}

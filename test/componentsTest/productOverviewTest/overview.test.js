@@ -4,5 +4,5 @@ import Overview from '../../../client/src/components/productOverview/Overview.js
 
 test('checks that Overview component is rendering', () => {
   const wrapper = shallow(<Overview />);
-  expect(wrapper.text()).toContain('Image Gallery');
+  expect(wrapper.text()).toContain('Overview');
 });

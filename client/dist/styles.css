@@ -197,3 +197,7 @@
   padding: 0;
   margin-bottom: 0;
 }
+
+.reviews-tile-helpfulness {
+  cursor: pointer;
+}

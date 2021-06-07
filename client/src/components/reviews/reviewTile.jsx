@@ -10,6 +10,7 @@ class ReviewTile extends React.Component {
     this.state = {
       showModal: false,
       url: '',
+      clickedHelpful: false
     }
   }
 
@@ -33,6 +34,7 @@ class ReviewTile extends React.Component {
 
   handleYesClick = () => {
     this.props.increaseReviewHelpfulnesss(this.props.review.review_id);
+    this.setState({clickedHelpful: true});
   }
 
   render () {
@@ -69,7 +71,11 @@ class ReviewTile extends React.Component {
         {recommend ? <div> <CheckCircle /> I RECOMMEND THIS PDT </div> : null}
         {response ? <Response response={response}/> : null}
         <div>
-          <p>WAS THIS REVIEW HELPFUL?<span onClick={this.handleYesClick}> YES </span> ({helpfulness}) OR <span> NO </span> (#) | <span> REPORT </span></p>
+          <p>WAS THIS REVIEW HELPFUL?
+          <span className='reviews-tile-helpfulness' onClick={!this.state.clickedHelpful ? this.handleYesClick : null}> YES </span> ({helpfulness}) OR
+          <span> NO </span> (#) |
+          <span> REPORT </span>
+          </p>
         </div>
       </div>
     );

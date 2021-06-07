@@ -8,13 +8,13 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      productId: '22169',
+      productId: '22160',
       reviews: []
     };
   }
 
   getInitialReviews = () => {
-    return fetch (`http://localhost:3000/reviews?count=5&productId=${this.state.productId}`)
+    return fetch (`http://localhost:3000/reviews?count=2&productId=${this.state.productId}`)
     .then((resp) => resp.json())
     .then((reviews) => {
       // console.log('reviews', reviews);

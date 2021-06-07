@@ -4,7 +4,7 @@ import Modal from './modal.jsx';
 import CheckCircle from './checkCircle.jsx';
 import Response from './response.jsx';
 
-class ReviewTile extends React.Component {
+class ReviewsTile extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
@@ -86,4 +86,4 @@ class ReviewTile extends React.Component {
   }
 };
 
-export default ReviewTile;
+export default ReviewsTile;

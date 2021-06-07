@@ -9,8 +9,6 @@ const servingPath = path.join(__dirname, '..', 'client', 'dist');
 
 app.use(express.static(servingPath));
 
-console.log(gitToken);
-
 const apiUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp`;
 
 app.get('/reviews', (req, res) => {

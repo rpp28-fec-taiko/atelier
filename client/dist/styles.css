@@ -65,7 +65,19 @@
 
 .style-thumbnail {
   margin: 10px;
+  margin-right: 50px;
   border: 1px solid lightblue;
+  display: inline-block;
+}
+
+.style-thumbnail img {
+  height: 30px;
+  width: 30px;
+}
+
+.style-name {
+  font-size: 0.8em;
+  color: grey;
 }
 
 .cart {
@@ -126,8 +138,9 @@
 }
 
 .reviews-tile {
-  border: 1px solid blue;
-  margin: 5px;
+  border-bottom: 1px solid blue;
+  margin-top: 25px;
+  margin-bottom: 5px;
   display: grid;
   grid-template-rows: auto;
 }
@@ -157,7 +170,7 @@
   /* cursor: pointer; */
 }
 
-.review-tile-body-modal {
+.reviews-tile-body-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -166,7 +179,7 @@
   background: rgba(0, 0, 0, 0.6);
 }
 
-.review-tile-body-modal-main {
+.reviews-tile-body-modal-main {
   display: grid;
   grid-template-rows: 1fr 50px;
   position:fixed;
@@ -178,7 +191,7 @@
   transform: translate(-50%,-50%);
 }
 
-.review-tile-body-modal-img {
+.reviews-tile-body-modal-img {
   width: 600px;
   height: auto;
 }
@@ -187,13 +200,13 @@
   background-color: rgba(112, 103, 103, 0.6);
 }
 
-.review-tile-response-main {
+.reviews-tile-response-main {
   display: grid;
   grid-template-rows: auto;
   padding: 10px;
 }
 
-.review-tile-response-main p{
+.reviews-tile-response-main p{
   padding: 0;
   margin-bottom: 0;
 }

@@ -6,9 +6,9 @@ const Modal = ({ url, hideModal }) => {
   }
 
   return (
-    <div className='review-tile-body-modal'>
-      <div className='review-tile-body-modal-main'>
-        <div className='review-tile-body-modal-img'>
+    <div className='reviews-tile-body-modal'>
+      <div className='reviews-tile-body-modal-main'>
+        <div className='reviews-tile-body-modal-img'>
           <img src={url} height='100%' width='100%'/>
         </div>
         <button type='button' onClick={handleModalBtnClick} style={{cursor: 'pointer'}}>  CLOSE </button>

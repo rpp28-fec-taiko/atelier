@@ -90,7 +90,7 @@
 
 .reviews-main {
   display: grid;
-  grid-template-rows: 1fr 1fr 5fr 1fr;
+  grid-template-rows: auto;
   border: 2px solid red;
   margin: 5px;
 }
@@ -178,6 +178,11 @@
   transform: translate(-50%,-50%);
 }
 
+.review-tile-body-modal-img {
+  width: 600px;
+  height: auto;
+}
+
 .reviews-tile-response {
   background-color: rgba(112, 103, 103, 0.6);
 }
@@ -191,4 +196,8 @@
 .review-tile-response-main p{
   padding: 0;
   margin-bottom: 0;
+}
+
+.reviews-tile-helpfulness {
+  cursor: pointer;
 }

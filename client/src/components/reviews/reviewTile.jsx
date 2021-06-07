@@ -9,7 +9,8 @@ class ReviewTile extends React.Component {
     super (props);
     this.state = {
       showModal: false,
-      url: ''
+      url: '',
+      clickedHelpful: false
     }
   }
 
@@ -31,9 +32,18 @@ class ReviewTile extends React.Component {
     this.setState({showModal: false})
   }
 
+  handleYesClick = () => {
+    this.props.increaseReviewHelpfulnesss(this.props.review.review_id);
+    this.setState({clickedHelpful: true});
+  }
+
+  handleReportClick = () => {
+    this.props.reportReview(this.props.review.review_id);
+  }
+
   render () {
     let {review_id, rating, summary, recommend, response, body, date, reviewer_name, helpfulness, photos } = this.props.review;
-    console.log('date', new Date(date).toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }), photos);
+    // console.log('date', new Date(date).toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }), photos);
 
     if (body.length > 250) {
       var shortBody = body.slice(0, 250);
@@ -64,7 +74,13 @@ class ReviewTile extends React.Component {
         </div>
         {recommend ? <div> <CheckCircle /> I RECOMMEND THIS PDT </div> : null}
         {response ? <Response response={response}/> : null}
-        <div>HELPFUL YES OR NO | REPORT</div>
+        <div>
+          <p>WAS THIS REVIEW HELPFUL?
+          <span className='reviews-tile-helpfulness' onClick={!this.state.clickedHelpful ? this.handleYesClick : null}> YES </span> ({helpfulness}) OR
+          <span> NO </span> (#) |
+          <span className='reviews-tile-helpfulness' onClick={this.handleReportClick}> REPORT </span>
+          </p>
+        </div>
       </div>
     );
   }

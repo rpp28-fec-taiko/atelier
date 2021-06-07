@@ -13,13 +13,47 @@ class App extends React.Component {
     };
   }
 
+  getInitialReviews = () => {
+    return fetch (`http://localhost:3000/reviews?count=5&productId=${this.state.productId}`)
+    .then((resp) => resp.json())
+    .then((reviews) => {
+      // console.log('reviews', reviews);
+      this.setState({reviews}, () => console.log('state', this.state));
+    })
+    .catch((err) => {
+      console.log('ERROR GETTING INITIAL REVIEWS', err)
+    })
+  }
+
+  increaseReviewHelpfulnesss = (reviewId) => {
+    // console.log('got id', reviewId);
+    return fetch (`http://localhost:3000/reviews/${reviewId}/helpful`, {
+      method: 'PUT'
+    })
+    .then(() => {
+      return this.getInitialReviews();
+    })
+    .catch((err) => {
+      console.log('ERROR SUBMITTING HELPFULNESS', err)
+    })
+  }
+
+  reportReview = (reviewId) => {
+    return fetch (`http://localhost:3000/reviews/${reviewId}/report`, {
+      method: 'PUT'
+    })
+    .then(() => {
+      console.log('REVIEW REPORTED');
+      // return this.getInitialReviews();
+    })
+    .catch((err) => {
+      console.log('ERROR REPORTING REVIEW', err)
+    })
+
+  }
+
   componentDidMount () {
-    fetch (`http://localhost:3000/reviews?count=5&productId=${this.state.productId}`)
-      .then((resp) => resp.json())
-      .then((reviews) => {
-        console.log('reviews', reviews);
-        this.setState({reviews}, () => console.log('state', this.state));
-      });
+    this.getInitialReviews();
   }
 
   render () {
@@ -28,7 +62,7 @@ class App extends React.Component {
         <Overview />
         <RelatedItems />
         <QAndA />
-        <Reviews reviews={this.state.reviews}/>
+        <Reviews reviews={this.state.reviews} increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss} reportReview={this.reportReview}/>
       </div>
     );
   }

@@ -65,7 +65,19 @@
 
 .style-thumbnail {
   margin: 10px;
+  margin-right: 50px;
   border: 1px solid lightblue;
+  display: inline-block;
+}
+
+.style-thumbnail img {
+  height: 30px;
+  width: 30px;
+}
+
+.style-name {
+  font-size: 0.8em;
+  color: grey;
 }
 
 .cart {

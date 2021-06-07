@@ -10,13 +10,13 @@ class Cart extends React.Component {
       <div className='cart'>
         <div className='size'>
           <select>
-            <option selected value="Select Size">Select Size</option>
+            <option defaultValue="Select Size">Select Size</option>
           </select>
         </div>
 
         <div className='quantity'>
           <select>
-            <option selected value="Select Quantity">Qty</option>
+            <option defaultValue="Select Quantity">Qty</option>
             <option>1</option>
             <option>2</option>
             <option>3</option>

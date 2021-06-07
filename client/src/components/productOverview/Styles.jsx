@@ -8,10 +8,19 @@ class Styles extends React.Component {
   render() {
     return (
       <div className='style-selector'>
-        <div className='style-thumbnail'>Style #1</div>
-        <div className='style-thumbnail'>Style #2</div>
-        <div className='style-thumbnail'>Style #3</div>
-        <div className='style-thumbnail'>Style #4</div>
+        <div>Styles:</div>
+        <div>
+          <span className='style-thumbnail'>Style #1</span>
+          <span className='style-thumbnail'>Style #2</span>
+          <span className='style-thumbnail'>Style #3</span>
+          <span className='style-thumbnail'>Style #4</span>
+        </div>
+        <div>
+          <span className='style-thumbnail'>Style #5</span>
+          <span className='style-thumbnail'>Style #6</span>
+          <span className='style-thumbnail'>Style #7</span>
+          <span className='style-thumbnail'>Style #8</span>
+        </div>
       </div>
     );
   }

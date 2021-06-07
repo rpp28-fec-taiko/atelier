@@ -12,7 +12,7 @@ app.use(express.static(servingPath));
 const apiUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp`;
 
 app.get('/reviews', (req, res) => {
-  return axios.get (`${apiUrl}/reviews/?count=${req.query.count}&product_id=${req.query.productId}`, {
+  return axios.get (`${apiUrl}/reviews/?page=${req.query.page}&count=${req.query.count}&product_id=${req.query.productId}`, {
     headers: {
       'Authorization': gitToken
     }

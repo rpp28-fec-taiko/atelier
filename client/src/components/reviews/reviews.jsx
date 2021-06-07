@@ -21,16 +21,16 @@ class Reviews extends React.Component {
             <PdtBreakdown />
           </div>
           {
-            this.props.reviews.length === 0 ?
+            this.props.currentReviews.length === 0 ?
               <AddReview /> :
               <div className='reviews-main'>
                 <div className='reviews-sort'>
                   No. of reviews, sorted by dropdown
                 </div>
                 <Search />
-                <ReviewsList reviews={this.props.reviews} increaseReviewHelpfulnesss={this.props.increaseReviewHelpfulnesss} reportReview={this.props.reportReview}/>
+                <ReviewsList reviews={this.props.currentReviews} increaseReviewHelpfulnesss={this.props.increaseReviewHelpfulnesss} reportReview={this.props.reportReview}/>
                 <div className='reviews-btns'>
-                  <MoreReviews />
+                  {this.props.nextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null}
                   <AddReview />
                 </div>
               </div>

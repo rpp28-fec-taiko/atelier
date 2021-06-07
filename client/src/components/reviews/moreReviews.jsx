@@ -1,9 +1,12 @@
 import React from 'react';
 
-const MoreReviews = () => {
+const MoreReviews = ({ get2Reviews }) => {
+  let handleMoreReviewsClick = () => {
+    get2Reviews();
+  }
   return (
     <div>
-      <button type='button'> MORE REVIEWS</button>
+      <button type='button' onClick={handleMoreReviewsClick}> MORE REVIEWS</button>
     </div>
   );
 };

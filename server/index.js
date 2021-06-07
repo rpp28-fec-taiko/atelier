@@ -41,6 +41,21 @@ app.put('/reviews/:reviewId/helpful', (req, res) => {
   })
 })
 
+app.put('/reviews/:reviewId/report', (req, res) => {
+  return axios.put(`${apiUrl}/reviews/${req.params.reviewId}/report`, null, {
+    headers: {
+      'Authorization': gitToken
+    }
+  })
+  .then(() => {
+    console.log('reported review');
+    res.sendStatus(204);
+  })
+  .catch((err) => {
+    console.log('ERROR REPORTING REVIEW', err)
+  })
+})
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`Listening on port http://localhost:${port}`);

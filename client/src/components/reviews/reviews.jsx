@@ -26,7 +26,7 @@ class Reviews extends React.Component {
                   No. of reviews, sorted by dropdown
                 </div>
                 <Search />
-                <ReviewsList reviews={this.props.reviews} increaseReviewHelpfulnesss={this.props.increaseReviewHelpfulnesss}/>
+                <ReviewsList reviews={this.props.reviews} increaseReviewHelpfulnesss={this.props.increaseReviewHelpfulnesss} reportReview={this.props.reportReview}/>
                 <div className='reviews-btns'>
                   BUTTONS
                 </div>

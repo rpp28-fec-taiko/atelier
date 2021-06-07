@@ -37,6 +37,10 @@ class ReviewTile extends React.Component {
     this.setState({clickedHelpful: true});
   }
 
+  handleReportClick = () => {
+    this.props.reportReview(this.props.review.review_id);
+  }
+
   render () {
     let {review_id, rating, summary, recommend, response, body, date, reviewer_name, helpfulness, photos } = this.props.review;
     // console.log('date', new Date(date).toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }), photos);
@@ -74,7 +78,7 @@ class ReviewTile extends React.Component {
           <p>WAS THIS REVIEW HELPFUL?
           <span className='reviews-tile-helpfulness' onClick={!this.state.clickedHelpful ? this.handleYesClick : null}> YES </span> ({helpfulness}) OR
           <span> NO </span> (#) |
-          <span> REPORT </span>
+          <span className='reviews-tile-helpfulness' onClick={this.handleReportClick}> REPORT </span>
           </p>
         </div>
       </div>

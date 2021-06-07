@@ -25,6 +25,22 @@ app.get('/reviews', (req, res) => {
   })
 });
 
+app.put('/reviews/:reviewId/helpful', (req, res) => {
+  // console.log('req', req.params, 'query', req.query);
+  return axios.put(`${apiUrl}/reviews/${req.params.reviewId}/helpful`, null, {
+    headers: {
+      'Authorization': gitToken
+    }
+  })
+  .then(() => {
+    // console.log('submited helpfulness');
+    res.sendStatus(204);
+  })
+  .catch((err) => {
+    console.log('ERROR SUBMITTING HELPFULNESS FOR REVIEW', err)
+  })
+})
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`Listening on port http://localhost:${port}`);

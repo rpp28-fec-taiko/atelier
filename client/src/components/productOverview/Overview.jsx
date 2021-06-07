@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductInfo from './ProductInfo.jsx';
 import Cart from './Cart.jsx';
-import Styles from './Styles.jsx';
+import StyleSelector from './StyleSelector.jsx';
 import ImageGallery from './ImageGallery.jsx';
 
 class Overview extends React.Component {
@@ -38,7 +38,7 @@ class Overview extends React.Component {
         <h2>Overview</h2>
         <ImageGallery />
         <ProductInfo product={this.state.product}/>
-        <Styles />
+        <StyleSelector />
         <Cart />
       </div>
     );

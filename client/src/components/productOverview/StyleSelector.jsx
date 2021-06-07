@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Styles extends React.Component {
+class StyleSelector extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -26,4 +26,4 @@ class Styles extends React.Component {
   }
 }
 
-export default Styles;
+export default StyleSelector;

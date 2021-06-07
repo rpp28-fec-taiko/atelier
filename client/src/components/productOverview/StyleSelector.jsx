@@ -1,4 +1,5 @@
 import React from 'react';
+import StyleRow from './StyleRow.jsx';
 
 class StyleSelector extends React.Component {
   constructor(props) {
@@ -6,21 +7,18 @@ class StyleSelector extends React.Component {
   }
 
   render() {
+
+    // split styles array into chunks for 4
+    const styleRows = [];
+    const rowSize = 4;
+    for (let i = 0; i < this.props.styles.length; i += rowSize) {
+      styleRows.push(this.props.styles.slice(i, i + rowSize));
+    }
+
     return (
       <div className='style-selector'>
         <div>Styles:</div>
-        <div>
-          <span className='style-thumbnail'>Style #1</span>
-          <span className='style-thumbnail'>Style #2</span>
-          <span className='style-thumbnail'>Style #3</span>
-          <span className='style-thumbnail'>Style #4</span>
-        </div>
-        <div>
-          <span className='style-thumbnail'>Style #5</span>
-          <span className='style-thumbnail'>Style #6</span>
-          <span className='style-thumbnail'>Style #7</span>
-          <span className='style-thumbnail'>Style #8</span>
-        </div>
+        {styleRows.map(row => <StyleRow styles={row}/>)}
       </div>
     );
   }

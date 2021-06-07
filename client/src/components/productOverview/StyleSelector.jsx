@@ -18,7 +18,7 @@ class StyleSelector extends React.Component {
     return (
       <div className='style-selector'>
         <div>Styles:</div>
-        {styleRows.map(row => <StyleRow styles={row}/>)}
+        {styleRows.map(row => <StyleRow styles={row} key={row[0].name}/>)}
       </div>
     );
   }

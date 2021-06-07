@@ -1,13 +1,14 @@
 import React from 'react';
 
-const ProductInfo = () => (
+const ProductInfo = ({product}) => (
   <div className='product-info'>
-    <div>Stars</div>
-    <div>Category</div>
-    <div>Name</div>
-    <div>Price</div>
-    <div>Slogan</div>
-    <div>Social Media</div>
+    <div>Star Rating - (read reviews)</div>
+    <div className='product-category'>{product.category}</div>
+    <div className='product-name'>{product.name}</div>
+    <div className='product-price'>${product.default_price}</div>
+    <div className='product-slogan'>{product.slogan}</div>
+    <div className='product-description'>{product.description}</div>
+    <div className='social-media'>Social Media Icons</div>
   </div>
 );
 

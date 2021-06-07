@@ -126,8 +126,9 @@
 }
 
 .reviews-tile {
-  border: 1px solid blue;
-  margin: 5px;
+  border-bottom: 1px solid blue;
+  margin-top: 25px;
+  margin-bottom: 5px;
   display: grid;
   grid-template-rows: auto;
 }

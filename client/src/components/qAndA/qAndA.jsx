@@ -10,12 +10,9 @@ class QAndA extends React.Component {
       test: 'adslfkjhasdljkf'
     };
 
-    this.onChange = this.onChange.bind(this);
+    //this.onChange = this.onChange.bind(this);
   }
 
-  onChange(e) {
-    console.log(e.target.value);
-  }
 
   render() {
     return (
@@ -23,7 +20,7 @@ class QAndA extends React.Component {
         <div className="qAndA-heading" >
           <h1 >Questions And Answers</h1>
         </div>
-        <QAndASearch test={this.onChange} />
+        <QAndASearch />
         <QAndAFeed />
       </div>
     );

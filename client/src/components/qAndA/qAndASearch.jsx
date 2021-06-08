@@ -4,7 +4,7 @@ const QAndASearch = (props) => {
   return (
     <div className="qAndA-search" >
       <form type="text" >
-        <input id="input" onChange={props.test(document.getElementById("input"))}></input>
+        <input id="input" ></input>
       </form>
       <br></br>
     </div>

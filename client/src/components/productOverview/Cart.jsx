@@ -19,7 +19,6 @@ class Cart extends React.Component {
   }
 
   render() {
-    // console.log(this.props.style);
     let skus = this.props.style.skus;
     let maxQty = 15; // default
     let availableSizes = [];
@@ -46,7 +45,7 @@ class Cart extends React.Component {
       <span className='cart-size-select'>
         <select onChange={this.handleSizeChange.bind(this)}>
         <option defaultValue='Select Size'>Select Size</option>
-        {availableSizes.map(size => <option value={size}>{size}</option>)}
+        {availableSizes.map(size => <option value={size} key={size}>{size}</option>)}
         </select>
       </span>
 
@@ -63,7 +62,7 @@ class Cart extends React.Component {
         <span className='cart-quantity-select'>
           <select onChange={this.handleQuantityChange.bind(this)}>
             <option defaultValue="Select Quantity">Qty</option>
-            {qtys.map(num => <option value={num}>{num}</option>)}
+            {qtys.map(num => <option value={num} key={num}>{num}</option>)}
           </select>
         </span>
 

@@ -23,6 +23,37 @@ app.get('/reviews', (req, res) => {
   })
 });
 
+app.get('/allReviews', (req, res) => {
+  const count = 10
+  const productId = req.query.productId
+
+  const getReviews = async function (page = 1) {
+    let url = `${apiUrl}/reviews?page=${page}&count=${count}&product_id=${productId}`;
+    var apiResults = await axios.get(url, {headers: {'Authorization': gitToken}})
+      .then((resp) => resp.data.results)
+      .catch((err) => console.log('ERROR get reviews', err))
+    // console.log('first page', apiResults.length);
+    return apiResults.map((review) => review.rating);
+  }
+
+  const getAllReviews = async function (page = 1) {
+    const results = await getReviews(page)
+    // console.log('results', page, results.length)
+    if (results.length > 0) {
+      return results.concat(await getAllReviews(page + 1))
+    } else {
+      return results;
+    }
+  }
+  // getAllReviews();
+  const test = async function () {
+    let entireList = await getAllReviews();
+    console.log(entireList.length);
+    res.status(200).send(entireList);
+  }
+  test();
+});
+
 app.put('/reviews/:reviewId/helpful', (req, res) => {
   // console.log('req', req.params, 'query', req.query);
   return axios.put(`${apiUrl}/reviews/${req.params.reviewId}/helpful`, null, {

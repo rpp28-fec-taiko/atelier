@@ -11,8 +11,20 @@ class App extends React.Component {
       productId: '22160',
       currentReviews: [],
       nextReviews: [],
-      reviewPage: 1
+      reviewPage: 1,
+      reviewCriteria: 'relevant'
     };
+  }
+
+  sortReviews = (criteria) => {
+    if (criteria === 'newest') {
+      var newCurrentReviews = this.state.currentReviews.slice().sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      // console.log('newCurrentRev', newCurrentReviews);
+      this.setState((prevState) => ({
+        currentReviews: [...newCurrentReviews],
+        reviewCriteria: criteria
+      }), () => console.log('sorted', this.state))
+    }
   }
 
   get2Reviews = (page) => {
@@ -26,7 +38,7 @@ class App extends React.Component {
           nextReviews: reviews,
           reviewPage: prevState.reviewPage + 1
         }
-      }, () => console.log('state', this.state));
+      }, () => this.sortReviews(this.state.reviewCriteria));
     })
     .catch((err) => {
       console.log('ERROR GETTING 2 ADDITIONAL REVIEWS', err)
@@ -106,7 +118,7 @@ class App extends React.Component {
         <Overview />
         <RelatedItems />
         <QAndA />
-        <Reviews currentReviews={this.state.currentReviews} nextReviews={this.state.nextReviews} increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss} reportReview={this.reportReview} get2Reviews={this.get2Reviews}/>
+        <Reviews currentReviews={this.state.currentReviews} nextReviews={this.state.nextReviews} increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss} reportReview={this.reportReview} get2Reviews={this.get2Reviews} sortReviews={this.sortReviews} reviewCriteria={this.state.reviewCriteria}/>
       </div>
     );
   }

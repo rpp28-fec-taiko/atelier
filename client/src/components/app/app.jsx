@@ -11,7 +11,6 @@ class App extends React.Component {
       productId: '22160',
       currentReviews: [],
       nextReviews: [],
-      fetchMore: false,
       reviewPage: 1
     };
   }
@@ -60,7 +59,23 @@ class App extends React.Component {
       method: 'PUT'
     })
     .then(() => {
-      return this.getInitialReviews();
+      // console.log('REVIEW WAS HELPFUL')
+      let newCurrentReviews = this.state.currentReviews.map((review) => {
+        if (review.review_id === reviewId) {
+          return {
+            ...review,
+            helpfulness: review.helpfulness  + 1
+          }
+        }
+        return review;
+      })
+      // console.log('new current reviews', newCurrentReviews)
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          currentReviews: [...newCurrentReviews]
+        }
+      }, () => console.log('helpful state', this.state))
     })
     .catch((err) => {
       console.log('ERROR SUBMITTING HELPFULNESS', err)

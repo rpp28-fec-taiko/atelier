@@ -86,6 +86,10 @@
   padding: 4px;
 }
 
+.star-box {
+  display: inline-block;
+}
+
 /*------ REVIEWS & RATINGS --------*/
 .reviews-body {
   display: grid;

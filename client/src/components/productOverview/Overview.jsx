@@ -89,7 +89,7 @@ class Overview extends React.Component {
           "name": "Orange",
           "original_price": "140",
           "sale_price": "0",
-          "default?": true,
+          "default?": false,
           "photos": [
             {
               "thumbnail_url": "urlplaceholder/style_1_photo_number_thumbnail.jpg",
@@ -117,7 +117,7 @@ class Overview extends React.Component {
           "name": "Black",
           "original_price": "140",
           "sale_price": "0",
-          "default?": true,
+          "default?": false,
           "photos": [
             {
               "thumbnail_url": "urlplaceholder/style_1_photo_number_thumbnail.jpg",
@@ -145,7 +145,7 @@ class Overview extends React.Component {
           "name": "Violet",
           "original_price": "140",
           "sale_price": "0",
-          "default?": true,
+          "default?": false,
           "photos": [
             {
               "thumbnail_url": "urlplaceholder/style_1_photo_number_thumbnail.jpg",
@@ -173,7 +173,7 @@ class Overview extends React.Component {
           "name": "Beige",
           "original_price": "140",
           "sale_price": "0",
-          "default?": true,
+          "default?": false,
           "photos": [
             {
               "thumbnail_url": "urlplaceholder/style_1_photo_number_thumbnail.jpg",
@@ -201,7 +201,7 @@ class Overview extends React.Component {
           "name": "Purple",
           "original_price": "140",
           "sale_price": "0",
-          "default?": true,
+          "default?": false,
           "photos": [
             {
               "thumbnail_url": "urlplaceholder/style_1_photo_number_thumbnail.jpg",
@@ -223,9 +223,37 @@ class Overview extends React.Component {
               }
 
           }
-        },
+        }
 
-      ]
+      ],
+      currentStyle: {
+        "style_id": 7,
+        "name": "Purple",
+        "original_price": "140",
+        "sale_price": "0",
+        "default?": false,
+        "photos": [
+          {
+            "thumbnail_url": "urlplaceholder/style_1_photo_number_thumbnail.jpg",
+            "url": "urlplaceholder/style_1_photo_number.jpg"
+          }
+        ],
+        "skus": {
+            "37": {
+                  "quantity": 8,
+                  "size": "XS"
+            },
+            "38": {
+                  "quantity": 16,
+                  "size": "S"
+            },
+            "39": {
+                  "quantity": 17,
+                  "size": "M"
+            }
+
+        }
+      }
     }
 
   }
@@ -236,7 +264,7 @@ class Overview extends React.Component {
         <ImageGallery />
         <ProductInfo product={this.state.product}/>
         <StyleSelector styles={this.state.styles}/>
-        <Cart />
+        <Cart style={this.state.currentStyle}/>
       </div>
     );
   }

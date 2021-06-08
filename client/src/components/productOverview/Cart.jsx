@@ -19,30 +19,57 @@ class Cart extends React.Component {
   }
 
   render() {
+    // console.log(this.props.style);
+    let skus = this.props.style.skus;
+    let maxQty = 15; // default
+    let availableSizes = [];
+    let outOfStock = false;
+
+    for (let key in skus) {
+      let currSku = skus[key]
+      if (currSku.size === this.state.size && currSku.quantity < 15) {
+        maxQty = currSku.quantity;
+      }
+      if (currSku.quantity > 0) {
+        availableSizes.push(currSku.size)
+      }
+    }
+
+    // QTY SELECT set up for dynmically rendering quantity options
+    let qtys = []
+    for (let i = 1; i <= maxQty; i++) {
+      qtys.push(i);
+    }
+
+    // SIZE SELECT predefine in case OUT OF STOCK needs to be rendered instead
+    let cartSizeSelect =
+      <span className='cart-size-select'>
+        <select onChange={this.handleSizeChange.bind(this)}>
+        <option defaultValue='Select Size'>Select Size</option>
+        {availableSizes.map(size => <option value={size}>{size}</option>)}
+        </select>
+      </span>
+
+    if (!availableSizes.length) {
+      outOfStock = true;
+    }
+    if (outOfStock) {
+      cartSizeSelect = <span className='cart-size-select'>OUT OF STOCK</span>
+    }
+
     return (
       <div className='cart'>
-        <div className='size'>
-          <select onChange={this.handleSizeChange.bind(this)}>
-            <option defaultValue='Select Size'>Select Size</option>
-            <option value="XS">XS</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-          </select>
-        </div>
-
-        <div className='quantity'>
+        {cartSizeSelect}
+        <span className='cart-quantity-select'>
           <select onChange={this.handleQuantityChange.bind(this)}>
             <option defaultValue="Select Quantity">Qty</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
+            {qtys.map(num => <option value={num}>{num}</option>)}
           </select>
-        </div>
+        </span>
 
-        <button>Add To Cart +</button>
+        <div className='add-to-cart-button'>
+          <button>Add To Cart +</button>
+        </div>
         <div className='star-box'>Star</div>
       </div>
     );

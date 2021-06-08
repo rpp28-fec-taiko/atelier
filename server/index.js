@@ -23,35 +23,27 @@ app.get('/reviews', (req, res) => {
   })
 });
 
-app.get('/allReviews', (req, res) => {
-  const count = 10
-  const productId = req.query.productId
-
-  const getReviews = async function (page = 1) {
-    let url = `${apiUrl}/reviews?page=${page}&count=${count}&product_id=${productId}`;
-    var apiResults = await axios.get(url, {headers: {'Authorization': gitToken}})
-      .then((resp) => resp.data.results)
-      .catch((err) => console.log('ERROR get reviews', err))
-    // console.log('first page', apiResults.length);
-    return apiResults.map((review) => review.rating);
-  }
-
-  const getAllReviews = async function (page = 1) {
-    const results = await getReviews(page)
-    // console.log('results', page, results.length)
-    if (results.length > 0) {
-      return results.concat(await getAllReviews(page + 1))
-    } else {
-      return results;
+app.get('/allReviews', async (req, res) => {
+  try {
+    let count = 10
+    let productId = req.query.productId
+    let metaUrl = `${apiUrl}/reviews/meta?product_id=${productId}`;
+    let { data: { ratings }} = await axios.get(metaUrl, {headers: {'Authorization': gitToken}})
+    // console.log('raings', ratings);
+    let totalReviews = 0;
+    for (let key in ratings) {
+      totalReviews += Number(ratings[key]);
     }
+    // console.log('nubmer',totalReviews)
+
+    let url = `${apiUrl}/reviews?page=1&count=${totalReviews}&product_id=${productId}`;
+    let allReviews = await axios.get(url, {headers: {'Authorization': gitToken}});
+    let allRatings =  allReviews.data.results.map((review) => review.rating);
+    // console.log('allrating', allRatings);
+    res.status(200).send(allRatings);
+  } catch(err) {
+    console.log('ERROR GETTING META DATA AND TOTAL REVIEWS', err)
   }
-  // getAllReviews();
-  const test = async function () {
-    let entireList = await getAllReviews();
-    console.log(entireList.length);
-    res.status(200).send(entireList);
-  }
-  test();
 });
 
 app.put('/reviews/:reviewId/helpful', (req, res) => {

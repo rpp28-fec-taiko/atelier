@@ -25,7 +25,7 @@ class Reviews extends React.Component {
               <AddReview /> :
               <div className='reviews-main'>
                 <div className='reviews-sort'>
-                  No. of reviews, sorted by dropdown
+                  No. of reviews {this.props.totalReviews}, sorted by dropdown
                 </div>
                 <Search />
                 <ReviewsList reviews={this.props.currentReviews} increaseReviewHelpfulnesss={this.props.increaseReviewHelpfulnesss} reportReview={this.props.reportReview}/>

@@ -8,7 +8,7 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      productId: '22160',
+      productId: '22161',
       currentReviews: [],
       nextReviews: [],
       reviewPage: 1,
@@ -102,7 +102,7 @@ class App extends React.Component {
     return fetch(`http://localhost:3000/allReviews?productId=${this.state.productId}`)
     .then((resp) => resp.json())
     .then((allReviews) => {
-      // console.log('reviews', allReviews.length)
+      // console.log('all reviews', allReviews)
       let ratings = {};
       allReviews.forEach((star) => {
         if (ratings[star] === undefined) {
@@ -138,7 +138,7 @@ class App extends React.Component {
         <Overview />
         <RelatedItems />
         <QAndA />
-        <Reviews currentReviews={this.state.currentReviews} nextReviews={this.state.nextReviews} increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss} reportReview={this.reportReview} get2Reviews={this.get2Reviews}/>
+        <Reviews currentReviews={this.state.currentReviews} nextReviews={this.state.nextReviews} totalReviews={this.state.totalReviews} increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss} reportReview={this.reportReview} get2Reviews={this.get2Reviews}/>
       </div>
     );
   }

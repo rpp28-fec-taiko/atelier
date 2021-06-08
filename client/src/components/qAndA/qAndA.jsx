@@ -5,15 +5,25 @@ import QAndAFeed from './qAndAFeed.jsx';
 class QAndA extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      test: 'adslfkjhasdljkf'
+    };
+
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(e) {
+    console.log(e.target.value);
   }
 
   render() {
     return (
       <div className="qAndA" >
         <div className="qAndA-heading" >
-          <h2 >Questions And Answers</h2>
+          <h1 >Questions And Answers</h1>
         </div>
-        <QAndASearch />
+        <QAndASearch test={this.onChange} />
         <QAndAFeed />
       </div>
     );

@@ -91,6 +91,10 @@
 }
 
 /*------ REVIEWS & RATINGS --------*/
+/* .reviews {
+  overflow-y: scroll;
+  max-height: 1200px;
+} */
 .reviews-body {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -129,6 +133,8 @@
 .reviews-list {
   border: 1px solid green;
   margin: 5px;
+  max-height: 820px;
+  overflow-y: scroll;
 }
 
 .reviews-btns {

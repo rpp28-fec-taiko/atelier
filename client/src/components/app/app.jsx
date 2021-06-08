@@ -12,7 +12,7 @@ class App extends React.Component {
       currentReviews: [],
       nextReviews: [],
       reviewPage: 1,
-      reviewCriteria: 'relevant'
+      reviewCriteria: 'relevant',
       totalReviews: 0,
       avgRating: 0
     };
@@ -40,11 +40,7 @@ class App extends React.Component {
           nextReviews: reviews,
           reviewPage: prevState.reviewPage + 1
         }
-<<<<<<< HEAD
       }, () => this.sortReviews(this.state.reviewCriteria));
-=======
-      }, () => console.log('get2reviews state', this.state));
->>>>>>> main
     })
     .catch((err) => {
       console.log('ERROR GETTING 2 ADDITIONAL REVIEWS', err)
@@ -154,11 +150,7 @@ class App extends React.Component {
         <Overview />
         <RelatedItems />
         <QAndA />
-<<<<<<< HEAD
-        <Reviews currentReviews={this.state.currentReviews} nextReviews={this.state.nextReviews} increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss} reportReview={this.reportReview} get2Reviews={this.get2Reviews} sortReviews={this.sortReviews} reviewCriteria={this.state.reviewCriteria}/>
-=======
-        <Reviews currentReviews={this.state.currentReviews} nextReviews={this.state.nextReviews} totalReviews={this.state.totalReviews} increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss} reportReview={this.reportReview} get2Reviews={this.get2Reviews}/>
->>>>>>> main
+        <Reviews currentReviews={this.state.currentReviews} nextReviews={this.state.nextReviews} totalReviews={this.state.totalReviews} increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss} reportReview={this.reportReview} get2Reviews={this.get2Reviews} sortReviews={this.sortReviews} reviewCriteria={this.state.reviewCriteria}/>
       </div>
     );
   }

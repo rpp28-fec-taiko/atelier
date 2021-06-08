@@ -3,6 +3,6 @@ import { shallow } from 'enzyme';
 import Reviews from '../../../client/src/components/reviews/reviews.jsx';
 
 test('checks that Reviews component is rendering', () => {
-  const wrapper = shallow(<Reviews reviews={[]}/>);
+  const wrapper = shallow(<Reviews currentReviews={[]} />);
   expect(wrapper.children()).toHaveLength(2);
 });

@@ -3,6 +3,8 @@ import RatingsBreakdown from './ratingsBreakdown.jsx';
 import PdtBreakdown from './pdtBreakdown.jsx';
 import ReviewsList from './reviewsList.jsx';
 import Search from './search.jsx';
+import AddReview from './addReview.jsx';
+import MoreReviews from './moreReviews.jsx';
 
 class Reviews extends React.Component {
   constructor (props) {
@@ -19,16 +21,17 @@ class Reviews extends React.Component {
             <PdtBreakdown />
           </div>
           {
-            this.props.reviews.length === 0 ?
-              <div> ADD A REVIEW </div> :
+            this.props.currentReviews.length === 0 ?
+              <AddReview /> :
               <div className='reviews-main'>
                 <div className='reviews-sort'>
-                  No. of reviews, sorted by dropdown
+                  No. of reviews {this.props.totalReviews}, sorted by dropdown
                 </div>
                 <Search />
-                <ReviewsList reviews={this.props.reviews} increaseReviewHelpfulnesss={this.props.increaseReviewHelpfulnesss} reportReview={this.props.reportReview}/>
+                <ReviewsList reviews={this.props.currentReviews} increaseReviewHelpfulnesss={this.props.increaseReviewHelpfulnesss} reportReview={this.props.reportReview}/>
                 <div className='reviews-btns'>
-                  BUTTONS
+                  {this.props.nextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null}
+                  <AddReview />
                 </div>
               </div>
           }

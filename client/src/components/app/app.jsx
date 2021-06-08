@@ -135,7 +135,7 @@ class App extends React.Component {
   render () {
     return (
       <div className='app'>
-        <Overview />
+        <Overview productId={this.state.productId}/>
         <RelatedItems />
         <QAndA />
         <Reviews currentReviews={this.state.currentReviews} nextReviews={this.state.nextReviews} totalReviews={this.state.totalReviews} increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss} reportReview={this.reportReview} get2Reviews={this.get2Reviews}/>

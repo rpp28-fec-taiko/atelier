@@ -9,253 +9,32 @@ class Overview extends React.Component {
     super(props);
 
     this.state = {
-      product: {
-        "id": 11,
-        "name": "Air Minis 250",
-        "slogan": "Full court support",
-        "description": "This optimized air cushion pocket reduces impact but keeps a perfect balance underfoot.",
-        "category": "Basketball Shoes",
-        "default_price": "0",
-        "features": [
-          {
-            "feature": "Sole",
-            "value": "Rubber"
-          },
-          {
-            "feature": "Material",
-            "value": "FullControlSkin"
-          }
-        ]
-      },
-      styles: [
-        {
-          "style_id": 1,
-          "name": "Forest Green & Black",
-          "original_price": "140",
-          "sale_price": "0",
-          "default?": true,
-          "photos": [
-            {
-              "thumbnail_url": "urlplaceholder/style_1_photo_number_thumbnail.jpg",
-              "url": "urlplaceholder/style_1_photo_number.jpg"
-            }
-          ],
-          "skus": {
-              "37": {
-                    "quantity": 8,
-                    "size": "XS"
-              },
-              "38": {
-                    "quantity": 16,
-                    "size": "S"
-              },
-              "39": {
-                    "quantity": 17,
-                    "size": "M"
-              }
-
-          }
-        },
-        {
-          "style_id": 2,
-          "name": "Desert Brown & Tan",
-          "original_price": "140",
-          "sale_price": "0",
-          "default?": false,
-          "photos": [
-            {
-            "thumbnail_url": "urlplaceholder/style_2_photo_number_thumbnail.jpg",
-            "url": "urlplaceholder/style_2_photo_number.jpg"
-            }
-
-          ],
-          "skus": {
-              "37": {
-                    "quantity": 8,
-                    "size": "XS"
-              },
-              "38": {
-                    "quantity": 16,
-                    "size": "S"
-              },
-              "39": {
-                    "quantity": 17,
-                    "size": "M"
-              }
-          }
-        },
-        {
-          "style_id": 3,
-          "name": "Orange",
-          "original_price": "140",
-          "sale_price": "0",
-          "default?": false,
-          "photos": [
-            {
-              "thumbnail_url": "urlplaceholder/style_1_photo_number_thumbnail.jpg",
-              "url": "urlplaceholder/style_1_photo_number.jpg"
-            }
-          ],
-          "skus": {
-              "37": {
-                    "quantity": 8,
-                    "size": "XS"
-              },
-              "38": {
-                    "quantity": 16,
-                    "size": "S"
-              },
-              "39": {
-                    "quantity": 17,
-                    "size": "M"
-              }
-
-          }
-        },
-        {
-          "style_id": 4,
-          "name": "Black",
-          "original_price": "140",
-          "sale_price": "0",
-          "default?": false,
-          "photos": [
-            {
-              "thumbnail_url": "urlplaceholder/style_1_photo_number_thumbnail.jpg",
-              "url": "urlplaceholder/style_1_photo_number.jpg"
-            }
-          ],
-          "skus": {
-              "37": {
-                    "quantity": 8,
-                    "size": "XS"
-              },
-              "38": {
-                    "quantity": 16,
-                    "size": "S"
-              },
-              "39": {
-                    "quantity": 17,
-                    "size": "M"
-              }
-
-          }
-        },
-        {
-          "style_id": 5,
-          "name": "Violet",
-          "original_price": "140",
-          "sale_price": "0",
-          "default?": false,
-          "photos": [
-            {
-              "thumbnail_url": "urlplaceholder/style_1_photo_number_thumbnail.jpg",
-              "url": "urlplaceholder/style_1_photo_number.jpg"
-            }
-          ],
-          "skus": {
-              "37": {
-                    "quantity": 8,
-                    "size": "XS"
-              },
-              "38": {
-                    "quantity": 16,
-                    "size": "S"
-              },
-              "39": {
-                    "quantity": 17,
-                    "size": "M"
-              }
-
-          }
-        },
-        {
-          "style_id": 6,
-          "name": "Beige",
-          "original_price": "140",
-          "sale_price": "0",
-          "default?": false,
-          "photos": [
-            {
-              "thumbnail_url": "urlplaceholder/style_1_photo_number_thumbnail.jpg",
-              "url": "urlplaceholder/style_1_photo_number.jpg"
-            }
-          ],
-          "skus": {
-              "37": {
-                    "quantity": 8,
-                    "size": "XS"
-              },
-              "38": {
-                    "quantity": 16,
-                    "size": "S"
-              },
-              "39": {
-                    "quantity": 17,
-                    "size": "M"
-              }
-
-          }
-        },
-        {
-          "style_id": 7,
-          "name": "Purple",
-          "original_price": "140",
-          "sale_price": "0",
-          "default?": false,
-          "photos": [
-            {
-              "thumbnail_url": "urlplaceholder/style_1_photo_number_thumbnail.jpg",
-              "url": "urlplaceholder/style_1_photo_number.jpg"
-            }
-          ],
-          "skus": {
-              "37": {
-                    "quantity": 8,
-                    "size": "XS"
-              },
-              "38": {
-                    "quantity": 16,
-                    "size": "S"
-              },
-              "39": {
-                    "quantity": 17,
-                    "size": "M"
-              }
-
-          }
-        }
-
-      ],
-      currentStyle: {
-        "style_id": 7,
-        "name": "Purple",
-        "original_price": "140",
-        "sale_price": "0",
-        "default?": false,
-        "photos": [
-          {
-            "thumbnail_url": "urlplaceholder/style_1_photo_number_thumbnail.jpg",
-            "url": "urlplaceholder/style_1_photo_number.jpg"
-          }
-        ],
-        "skus": {
-            "37": {
-                  "quantity": 8,
-                  "size": "XS"
-            },
-            "38": {
-                  "quantity": 16,
-                  "size": "S"
-            },
-            "39": {
-                  "quantity": 17,
-                  "size": "M"
-            }
-
-        }
-      }
+      product: {},
+      styles: [],
+      currentStyle: {}
     }
 
+  }
+
+  componentDidMount() {
+    // populate the state stuff here
+    console.log(this.props.productId)
+    fetch(`http://localhost:3000/productInfo?productId=${this.props.productId}`)
+      .then((results) => {
+        return results.json()
+      })
+      .then((productInfo) => {
+        this.setState({product: productInfo}, () => console.log(this.state));
+      })
+      .catch(() => {
+        console.log('error fetching product info');
+      });
+
+    // fetch product info
+
+    // fetch styles as well
+
+    //  setState
   }
 
   render() {

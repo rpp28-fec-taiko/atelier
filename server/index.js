@@ -12,23 +12,37 @@ app.use(express.static(servingPath));
 const apiUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp`;
 
 // Products API --------------------------------------------------------
+
 app.get('/productInfo', (req, res) => {
-  console.log(req.query)
   return axios.get(`${apiUrl}/products/${req.query.productId}`, {
     headers: {
       'Authorization': gitToken
     }
   })
   .then((results) => {
-    console.log('results from API', results.data);
     res.status(200);
     res.json(results.data);
   })
   .catch(() => {
-    console.log('error retreiving product info');
+    console.log('error retreiving product info from API');
     res.sendStatus(404);
-  })
+  });
 });
+
+app.get('/styles', (req, res) => {
+  return axios.get(`${apiUrl}/products/${req.query.productId}/styles`, {
+    headers: {
+      'Authorization': gitToken
+    }
+  })
+  .then((results) => {
+    console.log('success styles', results.data)
+  })
+  .catch(() => {
+    console.log('error retreiving styles from API')
+  });
+});
+
 
 // Reviews API ------------------------------------------------------------
 

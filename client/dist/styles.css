@@ -74,6 +74,9 @@
 .current-style-selection {
   border: 3px solid rgba(89, 252, 39, 0.678);
 }
+.non-current-style {
+  border: 3px solid grey;
+}
 
 .styles-text {
   font-weight: bold;
@@ -90,7 +93,7 @@
   display: inline-block;
   height: 60px;
   width: 60px;
-
+  padding: 3px;
 }
 
 .style-thumbnail img {

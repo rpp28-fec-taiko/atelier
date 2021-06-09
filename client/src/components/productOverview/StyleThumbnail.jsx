@@ -10,7 +10,7 @@ const StyleThumbnail = (props) => {
     </div>
   } else {
     thumbnail =
-    <div className='style-thumbnail' onClick={props.updateStyle}>
+    <div className='style-thumbnail non-current-style' onClick={props.updateStyle}>
       <img src={props.thumbnail}></img>
     </div>
   }

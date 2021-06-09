@@ -77,11 +77,26 @@
 
 }
 
+.current-style-selection {
+  border: 3px solid rgba(89, 252, 39, 0.678);
+}
+
+.styles-text {
+  font-weight: bold;
+}
+
+.current-style-name {
+  color: slategray;
+}
+
 .style-thumbnail {
   margin: 10px;
   margin-right: 35px;
   /* border: 1px solid lightblue; */
   display: inline-block;
+  height: 60px;
+  width: 60px;
+
 }
 
 .style-thumbnail img {

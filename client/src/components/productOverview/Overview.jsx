@@ -58,8 +58,6 @@ class Overview extends React.Component {
 
   updateStyle(e) {
     e.preventDefault();
-    // console.log('click', e.target.src);
-    // console.log('prevs state', this.state.currentStyle)
     this.state.styles.forEach(style => {
       if (style.photos[0].thumbnail_url === e.target.src) {
         this.setState({
@@ -67,9 +65,6 @@ class Overview extends React.Component {
         }, () => console.log('update style state', this.state))
       }
     })
-    // this.setState({
-    //   currentStyle:
-    // })
   }
 
   render() {
@@ -77,7 +72,7 @@ class Overview extends React.Component {
       <div className='overview'>
         <ImageGallery currentStyle={this.state.currentStyle}/>
         <ProductInfo product={this.state.product}/>
-        <StyleSelector updateStyle={this.updateStyle.bind(this)} styles={this.state.styles}/>
+        <StyleSelector updateStyle={this.updateStyle.bind(this)} styles={this.state.styles} currentStyle={this.state.currentStyle}/>
         <Cart style={this.state.currentStyle}/>
       </div>
     );

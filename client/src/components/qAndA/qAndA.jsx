@@ -1,6 +1,8 @@
 import React from 'react';
 import QAndASearch from './qAndASearch.jsx';
-import QAndAFeed from './qAndAFeed.jsx';
+import QAndAList from './qAndAList.jsx';
+import QAndAOptions from './qAndAOptions.jsx';
+
 
 class QAndA extends React.Component {
   constructor(props) {
@@ -42,7 +44,8 @@ class QAndA extends React.Component {
         </div>
         <div className="qAndA-body">
           <QAndASearch />
-          <QAndAFeed questions={this.state.questions} />
+          <QAndAList questions={this.state.questions} />
+          <QAndAOptions />
         </div>
       </div>
     )

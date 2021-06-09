@@ -109,7 +109,19 @@
   margin: 10px;
 }
 
-.qAndA-feed {
+.qAndA-list {
+  grid-template-rows: auto;
+  border: 2px solid black;
+  margin: 5px;
+}
+
+.qAndA-list-item {
+  grid-template-rows: auto;
+  border: 2px solid black;
+  margin: 5px;
+}
+
+.qAndA-options {
   grid-template-rows: 1fr;
   border: 2px solid black;
   margin: 5px;

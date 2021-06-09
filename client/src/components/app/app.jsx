@@ -3,7 +3,7 @@ import Reviews from '../reviews/reviews.jsx';
 import Overview from '../productOverview/Overview.jsx';
 import QAndA from '../qAndA/qAndA.jsx';
 import RelatedItems from '../relatedItems/RelatedItems.jsx';
-import {findAvgRating} from '../reviews/reviewsHelper.js';
+import {findAvgRating, sortByCriteria} from '../reviews/reviewsHelper.js';
 
 class App extends React.Component {
   constructor (props) {
@@ -20,18 +20,15 @@ class App extends React.Component {
   }
 
   sortReviews = (criteria) => {
-    if (criteria === 'newest') {
-      let totalReviews = this.state.totalReviews.slice().sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-      let idx = this.state.currentReviews.length;
-      let currentReviews = totalReviews.slice(0, idx);
-      let nextReviews = totalReviews.slice(idx, idx + 2);
-      this.setState((prevState) => ({
-        totalReviews,
-        currentReviews,
-        nextReviews,
-        reviewCriteria: criteria
-      }), () => console.log('sorted', this.state))
-    }
+    let totalReviews = sortByCriteria(criteria, this.state.totalReviews.slice());
+    let currentReviews = totalReviews.slice(0, 2);
+    let nextReviews = totalReviews.slice(2, 4);
+    this.setState((prevState) => ({
+      totalReviews,
+      currentReviews,
+      nextReviews,
+      reviewCriteria: criteria
+    }), () => console.log(`state sorted by ${criteria}`, this.state))
   }
 
   getAllReviews = () => {
@@ -40,15 +37,15 @@ class App extends React.Component {
     .then((allReviews) => {
       // console.log('all reviews', allReviews)
       let avgRating = findAvgRating(allReviews);
-
+      let totalReviews = sortByCriteria(this.state.reviewCriteria, allReviews)
       //DO SORTING HERE SO THAT INITIAL RESULTS ARE ALSO SORTED
       this.setState({
-        totalReviews: allReviews,
-        noOfReviews: allReviews.length,
+        totalReviews,
+        noOfReviews: totalReviews.length,
         avgRating,
-        currentReviews: allReviews.slice(0, 2),
-        nextReviews: allReviews.slice(2, 4)
-      }, () => console.log('avg review state', this.state))
+        currentReviews: totalReviews.slice(0, 2),
+        nextReviews: totalReviews.slice(2, 4)
+      }, () => console.log('state after fetching all reviews', this.state))
     })
     .catch((err) => {
       console.log('ERROR GETTING ALL REVIEWS', err);
@@ -62,7 +59,7 @@ class App extends React.Component {
     this.setState((prevState) => ({
       currentReviews,
       nextReviews
-    }), () => console.log('2 morereviews state', this.state))
+    }), () => console.log('state after getting 2 more reviews', this.state))
   }
 
   increaseReviewHelpfulnesss = (reviewId) => {

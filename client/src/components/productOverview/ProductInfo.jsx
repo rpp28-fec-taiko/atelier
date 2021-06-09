@@ -1,6 +1,9 @@
 import React from 'react';
+import Stars from '../stars/stars.jsx';
 
-const ProductInfo = ({product, currentStyle}) => {
+const ProductInfo = ({product, currentStyle, noOfReviews, avgRating}) => {
+
+  let stars = <Stars size={18} rating={avgRating}/>
 
   let price;
   if (currentStyle.sale_price) {
@@ -11,7 +14,8 @@ const ProductInfo = ({product, currentStyle}) => {
 
   return (
     <div className='product-info'>
-      <div>Star Rating - (read reviews)</div>
+      <div className='overview-stars'>{stars}</div>
+      <span className='read-reviews'>Read {noOfReviews} reviews</span>
       <div className='product-category'>{product.category}</div>
       <div className='product-name'>{product.name}</div>
       {price}

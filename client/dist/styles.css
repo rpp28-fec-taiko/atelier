@@ -31,9 +31,26 @@
   margin-left: 10px;
 }
 
+.overview-stars {
+  display: inline-block;
+}
+
 .product-name {
   font-size: 2em;
   padding: 4px;
+}
+
+.read-reviews {
+  color: darkgray;
+  margin-left: 8px;
+  font-size: 0.9em;
+  position: relative;
+  bottom: 4px;
+  text-decoration-line: underline;
+}
+
+.read-reviews:hover {
+  color: black;
 }
 
 .product-category {
@@ -41,6 +58,7 @@
   color: grey;
   font-size: 1.2em;
   padding: 4px;
+  padding-bottom: 0;
 }
 
 .price {

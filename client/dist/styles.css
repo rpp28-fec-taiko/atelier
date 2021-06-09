@@ -90,6 +90,31 @@
   display: inline-block;
 }
 
+/*----- QUESTIONS & ANSWERS -------*/
+
+.qAndA-body {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px solid black;
+}
+
+.qAndA-search {
+  border: 2px solid black;
+  margin: 5px;
+}
+
+#qAndASearch {
+  display: grid;
+  border: 0px;
+  margin: 10px;
+}
+
+.qAndA-feed {
+  grid-template-rows: 1fr;
+  border: 2px solid black;
+  margin: 5px;
+}
+
 /*------ REVIEWS & RATINGS --------*/
 /* .reviews {
   overflow-y: scroll;

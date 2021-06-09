@@ -4,9 +4,8 @@ const QAndASearch = (props) => {
   return (
     <div className="qAndA-search" >
       <form type="text" >
-        <input id="input" ></input>
+        <input id="qAndASearch" ></input>
       </form>
-      <br></br>
     </div>
   );
 };

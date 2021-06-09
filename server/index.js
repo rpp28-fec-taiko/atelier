@@ -11,21 +11,46 @@ app.use(express.static(servingPath));
 
 const apiUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp`;
 
-app.get('/reviews', (req, res) => {
-  return axios.get (`${apiUrl}/reviews/?page=${req.query.page}&count=${req.query.count}&product_id=${req.query.productId}`, {
+// Products API --------------------------------------------------------
+
+app.get('/productInfo', (req, res) => {
+  return axios.get(`${apiUrl}/products/${req.query.productId}`, {
     headers: {
       'Authorization': gitToken
     }
   })
-  .then((resp) => res.status(200).send(resp.data.results))
-  .catch((err) => {
-    console.log('ERROR GETTING REVIEWS FROM ATELIER API', err)
+  .then((results) => {
+    res.status(200);
+    res.json(results.data);
   })
+  .catch(() => {
+    console.log('error retreiving product info from API');
+    res.sendStatus(404);
+  });
 });
+
+app.get('/styles', (req, res) => {
+  return axios.get(`${apiUrl}/products/${req.query.productId}/styles`, {
+    headers: {
+      'Authorization': gitToken
+    }
+  })
+  .then((results) => {
+    console.log('success styles', results.data)
+    res.status(200);
+    res.json(results.data);
+  })
+  .catch(() => {
+    console.log('error retreiving styles from API')
+    res.sendStatus(404);
+  });
+});
+
+
+// Reviews API ------------------------------------------------------------
 
 app.get('/allReviews', async (req, res) => {
   try {
-    let count = 10
     let productId = req.query.productId
     let metaUrl = `${apiUrl}/reviews/meta?product_id=${productId}`;
     let { data: { ratings }} = await axios.get(metaUrl, {headers: {'Authorization': gitToken}})
@@ -38,9 +63,8 @@ app.get('/allReviews', async (req, res) => {
 
     let url = `${apiUrl}/reviews?page=1&count=${totalReviews}&product_id=${productId}`;
     let allReviews = await axios.get(url, {headers: {'Authorization': gitToken}});
-    let allRatings =  allReviews.data.results.map((review) => review.rating);
     // console.log('allrating', allRatings);
-    res.status(200).send(allRatings);
+    res.status(200).send(allReviews.data.results);
   } catch(err) {
     console.log('ERROR GETTING META DATA AND TOTAL REVIEWS', err)
   }

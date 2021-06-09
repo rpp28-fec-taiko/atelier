@@ -56,24 +56,18 @@ class Cart extends React.Component {
       cartSizeSelect = <span className='cart-size-select'>OUT OF STOCK</span>
     }
 
-    // let qtyDefault;
-    // if (!this.state.size) {
-    //   qtyDefault = '-'
-    // } else {
-    //   qtyDefault = 1
-    // }
 
-
-    let qtySelectorContents;
+    // QUANTITY SELECTOR
+    let qtySelector;
     // default qty before style is selected
     if (!this.state.size) {
-      qtySelectorContents =
+      qtySelector =
       <select defaultValue='-' onChange={this.handleQuantityChange.bind(this)}>
         <option disabled> - </option>
       </select>
     // after style is selected default to one
     } else {
-      qtySelectorContents =
+      qtySelector =
       <select onChange={this.handleQuantityChange.bind(this)}>
         {qtys.map(num => <option value={num} key={num}>{num}</option>)}
       </select>
@@ -85,11 +79,7 @@ class Cart extends React.Component {
         <div className='size-qty-container'>
         {cartSizeSelect}
         <span className='cart-quantity-select'>
-          {/* <select onChange={this.handleQuantityChange.bind(this)}> */}
-            {/* <option defaultValue="Select Quantity">{qtyDefault}</option> */}
-            {/* {qtys.map(num => <option value={num} key={num}>{num}</option>)} */}
-          {qtySelectorContents}
-          {/* </select> */}
+          {qtySelector}
         </span>
         </div>
 

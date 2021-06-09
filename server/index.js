@@ -49,21 +49,8 @@ app.get('/styles', (req, res) => {
 
 // Reviews API ------------------------------------------------------------
 
-app.get('/reviews', (req, res) => {
-  return axios.get (`${apiUrl}/reviews/?page=${req.query.page}&count=${req.query.count}&product_id=${req.query.productId}`, {
-    headers: {
-      'Authorization': gitToken
-    }
-  })
-  .then((resp) => res.status(200).send(resp.data.results))
-  .catch((err) => {
-    console.log('ERROR GETTING REVIEWS FROM ATELIER API', err)
-  })
-});
-
 app.get('/allReviews', async (req, res) => {
   try {
-    let count = 10
     let productId = req.query.productId
     let metaUrl = `${apiUrl}/reviews/meta?product_id=${productId}`;
     let { data: { ratings }} = await axios.get(metaUrl, {headers: {'Authorization': gitToken}})
@@ -76,9 +63,8 @@ app.get('/allReviews', async (req, res) => {
 
     let url = `${apiUrl}/reviews?page=1&count=${totalReviews}&product_id=${productId}`;
     let allReviews = await axios.get(url, {headers: {'Authorization': gitToken}});
-    let allRatings =  allReviews.data.results.map((review) => review.rating);
     // console.log('allrating', allRatings);
-    res.status(200).send(allRatings);
+    res.status(200).send(allReviews.data.results);
   } catch(err) {
     console.log('ERROR GETTING META DATA AND TOTAL REVIEWS', err)
   }

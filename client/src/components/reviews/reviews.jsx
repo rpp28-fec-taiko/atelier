@@ -5,6 +5,7 @@ import ReviewsList from './reviewsList.jsx';
 import Search from './search.jsx';
 import AddReview from './addReview.jsx';
 import MoreReviews from './moreReviews.jsx';
+import Sort from './sort.jsx';
 
 class Reviews extends React.Component {
   constructor (props) {
@@ -24,9 +25,7 @@ class Reviews extends React.Component {
             this.props.currentReviews.length === 0 ?
               <AddReview /> :
               <div className='reviews-main'>
-                <div className='reviews-sort'>
-                  No. of reviews {this.props.totalReviews}, sorted by dropdown
-                </div>
+                <Sort reviews={this.props.currentReviews} sortReviews={this.props.sortReviews} reviewCriteria={this.props.reviewCriteria}/>
                 <Search />
                 <ReviewsList reviews={this.props.currentReviews} increaseReviewHelpfulnesss={this.props.increaseReviewHelpfulnesss} reportReview={this.props.reportReview}/>
                 <div className='reviews-btns'>

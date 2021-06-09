@@ -73,19 +73,26 @@ class Cart extends React.Component {
       </select>
     }
 
+    // ADD TO CART
+    let addToCart;
+    if (outOfStock) {
+      addToCart = <div className='add-to-cart'></div>
+    } else {
+      addToCart =
+      <div className='add-to-cart'>
+        <button>Add To Cart</button>
+      </div>
+    }
 
     return (
       <div className='cart'>
         <div className='size-qty-container'>
-        {cartSizeSelect}
-        <span className='cart-quantity-select'>
-          {qtySelector}
-        </span>
+          {cartSizeSelect}
+          <span className='cart-quantity-select'>
+            {qtySelector}
+          </span>
         </div>
-
-        <div className='add-to-cart'>
-          <button>Add To Cart</button>
-        </div>
+        {addToCart}
         {/* <div className='star-box'>Star</div> */}
       </div>
     );

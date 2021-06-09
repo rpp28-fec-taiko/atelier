@@ -8,7 +8,12 @@ const ProductInfo = ({product}) => (
     <div className='product-price'>${product.default_price}</div>
     <div className='product-slogan'>{product.slogan}</div>
     <div className='product-description'>{product.description}</div>
-    <div className='social-media'>Social Media Icons</div>
+    {/* <img src={require('./images/facebook.svg')} className='social-media-icon'></img> */}
+    {/* <img src='images/twitter.png' className='social-media-icon'></img>
+    <img src='images/pinterest.png' className='social-media-icon'></img> */}
+    <button className='social-media-icon'>Twitter</button>
+    <button className='social-media-icon'>Facebook</button>
+    <button className='social-media-icon'>Pinterest</button>
   </div>
 );
 

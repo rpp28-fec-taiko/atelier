@@ -58,6 +58,17 @@
   color: darkblue;
 }
 
+.social-media-icon {
+  background-color: white;
+  height: 25px;
+  margin-right: 8px;
+  margin-top: 5px;
+}
+
+.social-media-icon:hover {
+  background-color: rgb(235, 232, 232);
+}
+
 .social-media {
   padding: 4px;
 }

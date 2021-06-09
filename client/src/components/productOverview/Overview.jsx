@@ -56,12 +56,28 @@ class Overview extends React.Component {
     });
   }
 
+  updateStyle(e) {
+    e.preventDefault();
+    // console.log('click', e.target.src);
+    // console.log('prevs state', this.state.currentStyle)
+    this.state.styles.forEach(style => {
+      if (style.photos[0].thumbnail_url === e.target.src) {
+        this.setState({
+          currentStyle: style
+        }, () => console.log('update style state', this.state))
+      }
+    })
+    // this.setState({
+    //   currentStyle:
+    // })
+  }
+
   render() {
     return (
       <div className='overview'>
         <ImageGallery currentStyle={this.state.currentStyle}/>
         <ProductInfo product={this.state.product}/>
-        <StyleSelector styles={this.state.styles}/>
+        <StyleSelector updateStyle={this.updateStyle.bind(this)} styles={this.state.styles}/>
         <Cart style={this.state.currentStyle}/>
       </div>
     );

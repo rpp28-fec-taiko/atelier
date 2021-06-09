@@ -43,9 +43,24 @@
   padding: 4px;
 }
 
-.product-price {
+.price {
+  font-size: 1.2em;
+  color: rgb(90, 90, 90);
+  padding-bottom: 4px;
+}
+
+.sale-price {
+  font-size: 1.2em;
+  color: red;
+  padding-right: 10px;
+  padding-bottom: 4px;
+}
+
+.original-price {
+  font-size: 1.2em;
   color: grey;
-  padding: 4px;
+  text-decoration-line: line-through;
+  padding-bottom: 4px;
 }
 
 .product-slogan {

@@ -3,6 +3,7 @@ import Reviews from '../reviews/reviews.jsx';
 import Overview from '../productOverview/Overview.jsx';
 import QAndA from '../qAndA/qAndA.jsx';
 import RelatedItems from '../relatedItems/RelatedItems.jsx';
+import {findAvgRating} from '../reviews/reviewsHelper.js';
 
 class App extends React.Component {
   constructor (props) {
@@ -38,21 +39,8 @@ class App extends React.Component {
     .then((resp) => resp.json())
     .then((allReviews) => {
       // console.log('all reviews', allReviews)
-      let ratings = {};
-      allReviews.forEach((review) => {
-        let star = review.rating;
-        if (ratings[star] === undefined) {
-          ratings[star] = 1;
-        } else {
-          ratings[star] += 1
-        }
-      })
-      let sumOfStars = 0;
-      for (let key in ratings) {
-        sumOfStars += ratings[key] * Number(key)
-      }
-      // console.log('sum', sumOfStars, ratings)
-      let avgRating = sumOfStars / allReviews.length;
+      let avgRating = findAvgRating(allReviews);
+
       //DO SORTING HERE SO THAT INITIAL RESULTS ARE ALSO SORTED
       this.setState({
         totalReviews: allReviews,
@@ -67,7 +55,7 @@ class App extends React.Component {
     })
   }
 
-  get2Reviews = (page) => {
+  get2Reviews = () => {
     let idx = this.state.currentReviews.length + 2;
     let currentReviews = this.state.totalReviews.slice(0, idx);
     let nextReviews = this.state.totalReviews.slice(idx, idx + 2);

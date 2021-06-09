@@ -3,56 +3,66 @@ import Reviews from '../reviews/reviews.jsx';
 import Overview from '../productOverview/Overview.jsx';
 import QAndA from '../qAndA/qAndA.jsx';
 import RelatedItems from '../relatedItems/RelatedItems.jsx';
+import {findAvgRating} from '../reviews/reviewsHelper.js';
 
 class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
       productId: '22161',
+      totalReviews: [],
       currentReviews: [],
       nextReviews: [],
-      reviewPage: 1,
-      totalReviews: 0,
+      reviewCriteria: 'relevant',
+      noOfReviews: 0,
       avgRating: 0
     };
   }
 
-  get2Reviews = (page) => {
-    return fetch (`http://localhost:3000/reviews?page=${this.state.reviewPage}&count=2&productId=${this.state.productId}`)
+  sortReviews = (criteria) => {
+    if (criteria === 'newest') {
+      let totalReviews = this.state.totalReviews.slice().sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      let idx = this.state.currentReviews.length;
+      let currentReviews = totalReviews.slice(0, idx);
+      let nextReviews = totalReviews.slice(idx, idx + 2);
+      this.setState((prevState) => ({
+        totalReviews,
+        currentReviews,
+        nextReviews,
+        reviewCriteria: criteria
+      }), () => console.log('sorted', this.state))
+    }
+  }
+
+  getAllReviews = () => {
+    return fetch(`http://localhost:3000/allReviews?productId=${this.state.productId}`)
     .then((resp) => resp.json())
-    .then((reviews) => {
-      // console.log('reviews', reviews);
-      this.setState((prevState) =>  {
-        return {
-          currentReviews: [...prevState.currentReviews, ...prevState.nextReviews],
-          nextReviews: reviews,
-          reviewPage: prevState.reviewPage + 1
-        }
-      }, () => console.log('get2reviews state', this.state));
+    .then((allReviews) => {
+      // console.log('all reviews', allReviews)
+      let avgRating = findAvgRating(allReviews);
+
+      //DO SORTING HERE SO THAT INITIAL RESULTS ARE ALSO SORTED
+      this.setState({
+        totalReviews: allReviews,
+        noOfReviews: allReviews.length,
+        avgRating,
+        currentReviews: allReviews.slice(0, 2),
+        nextReviews: allReviews.slice(2, 4)
+      }, () => console.log('avg review state', this.state))
     })
     .catch((err) => {
-      console.log('ERROR GETTING 2 ADDITIONAL REVIEWS', err)
+      console.log('ERROR GETTING ALL REVIEWS', err);
     })
   }
 
-  getInitialReviews = () => {
-    return fetch (`http://localhost:3000/reviews?page=${this.state.reviewPage}&count=4&productId=${this.state.productId}`)
-    .then((resp) => resp.json())
-    .then((reviews) => {
-      // console.log('reviews', reviews);
-      let currentReviews = reviews.slice(0, 2);
-      let nextReviews = reviews.slice(2);
-      this.setState((prevState) => {
-        return {
-          currentReviews,
-          nextReviews,
-          reviewPage: prevState.reviewPage + 2
-        };
-      }, () => console.log('initial reviews state', this.state));
-    })
-    .catch((err) => {
-      console.log('ERROR GETTING INITIAL REVIEWS', err)
-    })
+  get2Reviews = () => {
+    let idx = this.state.currentReviews.length + 2;
+    let currentReviews = this.state.totalReviews.slice(0, idx);
+    let nextReviews = this.state.totalReviews.slice(idx, idx + 2);
+    this.setState((prevState) => ({
+      currentReviews,
+      nextReviews
+    }), () => console.log('2 morereviews state', this.state))
   }
 
   increaseReviewHelpfulnesss = (reviewId) => {
@@ -98,38 +108,8 @@ class App extends React.Component {
 
   }
 
-  getAllReviews = () => {
-    return fetch(`http://localhost:3000/allReviews?productId=${this.state.productId}`)
-    .then((resp) => resp.json())
-    .then((allReviews) => {
-      // console.log('all reviews', allReviews)
-      let ratings = {};
-      allReviews.forEach((star) => {
-        if (ratings[star] === undefined) {
-          ratings[star] = 1;
-        } else {
-          ratings[star] += 1
-        }
-      })
-      let sumOfStars = 0;
-      for (let key in ratings) {
-        sumOfStars += ratings[key] * Number(key)
-      }
-      // console.log('sum', sumOfStars, ratings)
-      let avgRating = sumOfStars / allReviews.length;
-      this.setState({
-        totalReviews: allReviews.length,
-        avgRating
-      }, () => console.log('avg review state', this.state))
-    })
-    .catch((err) => {
-      console.log('ERROR GETTING ALL REVIEWS', err);
-    })
-  }
-
   componentDidMount () {
-    return this.getInitialReviews()
-    .then(() => this.getAllReviews());
+    this.getAllReviews();
   }
 
   render () {
@@ -138,7 +118,7 @@ class App extends React.Component {
         <Overview />
         <RelatedItems />
         <QAndA />
-        <Reviews currentReviews={this.state.currentReviews} nextReviews={this.state.nextReviews} totalReviews={this.state.totalReviews} increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss} reportReview={this.reportReview} get2Reviews={this.get2Reviews}/>
+        <Reviews currentReviews={this.state.currentReviews} nextReviews={this.state.nextReviews} noOfReviews={this.state.noOfReviews} increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss} reportReview={this.reportReview} get2Reviews={this.get2Reviews} sortReviews={this.sortReviews} reviewCriteria={this.state.reviewCriteria}/>
       </div>
     );
   }

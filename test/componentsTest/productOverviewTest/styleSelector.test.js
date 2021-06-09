@@ -20,8 +20,12 @@ const styles = [
 
 ]
 
+const currStyle = {
+  name: 'style',
+}
+
 
 test('checks that Styles component renders correctly', () => {
-  const wrapper = shallow(<StyleSelector styles={styles}/>);
+  const wrapper = shallow(<StyleSelector updateStyle={() => {}} currentStyle={currStyle} styles={styles}/>);
   expect(wrapper.text()).toContain('StyleRow');
 });

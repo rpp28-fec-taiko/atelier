@@ -22,6 +22,11 @@ test('Checks that ProductInfo component is rendering', () => {
 
     ],
   }
-  const wrapper = shallow(<ProductInfo product={dummyProduct}/>);
-  expect(wrapper.children()).toHaveLength(7);
+  const style = {
+    sale_price: '45',
+    original_price: '55'
+  }
+
+  const wrapper = shallow(<ProductInfo product={dummyProduct} currentStyle={style} avgRating={3} noOfReviews={45}/>);
+  expect(wrapper.text()).toContain('Read');
 });

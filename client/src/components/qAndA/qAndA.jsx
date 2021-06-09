@@ -6,7 +6,7 @@ class QAndA extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      questions: null
+      questions: []
     };
 
     this.getAllQuestions = this.getAllQuestions.bind(this);
@@ -16,21 +16,20 @@ class QAndA extends React.Component {
     return fetch(`http://localhost:3000/qa/questions/?productId=${this.props.productId}`)  //
     .then((resp) => resp.json())
     .then((allQuestions) => {
-      console.log(allQuestions)
+      console.log(allQuestions.results);
+      let questionsList = []
+      for (let i = 0; i < allQuestions.results.length; i++) {
+        questionsList.push(allQuestions.results[i].question_body);
+      }
+      this.setState({questions: questionsList})
+      console.log(this.state);
     })
     .catch((err) => {
-      console.log('ERROR GETTING ALL QUESTIONS');
+      console.log('ERROR GETTING ALL QUESTIONS', err);
     });
   }
 
-  //we need to set state.questions
-  //? how?
 
-  //we need to make a get request to get the data
-  //=> make an ajax request for the given product id number (or use fetch?)
-
-  //once we get the data, what do we do?
-  //we need to set the state of questions = to the
   componentDidMount() {
     this.getAllQuestions();
   }
@@ -46,8 +45,9 @@ class QAndA extends React.Component {
           <QAndAFeed questions={this.state.questions} />
         </div>
       </div>
-    );
+    )
   }
 }
+
 
 export default QAndA;

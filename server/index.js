@@ -37,9 +37,12 @@ app.get('/styles', (req, res) => {
   })
   .then((results) => {
     console.log('success styles', results.data)
+    res.status(200);
+    res.json(results.data);
   })
   .catch(() => {
     console.log('error retreiving styles from API')
+    res.sendStatus(404);
   });
 });
 

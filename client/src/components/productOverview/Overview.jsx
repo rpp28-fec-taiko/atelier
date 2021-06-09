@@ -20,17 +20,18 @@ class Overview extends React.Component {
     // populate the state stuff here
     console.log(this.props.productId)
     // fetch product info
-    this.fetchProductInfo();
-      // fetch styles as well
-    this.fetchStyles();
-
+    this.fetchProductInfo()
+      // then fetch styles as well
+      .then(this.fetchStyles.bind(this))
+      // then set default Style
+      .then(this.setDefaultStyle.bind(this));
   }
 
   fetchProductInfo() {
     // fetch product info
-    fetch(`http://localhost:3000/productInfo?productId=${this.props.productId}`)
+    return fetch(`http://localhost:3000/productInfo?productId=${this.props.productId}`)
       .then((results) => {
-        return results.json()
+        return results.json();
       })
       .then((productInfo) => {
         //  setState
@@ -42,13 +43,25 @@ class Overview extends React.Component {
   }
 
   fetchStyles() {
-    fetch(`http://localhost:3000/styles?productId=${this.props.productId}`)
+    return fetch(`http://localhost:3000/styles?productId=${this.props.productId}`)
       .then((results) => {
         console.log('results', results)
+        return results.json();
+      })
+      .then((styles) => {
+        this.setState({styles: styles.results}, () => console.log(this.state));
       })
       .catch(() => {
         console.log('error fetching styles from server')
       });
+  }
+
+  setDefaultStyle() {
+    this.state.styles.forEach(style => {
+      if (style['default?']) {
+        this.setState({currentStyle: style}, () => console.log('state', this.state));
+      }
+    });
   }
 
   render() {

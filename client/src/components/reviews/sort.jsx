@@ -6,7 +6,6 @@ class Sort extends React.Component {
   }
 
   handleSortChange = (e) => {
-    console.log('e', e.target.value);
     this.props.sortReviews(e.target.value)
   }
 

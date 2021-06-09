@@ -17,25 +17,18 @@ class Overview extends React.Component {
   }
 
   componentDidMount() {
-    // populate the state stuff here
-    console.log(this.props.productId)
-    // fetch product info
     this.fetchProductInfo()
-      // then fetch styles as well
       .then(this.fetchStyles.bind(this))
-      // then set default Style
       .then(this.setDefaultStyle.bind(this));
   }
 
   fetchProductInfo() {
-    // fetch product info
     return fetch(`http://localhost:3000/productInfo?productId=${this.props.productId}`)
       .then((results) => {
         return results.json();
       })
       .then((productInfo) => {
-        //  setState
-        this.setState({product: productInfo}, () => console.log(this.state));
+        this.setState({product: productInfo});
       })
       .catch(() => {
         console.log('error fetching product info from server');
@@ -45,11 +38,10 @@ class Overview extends React.Component {
   fetchStyles() {
     return fetch(`http://localhost:3000/styles?productId=${this.props.productId}`)
       .then((results) => {
-        console.log('results', results)
         return results.json();
       })
       .then((styles) => {
-        this.setState({styles: styles.results}, () => console.log(this.state));
+        this.setState({styles: styles.results});
       })
       .catch(() => {
         console.log('error fetching styles from server')

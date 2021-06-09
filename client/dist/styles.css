@@ -80,7 +80,7 @@
 .style-thumbnail {
   margin: 10px;
   margin-right: 35px;
-  border: 1px solid lightblue;
+  /* border: 1px solid lightblue; */
   display: inline-block;
 }
 

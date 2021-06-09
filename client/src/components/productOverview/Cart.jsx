@@ -19,7 +19,7 @@ class Cart extends React.Component {
   }
 
   render() {
-    let skus = this.props.style.skus;
+    let skus = this.props.currStyle.skus;
     let maxQty = 15; // default
     let availableSizes = [];
     let outOfStock = false;
@@ -43,8 +43,8 @@ class Cart extends React.Component {
     // SIZE SELECT predefine in case OUT OF STOCK needs to be rendered instead
     let cartSizeSelect =
       <span className='cart-size-select'>
-        <select onChange={this.handleSizeChange.bind(this)}>
-        <option defaultValue='Select Size'>Select Size</option>
+        <select defaultValue='Select Size' onChange={this.handleSizeChange.bind(this)}>
+        <option disabled>Select Size</option>
         {availableSizes.map(size => <option value={size} key={size}>{size}</option>)}
         </select>
       </span>
@@ -56,15 +56,40 @@ class Cart extends React.Component {
       cartSizeSelect = <span className='cart-size-select'>OUT OF STOCK</span>
     }
 
+    // let qtyDefault;
+    // if (!this.state.size) {
+    //   qtyDefault = '-'
+    // } else {
+    //   qtyDefault = 1
+    // }
+
+
+    let qtySelectorContents;
+    // default qty before style is selected
+    if (!this.state.size) {
+      qtySelectorContents =
+      <select defaultValue='-' onChange={this.handleQuantityChange.bind(this)}>
+        <option disabled> - </option>
+      </select>
+    // after style is selected default to one
+    } else {
+      qtySelectorContents =
+      <select onChange={this.handleQuantityChange.bind(this)}>
+        {qtys.map(num => <option value={num} key={num}>{num}</option>)}
+      </select>
+    }
+
+
     return (
       <div className='cart'>
         <div className='size-qty-container'>
         {cartSizeSelect}
         <span className='cart-quantity-select'>
-          <select onChange={this.handleQuantityChange.bind(this)}>
-            <option defaultValue="Select Quantity">Qty</option>
-            {qtys.map(num => <option value={num} key={num}>{num}</option>)}
-          </select>
+          {/* <select onChange={this.handleQuantityChange.bind(this)}> */}
+            {/* <option defaultValue="Select Quantity">{qtyDefault}</option> */}
+            {/* {qtys.map(num => <option value={num} key={num}>{num}</option>)} */}
+          {qtySelectorContents}
+          {/* </select> */}
         </span>
         </div>
 

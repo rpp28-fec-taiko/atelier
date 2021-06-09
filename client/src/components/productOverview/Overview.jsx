@@ -49,7 +49,7 @@ class Overview extends React.Component {
   }
 
   setDefaultStyle() {
-    this.state.styles.forEach(style => {
+    return this.state.styles.forEach(style => {
       if (style['default?']) {
         this.setState({currentStyle: style}, () => console.log('state', this.state));
       }
@@ -59,7 +59,7 @@ class Overview extends React.Component {
   render() {
     return (
       <div className='overview'>
-        <ImageGallery />
+        <ImageGallery currentStyle={this.state.currentStyle}/>
         <ProductInfo product={this.state.product}/>
         <StyleSelector styles={this.state.styles}/>
         <Cart style={this.state.currentStyle}/>

@@ -58,6 +58,7 @@ class Cart extends React.Component {
 
     return (
       <div className='cart'>
+        <div className='size-qty-container'>
         {cartSizeSelect}
         <span className='cart-quantity-select'>
           <select onChange={this.handleQuantityChange.bind(this)}>
@@ -65,11 +66,12 @@ class Cart extends React.Component {
             {qtys.map(num => <option value={num} key={num}>{num}</option>)}
           </select>
         </span>
-
-        <div className='add-to-cart-button'>
-          <button>Add To Cart +</button>
         </div>
-        <div className='star-box'>Star</div>
+
+        <div className='add-to-cart'>
+          <button>Add To Cart</button>
+        </div>
+        {/* <div className='star-box'>Star</div> */}
       </div>
     );
   }

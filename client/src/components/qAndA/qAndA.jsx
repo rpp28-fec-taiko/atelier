@@ -1,23 +1,50 @@
 import React from 'react';
 import QAndASearch from './qAndASearch.jsx';
-import QAndAFeed from './qAndAFeed.jsx';
+import QAndAList from './qAndAList.jsx';
+import QAndAOptions from './qAndAOptions.jsx';
+
 
 class QAndA extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      questions: []
+    };
+
+    this.getAllQuestions = this.getAllQuestions.bind(this);
+  }
+
+  getAllQuestions = () => {
+    return fetch(`http://localhost:3000/qa/questions/?productId=${this.props.productId}`)
+    .then((resp) => resp.json())
+    .then((allQuestions) => {
+      this.setState({questions: allQuestions})
+    })
+    .catch((err) => {
+      console.log('ERROR GETTING ALL QUESTIONS', err);
+    });
+  }
+
+
+  componentDidMount() {
+    this.getAllQuestions();
   }
 
   render() {
     return (
       <div className="qAndA" >
         <div className="qAndA-heading" >
-          <h2 >Questions And Answers</h2>
+          <h1 >Questions And Answers</h1>
         </div>
-        <QAndASearch />
-        <QAndAFeed />
+        <div className="qAndA-body">
+          <QAndASearch />
+          <QAndAList questions={this.state.questions} />
+          <QAndAOptions />
+        </div>
       </div>
-    );
+    )
   }
 }
+
 
 export default QAndA;

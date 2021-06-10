@@ -184,6 +184,52 @@
   display: inline-block;
 }
 
+/*----- QUESTIONS & ANSWERS -------*/
+
+.qAndA-body {
+  display: grid;
+  grid-template-columns: 1fr;
+
+}
+
+.qAndA-search {
+  border: 2px solid green;
+  margin: 5px;
+}
+
+#qAndASearch {
+  grid-template-rows: auto;
+  display: grid;
+  border: 1px;
+  margin: 1px;
+}
+
+.qAndA-list {
+  grid-template-rows: auto;
+  border: 2px solid green;
+  margin: 5px;
+  max-height: 600px;
+  overflow-y: scroll;
+}
+
+.qAndA-list-question-item {
+  grid-template-rows: auto;
+  border: 2px solid green;
+  margin: 5px;
+}
+
+.qAndA-list-answer-item {
+  grid-template-rows: auto;
+  border: 2px solid green;
+  margin: 5px;
+}
+
+.qAndA-options {
+  grid-template-rows: 1fr;
+  border: 2px solid green;
+  margin: 5px;
+}
+
 /*------ REVIEWS & RATINGS --------*/
 /* .reviews {
   overflow-y: scroll;

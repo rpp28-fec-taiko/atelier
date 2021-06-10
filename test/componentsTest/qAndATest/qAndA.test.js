@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import QAndA from '../../../client/src/components/qAndA/qAndA.jsx';
+import App from '../../../client/src/components/app/app.jsx';
 
 test('checks that Q And A component is rendering', () => {
-  const wrapper = shallow(<QAndA />);
-  expect(wrapper.children()).toHaveLength(3);
+  const wrapper = shallow(<App />, {disableLifecycleMethods: true})
+  expect(wrapper.children()).toHaveLength(4);
 });

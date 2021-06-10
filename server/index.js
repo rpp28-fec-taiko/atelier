@@ -136,6 +136,20 @@ app.put('/reviews/:reviewId/report', (req, res) => {
   })
 })
 
+//Questions
+
+app.get('/qa/questions', (req, res) => {
+  return axios(`${apiUrl}/qa/questions/?product_id=${req.query.productId}`, {
+    headers: {
+      'Authorization': gitToken
+    }
+  })
+  .then((resp) => res.status(200).send(resp.data))
+  .catch((err) => {
+    console.log('ERROR GETTING QUESTIONS FROM API: ', err);
+  });
+})
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`Listening on port http://localhost:${port}`);

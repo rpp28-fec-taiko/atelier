@@ -10,6 +10,20 @@ class Cart extends React.Component {
     }
   }
 
+  componentDidMount() {
+    // for checking cart updates - can move elsewhere
+    fetch('http://localhost:3000/cart')
+      .then((results) => {
+        return results.json();
+      })
+      .then((cart) => {
+        console.log('success getting cart from server', cart);
+      })
+      .catch(() => {
+        console.log('error getting Cart from server')
+      });
+  }
+
   handleSizeChange(e) {
     this.setState({size: e.target.value}, () => console.log(this.state));
   }
@@ -48,7 +62,6 @@ class Cart extends React.Component {
 
 
     }
-
 
   }
 

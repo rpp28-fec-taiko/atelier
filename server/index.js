@@ -64,6 +64,23 @@ app.post('/cart', (req, res) => {
   });
 });
 
+app.get('/cart', (req, res) => {
+  return axios.get(`${apiUrl}/cart`, {
+    headers: {
+      'Authorization': gitToken
+    }
+  })
+  .then((results) => {
+    console.log('getting cart from API', results.data);
+    res.status(200);
+    res.json(results.data);
+  })
+  .catch(() => {
+    console.log('error getting cart from API');
+    res.sendStatus(400);
+  })
+});
+
 
 // Reviews API ------------------------------------------------------------
 

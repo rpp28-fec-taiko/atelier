@@ -31,20 +31,20 @@ class App extends React.Component {
     }), () => console.log(`state sorted by ${criteria}`, this.state))
   }
 
-  getAllReviews = () => {
+  getAllReviews = (endIdx = 2) => {
     return fetch(`http://localhost:3000/allReviews?productId=${this.state.productId}`)
     .then((resp) => resp.json())
     .then((allReviews) => {
       // console.log('all reviews', allReviews)
       let avgRating = findAvgRating(allReviews);
       let totalReviews = sortByCriteria(this.state.reviewCriteria, allReviews)
-      //DO SORTING HERE SO THAT INITIAL RESULTS ARE ALSO SORTED
+
       this.setState({
         totalReviews,
         noOfReviews: totalReviews.length,
         avgRating,
-        currentReviews: totalReviews.slice(0, 2),
-        nextReviews: totalReviews.slice(2, 4)
+        currentReviews: totalReviews.slice(0, endIdx),
+        nextReviews: totalReviews.slice(endIdx, endIdx + 2)
       }, () => console.log('state after fetching all reviews', this.state))
     })
     .catch((err) => {
@@ -96,8 +96,10 @@ class App extends React.Component {
       method: 'PUT'
     })
     .then(() => {
-      console.log('REVIEW REPORTED');
-      // return this.getInitialReviews();
+      let endIdx = this.state.currentReviews.length;
+      window.alert('REVIEW REPORTED. YOU WILL NO LONGER SEE THE REVIEW');
+      // console.log('REVIEW REPORTED', endIdx);
+      return this.getAllReviews(endIdx);
     })
     .catch((err) => {
       console.log('ERROR REPORTING REVIEW', err)

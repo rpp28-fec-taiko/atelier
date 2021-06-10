@@ -6,6 +6,7 @@ const AnswerList = ({question}) => {
   for (var key in question) {
     answersData.push(question[key]);
   }
+
   let result = answersData.map((answer) =>
     <div>
       <div className="qAndA-list-answer-item" >A: {answer.body}</div>
@@ -13,7 +14,7 @@ const AnswerList = ({question}) => {
   );
 
   return (
-    <div className="qAndA-answer-list" >
+    <div className="qAndA-list-answer-list" >
       {result}
     </div>
   );

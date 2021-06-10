@@ -3,7 +3,6 @@ import QAndASearch from './qAndASearch.jsx';
 import QAndAList from './qAndAList.jsx';
 import QAndAOptions from './qAndAOptions.jsx';
 
-
 class QAndA extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +23,6 @@ class QAndA extends React.Component {
       console.log('ERROR GETTING ALL QUESTIONS', err);
     });
   }
-
 
   componentDidMount() {
     this.getAllQuestions();

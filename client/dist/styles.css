@@ -114,11 +114,17 @@
   grid-template-rows: auto;
   border: 2px solid green;
   margin: 5px;
-  max-height: 600px;
+  max-height: 400px;
   overflow-y: scroll;
 }
 
 .qAndA-list-question-item {
+  grid-template-rows: auto;
+  border: 2px solid green;
+  margin: 5px;
+}
+
+.qAndA-list-answer-list {
   grid-template-rows: auto;
   border: 2px solid green;
   margin: 5px;

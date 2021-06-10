@@ -116,7 +116,13 @@
   margin: 5px;
 }
 
-.qAndA-list-item {
+.qAndA-list-question-item {
+  grid-template-rows: auto;
+  border: 2px solid green;
+  margin: 5px;
+}
+
+.qAndA-list-answer-item {
   grid-template-rows: auto;
   border: 2px solid green;
   margin: 5px;

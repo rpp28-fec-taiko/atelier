@@ -12,7 +12,7 @@ class Sort extends React.Component {
   render () {
     return (
       <div className='reviews-sort'>
-        <label htmlFor='sortSelect'>No of reviews sorted by</label>
+        <label htmlFor='sortSelect'> {this.props.noOfReviews} reviews, sorted by</label>
         <select id='sortSelect' value={this.props.reviewCriteria} onChange={this.handleSortChange}>
           <option value='relevant'> Relevant </option>
           <option value='helpful'> Helpful </option>

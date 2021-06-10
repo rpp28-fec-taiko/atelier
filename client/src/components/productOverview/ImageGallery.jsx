@@ -11,14 +11,23 @@ class ImageGallery extends React.Component {
     }
   }
 
-  // componentDidUpdate() {
-  //   console.log(this.props);
-  //   if (this.props.photos) {
-  //     this.setState({
-  //       currentImage: this.state.photos[0].url
-  //     }, () => console.log('updatedimagestate', this.state));
-  //   }
-  // }
+  componentDidUpdate() {
+
+    fetch(`http://localhost:3000/products`)
+      .then((results) => {
+        console.log('fetch results', results)
+      })
+      .catch(() => {
+        console.log('error fetching products from server')
+      });
+
+    // console.log(this.props);
+    // if (this.props.photos) {
+    //   this.setState({
+    //     currentImage: this.state.photos[0].url
+    //   }, () => console.log('updatedimagestate', this.state));
+    // }
+  }
 
   // pass style images down thru props
 

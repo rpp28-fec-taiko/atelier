@@ -6,7 +6,7 @@ class Cart extends React.Component {
 
     this.state = {
       size: null,
-      quantity: null
+      quantity: 1
     }
   }
 
@@ -16,6 +16,40 @@ class Cart extends React.Component {
 
   handleQuantityChange(e) {
     this.setState({quantity: e.target.value}, () => console.log(this.state));
+  }
+
+  handleAddToCart() {
+    // on click of cart button
+
+    // check that a valid size and quantity selected
+    if (this.state.size && this.state.quantity) {
+
+      // get sku for style/size - Refactor into helper method...
+      let sku_id;
+      console.log(this.props.currStyle.skus);
+      let skus = this.props.currStyle.skus;
+      for (let key in skus) {
+        let currSku = skus[key]
+        if (currSku.size === this.state.size) {
+          sku_id = key;
+          break;
+        }
+      }
+      // use fetch: make POST request to server
+      fetch(`http://localhost:3000/cart?sku=${sku_id}`, { method: 'POST'})
+        .then(() => {
+          console.log('success posting Cart to server')
+        })
+        .catch(() => {
+          console.log('error posting Cart to server')
+        });
+
+      // how to do handle the quantity async? Promise All.
+
+
+    }
+
+
   }
 
   render() {
@@ -80,7 +114,7 @@ class Cart extends React.Component {
     } else {
       addToCart =
       <div className='add-to-cart'>
-        <button>Add To Cart</button>
+        <button onClick={this.handleAddToCart.bind(this)}>Add To Cart</button>
       </div>
     }
 

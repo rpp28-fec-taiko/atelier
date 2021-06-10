@@ -114,6 +114,8 @@
   grid-template-rows: auto;
   border: 2px solid green;
   margin: 5px;
+  max-height: 600px;
+  overflow-y: scroll;
 }
 
 .qAndA-list-question-item {

@@ -5,7 +5,7 @@ const createList = (data) => {
   if (data !== undefined) {
     let list = data.map((item) =>
     <div>
-      <div className="qAndA-list-item" >Q: {item}</div><br></br>
+      <div className="qAndA-list-item" >Q: {item}</div>
       </div>
     );
     return list;

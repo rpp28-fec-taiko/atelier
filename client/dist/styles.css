@@ -95,35 +95,36 @@
 .qAndA-body {
   display: grid;
   grid-template-columns: 1fr;
-  border: 1px solid black;
+
 }
 
 .qAndA-search {
-  border: 2px solid black;
+  border: 2px solid green;
   margin: 5px;
 }
 
 #qAndASearch {
+  grid-template-rows: auto;
   display: grid;
-  border: 0px;
-  margin: 10px;
+  border: 1px;
+  margin: 1px;
 }
 
 .qAndA-list {
   grid-template-rows: auto;
-  border: 2px solid black;
+  border: 2px solid green;
   margin: 5px;
 }
 
 .qAndA-list-item {
   grid-template-rows: auto;
-  border: 2px solid black;
+  border: 2px solid green;
   margin: 5px;
 }
 
 .qAndA-options {
   grid-template-rows: 1fr;
-  border: 2px solid black;
+  border: 2px solid green;
   margin: 5px;
 }
 

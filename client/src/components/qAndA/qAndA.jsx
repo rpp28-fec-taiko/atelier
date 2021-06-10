@@ -15,7 +15,7 @@ class QAndA extends React.Component {
   }
 
   getAllQuestions = () => {
-    return fetch(`http://localhost:3000/qa/questions/?productId=${this.props.productId}`)  //
+    return fetch(`http://localhost:3000/qa/questions/?productId=${this.props.productId}`)
     .then((resp) => resp.json())
     .then((allQuestions) => {
       console.log(allQuestions.results);

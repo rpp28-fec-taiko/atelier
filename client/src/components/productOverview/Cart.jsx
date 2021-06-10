@@ -6,8 +6,22 @@ class Cart extends React.Component {
 
     this.state = {
       size: null,
-      quantity: null
+      quantity: 1
     }
+  }
+
+  componentDidMount() {
+    // for checking cart updates - can move elsewhere
+    fetch('http://localhost:3000/cart')
+      .then((results) => {
+        return results.json();
+      })
+      .then((cart) => {
+        console.log('success getting cart from server', cart);
+      })
+      .catch(() => {
+        console.log('error getting Cart from server')
+      });
   }
 
   handleSizeChange(e) {
@@ -18,8 +32,46 @@ class Cart extends React.Component {
     this.setState({quantity: e.target.value}, () => console.log(this.state));
   }
 
+  getSkuId() {
+    let skus = this.props.currStyle.skus;
+    for (let key in skus) {
+      // let currSku = skus[key]
+      if (skus[key].size === this.state.size) {
+        return key;
+      }
+    }
+  }
+
+  handleAddToCart() {
+    // check that a valid size and quantity selected
+    if (this.state.size && this.state.quantity) {
+
+      // get sku for style/size
+      let sku_id = this.getSkuId.call(this);
+
+      // iterate and make async POST requests to server
+      let fetchPromises = [];
+      for (let i = 0; i < this.state.quantity; i++) {
+        fetchPromises.push(
+          fetch(`http://localhost:3000/cart?sku=${sku_id}`, { method: 'POST'})
+        )
+      }
+      Promise.all(fetchPromises)
+        .then(() => {
+          console.log('success posting one or more items to server')
+          // this.setState({
+          //   size: null,
+          //   quantity: 1
+          // });
+        })
+        .catch(() => {
+          console.log('error posting one item to server')
+        });
+    }
+  }
+
   render() {
-    let skus = this.props.style.skus;
+    let skus = this.props.currStyle.skus;
     let maxQty = 15; // default
     let availableSizes = [];
     let outOfStock = false;
@@ -43,8 +95,8 @@ class Cart extends React.Component {
     // SIZE SELECT predefine in case OUT OF STOCK needs to be rendered instead
     let cartSizeSelect =
       <span className='cart-size-select'>
-        <select onChange={this.handleSizeChange.bind(this)}>
-        <option defaultValue='Select Size'>Select Size</option>
+        <select defaultValue='Select Size' onChange={this.handleSizeChange.bind(this)}>
+        <option disabled>Select Size</option>
         {availableSizes.map(size => <option value={size} key={size}>{size}</option>)}
         </select>
       </span>
@@ -56,21 +108,43 @@ class Cart extends React.Component {
       cartSizeSelect = <span className='cart-size-select'>OUT OF STOCK</span>
     }
 
+
+    // QUANTITY SELECTOR
+    let qtySelector;
+    // default qty before style is selected
+    if (!this.state.size) {
+      qtySelector =
+      <select defaultValue='-' onChange={this.handleQuantityChange.bind(this)}>
+        <option disabled> - </option>
+      </select>
+    // after style is selected default to one
+    } else {
+      qtySelector =
+      <select onChange={this.handleQuantityChange.bind(this)}>
+        {qtys.map(num => <option value={num} key={num}>{num}</option>)}
+      </select>
+    }
+
+    // ADD TO CART
+    let addToCart;
+    if (outOfStock) {
+      addToCart = <div className='add-to-cart'></div>
+    } else {
+      addToCart =
+      <div className='add-to-cart'>
+        <button onClick={this.handleAddToCart.bind(this)}>Add To Cart</button>
+      </div>
+    }
+
     return (
       <div className='cart'>
         <div className='size-qty-container'>
-        {cartSizeSelect}
-        <span className='cart-quantity-select'>
-          <select onChange={this.handleQuantityChange.bind(this)}>
-            <option defaultValue="Select Quantity">Qty</option>
-            {qtys.map(num => <option value={num} key={num}>{num}</option>)}
-          </select>
-        </span>
+          {cartSizeSelect}
+          <span className='cart-quantity-select'>
+            {qtySelector}
+          </span>
         </div>
-
-        <div className='add-to-cart'>
-          <button>Add To Cart</button>
-        </div>
+        {addToCart}
         {/* <div className='star-box'>Star</div> */}
       </div>
     );

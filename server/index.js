@@ -36,7 +36,7 @@ app.get('/styles', (req, res) => {
     }
   })
   .then((results) => {
-    console.log('success styles', results.data)
+    // console.log('success styles', results.data)
     res.status(200);
     res.json(results.data);
   })
@@ -44,6 +44,41 @@ app.get('/styles', (req, res) => {
     console.log('error retreiving styles from API')
     res.sendStatus(404);
   });
+});
+
+// Cart API --------------------------------------------------------------
+
+app.post('/cart', (req, res) => {
+  return axios.post(`${apiUrl}/cart`, { sku_id: req.query.sku }, {
+    headers: {
+      'Authorization': gitToken
+    }
+  })
+  .then((results) => {
+    console.log('successfully added to cart API', results)
+    res.sendStatus(201);
+  })
+  .catch(() => {
+    console.log('error adding item to cart')
+    res.sendStatus(404);
+  });
+});
+
+app.get('/cart', (req, res) => {
+  return axios.get(`${apiUrl}/cart`, {
+    headers: {
+      'Authorization': gitToken
+    }
+  })
+  .then((results) => {
+    console.log('getting cart from API', results.data);
+    res.status(200);
+    res.json(results.data);
+  })
+  .catch(() => {
+    console.log('error getting cart from API');
+    res.sendStatus(400);
+  })
 });
 
 

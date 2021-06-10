@@ -7,7 +7,7 @@ const ProductInfo = ({product, currentStyle, noOfReviews, avgRating}) => {
 
   let price;
   if (currentStyle.sale_price) {
-    price = <div><span className='sale-price'>${currentStyle.original_price}</span><span className='original-price'>${currentStyle.original_price}</span></div>
+    price = <div><span className='sale-price'>${currentStyle.sale_price}</span><span className='original-price'>${currentStyle.original_price}</span></div>
   } else {
     price = <div><span className='price'>${currentStyle.original_price}</span></div>
   }

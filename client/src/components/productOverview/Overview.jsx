@@ -73,7 +73,7 @@ class Overview extends React.Component {
         <ImageGallery currentStyle={this.state.currentStyle}/>
         <ProductInfo product={this.state.product} currentStyle={this.state.currentStyle} avgRating={this.props.avgRating} noOfReviews={this.props.noOfReviews}/>
         <StyleSelector updateStyle={this.updateStyle.bind(this)} styles={this.state.styles} currentStyle={this.state.currentStyle}/>
-        <Cart style={this.state.currentStyle}/>
+        <Cart currStyle={this.state.currentStyle}/>
       </div>
     );
   }

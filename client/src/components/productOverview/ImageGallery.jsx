@@ -6,8 +6,8 @@ class ImageGallery extends React.Component {
     super(props);
 
     this.state = {
-      currentImage: this.props.currentStyle.photos ? this.props.currentStyle.photos[0] : '',
-      photos: this.props.currentStyle.photos ? this.props.currentStyle.photos : [],
+      currentImage: '',
+      photos: [],
       extendedView: false
     }
   }
@@ -18,19 +18,26 @@ class ImageGallery extends React.Component {
       this.setState({
         currentImage: this.props.currentStyle.photos[0],
         photos: this.props.currentStyle.photos
-      }, () => console.log('image-state', this.state));
+      });
+
+      // fix to make the style selector on click still function
+    } else if (prevProps.currentStyle.style_id) {
+      if (prevProps.currentStyle.style_id !== this.props.currentStyle.style_id) {
+        this.setState({
+          currentImage: this.props.currentStyle.photos[0],
+          photos: this.props.currentStyle.photos
+        });
+      }
     }
   }
 
   updateMainImage(e) {
     e.preventDefault();
-    console.log('click', e);
     this.state.photos.forEach(image => {
-      console.log(image.url);
       if (image.thumbnail_url === e.target.src) {
         this.setState({
           currentImage: image
-        }, () => console.log('update style state', this.state))
+        })
       }
     })
   }

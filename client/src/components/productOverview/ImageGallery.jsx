@@ -1,5 +1,7 @@
 import React from 'react';
 import ImageList from './ImageList.jsx';
+import ChevronLeft from './icons/ChevronLeft.jsx';
+import ChevronRight from './icons/ChevronRight.jsx';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -8,6 +10,7 @@ class ImageGallery extends React.Component {
     this.state = {
       currentImage: '',
       photos: [],
+      currIndex: 0,
       extendedView: false
     }
   }
@@ -42,7 +45,17 @@ class ImageGallery extends React.Component {
     })
   }
 
+  slideImageIndex() {
+    // change main image
+    // move right or left in the array to the neighboring img depending on which arrow was clicked
+  }
+
   render() {
+
+    // left-right arrows
+    let leftArrow = <ChevronLeft />
+    let rightArrow = <ChevronRight />
+
     let mainImage;
     let imageList;
     if (this.props.currentStyle.photos) {
@@ -55,7 +68,9 @@ class ImageGallery extends React.Component {
 
     return (
       <div className='image-gallery'>
+        {leftArrow}
         {mainImage}
+        {rightArrow}
         {imageList}
       </div>
     );

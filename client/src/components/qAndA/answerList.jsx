@@ -13,7 +13,7 @@ const AnswerList = ({question}) => {
   );
 
   return (
-    <div className="qAndA-answerFeed" >
+    <div className="qAndA-answer-list" >
       {result}
     </div>
   );

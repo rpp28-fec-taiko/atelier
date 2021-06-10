@@ -2,6 +2,7 @@ import React from "react";
 
 const ChevronRight = ({size=60, color="#000000"}) => (
   <svg
+    className='image-right-arrow'
     xmlns="http://www.w3.org/2000/svg"
     width={size}
     height={size}

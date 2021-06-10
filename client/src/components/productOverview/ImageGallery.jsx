@@ -53,8 +53,8 @@ class ImageGallery extends React.Component {
   render() {
 
     // left-right arrows
-    let leftArrow = <ChevronLeft />
-    let rightArrow = <ChevronRight />
+    let leftArrow = <ChevronLeft color='slategrey' />
+    let rightArrow = <ChevronRight color='slategrey' />
 
     let mainImage;
     let imageList;

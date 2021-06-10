@@ -38,7 +38,19 @@
   height: 60px;
   width: 60px;
   padding: 3px;
+}
 
+.image-right-arrow {
+  position: absolute;
+  bottom: 600px;
+  left: 690px;
+  z-index: 1;
+}
+
+.image-left-arrow {
+  position: absolute;
+  bottom: 600px;
+  z-index: 1;
 }
 
 .current-image-selection {

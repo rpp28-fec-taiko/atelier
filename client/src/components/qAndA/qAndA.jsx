@@ -18,12 +18,6 @@ class QAndA extends React.Component {
     return fetch(`http://localhost:3000/qa/questions/?productId=${this.props.productId}`)
     .then((resp) => resp.json())
     .then((allQuestions) => {
-      console.log(allQuestions)
-      // console.log('allQuestions: ', allQuestions);
-      // let questionsList = [];
-      // for (let i = 0; i < allQuestions.results.length; i++) {
-      //   questionsList.push(allQuestions.results[i].question_body);
-      // }
       this.setState({questions: allQuestions})
     })
     .catch((err) => {

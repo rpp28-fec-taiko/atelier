@@ -5,7 +5,7 @@ import Sort from '../../../client/src/components/reviews/sort.jsx';
 describe ('Sort Dropdown', () => {
   const wrapper = shallow(<Sort />);
 
-  it ('checks if the widget exists', () => {
+  it ('checks if the component exists', () => {
     expect(wrapper.exists('.reviews-sort')).toBe(true);
   });
 

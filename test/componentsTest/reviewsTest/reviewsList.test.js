@@ -5,7 +5,7 @@ import ReviewsList from '../../../client/src/components/reviews/reviewsList.jsx'
 describe ('Reviews List', () => {
   const wrapper = shallow(<ReviewsList reviews={[1]}/>);
 
-  it ('checks if the widget exists', () => {
+  it ('checks if the component exists', () => {
     expect(wrapper.exists('.reviews-list')).toBe(true);
   });
 

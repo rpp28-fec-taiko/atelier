@@ -17,7 +17,7 @@ class Cart extends React.Component {
         return results.json();
       })
       .then((cart) => {
-        console.log('success getting cart from server', cart);
+        // console.log('success getting cart from server', cart);
       })
       .catch(() => {
         console.log('error getting Cart from server')

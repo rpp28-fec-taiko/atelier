@@ -26,7 +26,8 @@
 }
 
 .image-list {
-
+  position: relative;
+  /* bottom: 550px; */
 }
 
 .image-thumbnail {
@@ -37,6 +38,14 @@
   height: 60px;
   width: 60px;
   padding: 3px;
+
+}
+
+.current-image-selection {
+  border: 3px solid rgb(255, 243, 133);
+}
+
+.non-current-image {
   border: 3px solid lightgray;
 }
 

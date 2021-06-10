@@ -6,39 +6,41 @@ class ImageGallery extends React.Component {
     super(props);
 
     this.state = {
-      currentImage: '',
-      photos: [],
+      currentImage: this.props.currentStyle.photos ? this.props.currentStyle.photos[0] : '',
+      photos: this.props.currentStyle.photos ? this.props.currentStyle.photos : [],
       extendedView: false
     }
   }
 
-  // componentDidMount() {
+  componentDidUpdate(prevProps) {
+    // check to make sure valid props are being passed in - it takes a few renders before they do..
+    if (!prevProps.currentStyle.photos && this.props.currentStyle.photos) {
+      this.setState({
+        currentImage: this.props.currentStyle.photos[0],
+        photos: this.props.currentStyle.photos
+      }, () => console.log('image-state', this.state));
+    }
+  }
 
-  //   // just for researching products
-  //   // fetch(`http://localhost:3000/products`)
-  //   //   .then((results) => {
-  //   //     console.log('fetch results', results)
-  //   //   })
-  //   //   .catch(() => {
-  //   //     console.log('error fetching products from server')
-  //   //   });
-
-  //   // console.log(this.props);
-  //   // if (this.props.currentStyle.photos) {
-  //   //   this.setState({
-  //   //     photos: this.props.currentStyle.photos
-  //   //   }, () => console.log('imagestate', this.state));
-  //   // }
-  // }
+  updateMainImage(e) {
+    e.preventDefault();
+    console.log('click', e);
+    this.state.photos.forEach(image => {
+      console.log(image.url);
+      if (image.thumbnail_url === e.target.src) {
+        this.setState({
+          currentImage: image
+        }, () => console.log('update style state', this.state))
+      }
+    })
+  }
 
   render() {
-
-    console.log('props', this.props.currentStyle.photos)
     let mainImage;
     let imageList;
     if (this.props.currentStyle.photos) {
-      mainImage = <img className='image-main' src={this.props.currentStyle.photos[0].url}></img>
-      imageList = <ImageList photos={this.props.currentStyle.photos} />
+      mainImage = <img className='image-main' src={this.state.currentImage.url}></img>
+      imageList = <ImageList currentImage={this.state.currentImage} updateMainImage={this.updateMainImage.bind(this)} photos={this.state.photos} />
     } else {
       mainImage = <div></div>
       imageList = <div></div>

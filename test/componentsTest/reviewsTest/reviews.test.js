@@ -18,7 +18,7 @@ describe ('Reviews Widget', () => {
     expect(wrapper.exists('.reviews')).toBe(true);
   });
 
-  it('checks that Reviews component is rendering', () => {
+  it('checks that Reviews component is rendering children', () => {
     expect(wrapper.children()).toHaveLength(2);
   });
 

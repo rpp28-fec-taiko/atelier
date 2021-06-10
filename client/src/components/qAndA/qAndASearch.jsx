@@ -1,14 +1,14 @@
 import React from 'react';
 
-const QAndASearch = () => {
+const QAndASearch = (props) => {
   return (
     <div className="qAndA-search" >
       <form type="text" >
-        <textarea ></textarea>
-        <button >search</button>
+        <input id="qAndASearch" ></input>
       </form>
     </div>
   );
 };
 
 export default QAndASearch;
+

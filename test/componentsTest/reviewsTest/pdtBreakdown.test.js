@@ -8,13 +8,4 @@ describe ('Pdt Breakdown', () => {
   it ('checks if the component exists', () => {
     expect(wrapper.exists('.reviews-pdt-breakdown')).toBe(true);
   });
-
-  // it('checks that Sort component is rendering children', () => {
-  //   expect(wrapper.children()).toHaveLength(2);
-  // });
-
-  // it ('should display the correct criteria value', () => {
-  //   wrapper.setProps({reviewCriteria: 'helpful'});
-  //   expect(wrapper.find('select').props().value).toBe('helpful')
-  // })
 });

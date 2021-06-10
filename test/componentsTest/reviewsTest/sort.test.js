@@ -15,7 +15,6 @@ describe ('Sort Dropdown', () => {
 
   it ('should display the correct criteria value', () => {
     wrapper.setProps({reviewCriteria: 'helpful'});
-    let test = wrapper.find('select');
     expect(wrapper.find('select').props().value).toBe('helpful')
   })
 });

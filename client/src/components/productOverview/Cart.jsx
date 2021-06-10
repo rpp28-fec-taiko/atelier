@@ -128,6 +128,7 @@ class Cart extends React.Component {
     // ADD TO CART
     let addToCart;
     if (outOfStock) {
+      // hide button if style is out of stock
       addToCart = <div className='add-to-cart'></div>
     } else {
       addToCart =

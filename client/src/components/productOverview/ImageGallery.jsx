@@ -26,7 +26,7 @@ class ImageGallery extends React.Component {
 
     let mainImage;
     if (this.props.currentStyle.photos) {
-      console.log(this.props.currentStyle.photos);
+      console.log('state.images', this.props.currentStyle.photos);
       mainImage = <img className='image-main' src={this.props.currentStyle.photos[0].url}></img>
     } else {
       mainImage = <div></div>

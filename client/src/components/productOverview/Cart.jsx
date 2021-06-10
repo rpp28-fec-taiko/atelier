@@ -32,37 +32,42 @@ class Cart extends React.Component {
     this.setState({quantity: e.target.value}, () => console.log(this.state));
   }
 
-  handleAddToCart() {
-    // on click of cart button
+  getSkuId() {
+    let skus = this.props.currStyle.skus;
+    for (let key in skus) {
+      // let currSku = skus[key]
+      if (skus[key].size === this.state.size) {
+        return key;
+      }
+    }
+  }
 
+  handleAddToCart() {
     // check that a valid size and quantity selected
     if (this.state.size && this.state.quantity) {
 
-      // get sku for style/size - Refactor into helper method...
-      let sku_id;
-      console.log(this.props.currStyle.skus);
-      let skus = this.props.currStyle.skus;
-      for (let key in skus) {
-        let currSku = skus[key]
-        if (currSku.size === this.state.size) {
-          sku_id = key;
-          break;
-        }
+      // get sku for style/size
+      let sku_id = this.getSkuId.call(this);
+
+      // iterate and make async POST requests to server
+      let fetchPromises = [];
+      for (let i = 0; i < this.state.quantity; i++) {
+        fetchPromises.push(
+          fetch(`http://localhost:3000/cart?sku=${sku_id}`, { method: 'POST'})
+        )
       }
-      // use fetch: make POST request to server
-      fetch(`http://localhost:3000/cart?sku=${sku_id}`, { method: 'POST'})
+      Promise.all(fetchPromises)
         .then(() => {
-          console.log('success posting Cart to server')
+          console.log('success posting one or more items to server')
+          // this.setState({
+          //   size: null,
+          //   quantity: 1
+          // });
         })
         .catch(() => {
-          console.log('error posting Cart to server')
+          console.log('error posting one item to server')
         });
-
-      // how to do handle the quantity async? Promise All.
-
-
     }
-
   }
 
   render() {

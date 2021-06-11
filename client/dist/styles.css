@@ -46,11 +46,17 @@
   left: 690px;
   z-index: 1;
 }
+.image-right-arrow:hover {
+  cursor: pointer;
+}
 
 .image-left-arrow {
   position: absolute;
   bottom: 600px;
   z-index: 1;
+}
+.image-left-arrow:hover {
+  cursor: pointer;
 }
 
 .current-image-selection {

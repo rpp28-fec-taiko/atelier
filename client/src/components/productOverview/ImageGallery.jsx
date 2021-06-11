@@ -10,7 +10,7 @@ class ImageGallery extends React.Component {
     this.state = {
       currentImage: '',
       photos: [],
-      currIndex: 0,
+      currentIndex: 0,
       extendedView: false
     }
   }
@@ -19,15 +19,17 @@ class ImageGallery extends React.Component {
     // check to make sure valid props are being passed in - it takes a few renders before they do..
     if (!prevProps.currentStyle.photos && this.props.currentStyle.photos) {
       this.setState({
-        currentImage: this.props.currentStyle.photos[0],
+        // currentImage: this.props.currentStyle.photos[0],
+        currentImage: this.props.currentStyle.photos[this.state.currentIndex],
         photos: this.props.currentStyle.photos
       });
 
-      // fix to make the style selector on click still function
+      // for style selector onclick
     } else if (prevProps.currentStyle.style_id) {
       if (prevProps.currentStyle.style_id !== this.props.currentStyle.style_id) {
         this.setState({
-          currentImage: this.props.currentStyle.photos[0],
+          // currentImage: this.props.currentStyle.photos[0],
+          currentImage: this.props.currentStyle.photos[this.state.currentIndex],
           photos: this.props.currentStyle.photos
         });
       }
@@ -45,17 +47,33 @@ class ImageGallery extends React.Component {
     })
   }
 
-  slideImageIndex() {
-    // change main image
-    // move right or left in the array to the neighboring img depending on which arrow was clicked
+  nextImage() {
+    this.setState((prevState) => {
+      return {
+        currentImage: this.state.photos[prevState.currentIndex + 1],
+        currentIndex: prevState.currentIndex + 1
+      }
+    });
+  }
+
+  prevImage() {
+    this.setState((prevState) => {
+      return {
+        currentImage: this.state.photos[prevState.currentIndex - 1],
+        currentIndex: prevState.currentIndex - 1
+      }
+    });
   }
 
   render() {
 
     // left-right arrows
-    let leftArrow = <ChevronLeft color='slategrey' />
-    let rightArrow = <ChevronRight color='slategrey' />
+    let leftArrow =
+      this.state.currentIndex !== 0 ? <ChevronLeft prevImage={this.prevImage.bind(this)} color='slategrey'/> : null;
+    let rightArrow =
+      this.state.currentIndex !== this.state.photos.length - 1 ? <ChevronRight nextImage={this.nextImage.bind(this)} color='slategrey'/> : null;
 
+    // main image and thumbnail list
     let mainImage;
     let imageList;
     if (this.props.currentStyle.photos) {

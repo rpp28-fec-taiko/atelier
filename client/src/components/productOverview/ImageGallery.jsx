@@ -39,7 +39,7 @@ class ImageGallery extends React.Component {
   updateMainImage(e) {
     e.preventDefault();
     this.state.photos.forEach((image, idx) => {
-      if (image.thumbnail_url === e.target.src) {
+      if (image.thumbnail_url === e.target.src || image.thumbnail_url === e.target.id) {
         this.setState({
           currentImage: image,
           currentIndex: idx
@@ -82,7 +82,7 @@ class ImageGallery extends React.Component {
     let imageList;
     if (this.props.currentStyle.photos) {
       mainImage = <img className={`image-main-${view}`} src={this.state.currentImage.url} onClick={this.props.toggleExpandedView}></img>
-      imageList = <ImageList currentImage={this.state.currentImage} updateMainImage={this.updateMainImage.bind(this)} photos={this.state.photos} />
+      imageList = <ImageList view={view} currentImage={this.state.currentImage} updateMainImage={this.updateMainImage.bind(this)} photos={this.state.photos} />
     } else {
       mainImage = <div></div>
       imageList = <div></div>

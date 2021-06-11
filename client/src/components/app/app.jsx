@@ -3,7 +3,7 @@ import Reviews from '../reviews/reviews.jsx';
 import Overview from '../productOverview/Overview.jsx';
 import QAndA from '../qAndA/qAndA.jsx';
 import RelatedItems from '../relatedItems/RelatedItems.jsx';
-import {findAvgRating, sortByCriteria} from '../reviews/reviewsHelper.js';
+import {findAvgRating, sortByCriteria} from '../../../../helper/reviewsHelper.js';
 
 class App extends React.Component {
   constructor (props) {

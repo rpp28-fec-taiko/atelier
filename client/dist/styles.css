@@ -316,6 +316,8 @@
 }
 
 .reviews-ratings-breakdown {
+  display: grid;
+  grid-template-rows: auto;
   border: 1px solid green;
   margin: 5px;
 }
@@ -423,4 +425,31 @@
 
 .reviews-tile-helpfulness {
   cursor: pointer;
+}
+
+.reviews-ratings-breakdown-summary {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-auto-flow: column;
+  border: 1px solid blue;
+  margin: 5px;
+}
+
+.reviews-ratings-breakdown-summary .avgRating{
+  font-size: 55px;
+  font-weight: bolder;
+}
+
+.reviews-ratings-breakdown-summary .stars{
+  margin-top: 10px;
+}
+
+.reviews-ratings-breakdown-recommend {
+  border: 1px solid blue;
+  margin: 5px;
+}
+
+.reviews-ratings-breakdown-star {
+  border: 1px solid blue;
+  margin: 5px;
 }

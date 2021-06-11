@@ -1,5 +1,5 @@
 import React from 'react';
-import RatingsBreakdown from './ratingsBreakdown.jsx';
+import RatingBreakdown from './ratingBreakdown.jsx';
 import PdtBreakdown from './pdtBreakdown.jsx';
 import ReviewsList from './reviewsList.jsx';
 import Search from './search.jsx';
@@ -18,7 +18,7 @@ class Reviews extends React.Component {
         <h2>RATINGS & REVIEWS</h2>
         <div className='reviews-body'>
           <div className='reviews-breakdown'>
-            <RatingsBreakdown />
+            <RatingBreakdown noOfReviews={this.props.noOfReviews} avgRating={this.props.avgRating}/>
             <PdtBreakdown />
           </div>
           {

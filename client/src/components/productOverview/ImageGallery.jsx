@@ -2,6 +2,8 @@ import React from 'react';
 import ImageList from './ImageList.jsx';
 import ChevronLeft from './icons/ChevronLeft.jsx';
 import ChevronRight from './icons/ChevronRight.jsx';
+import Maximize from './icons/Maximize.jsx';
+import Minimize from './icons/Minimize.jsx';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -70,12 +72,13 @@ class ImageGallery extends React.Component {
 
     // vars for classnames depending on whether expanded or default gallery layout
     let view = this.props.expanded ? 'expanded' : 'default';
+    let minMaxIcon = this.props.expanded ? <Minimize toggleExpandedView={this.props.toggleExpandedView}/> : <Maximize toggleExpandedView={this.props.toggleExpandedView}/>
 
     // left-right arrows
     let leftArrow =
-      this.state.currentIndex !== 0 ? <ChevronLeft view={view} prevImage={this.prevImage.bind(this)} color='slategrey'/> : null;
+      this.state.currentIndex !== 0 ? <ChevronLeft view={view} prevImage={this.prevImage.bind(this)} color='white'/> : null;
     let rightArrow =
-      this.state.currentIndex !== this.state.photos.length - 1 ? <ChevronRight view={view} nextImage={this.nextImage.bind(this)} color='slategrey'/> : null;
+      this.state.currentIndex !== this.state.photos.length - 1 ? <ChevronRight view={view} nextImage={this.nextImage.bind(this)} color='white'/> : null;
 
     // main image and thumbnail list
     let mainImage;
@@ -93,6 +96,7 @@ class ImageGallery extends React.Component {
         {leftArrow}
         {mainImage}
         {rightArrow}
+        {minMaxIcon}
         {imageList}
       </div>
     );

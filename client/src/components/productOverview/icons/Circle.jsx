@@ -1,10 +1,11 @@
 import React from "react";
 
-const Circle = ({size=30, color="grey", updateMainImage, currentImage, thumbnail}) => {
+const Circle = ({size=25, color="grey", updateMainImage, currentImage, thumbnail}) => {
 
   let fill;
   if (thumbnail === currentImage.thumbnail_url) {
     fill = 'yellow';
+    size += 10;
   } else {
     fill = 'grey'
   }

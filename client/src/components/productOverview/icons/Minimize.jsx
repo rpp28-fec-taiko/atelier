@@ -1,7 +1,9 @@
 import React from "react";
 
-const Minimize = ({size=60, color="#000000"}) => (
+const Minimize = ({size=40, color="white", toggleExpandedView}) => (
   <svg
+    onClick={toggleExpandedView}
+    className='minimize-image'
     xmlns="http://www.w3.org/2000/svg"
     width={size}
     height={size}

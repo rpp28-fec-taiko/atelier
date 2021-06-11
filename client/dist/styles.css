@@ -16,6 +16,7 @@
 
 .image-gallery {
   grid-area: 1 / 1 / span 3 / span 1;
+  position: relative;
 }
 
 .image-main {
@@ -23,6 +24,9 @@
   grid-area: 1 / 1 / span 3 / span 1;
   height: 550px;
   max-width: 750px;
+}
+.image-main:hover {
+  cursor: zoom-in;
 }
 
 .image-list {
@@ -38,7 +42,31 @@
   height: 60px;
   width: 60px;
   padding: 3px;
+}
+.image-thumbnail:hover {
+  cursor: pointer;
+}
 
+.image-right-arrow {
+  position: absolute;
+  /* bottom: 600px; */
+  bottom: 55%;
+  left: 690px;
+  z-index: 1;
+}
+.image-right-arrow:hover {
+  cursor: pointer;
+}
+
+.image-left-arrow {
+  position: absolute;
+  /* bottom: 600px; */
+  /* left: 100px; */
+  bottom: 55%;
+  z-index: 1;
+}
+.image-left-arrow:hover {
+  cursor: pointer;
 }
 
 .current-image-selection {
@@ -75,6 +103,7 @@
 
 .read-reviews:hover {
   color: black;
+  cursor: pointer;
 }
 
 .product-category {
@@ -124,6 +153,7 @@
 
 .social-media-icon:hover {
   background-color: rgb(235, 232, 232);
+  cursor: pointer;
 }
 
 .social-media {
@@ -163,6 +193,9 @@
   width: 60px;
   padding: 3px;
 }
+.style-thumbnail:hover {
+  cursor: pointer;
+}
 
 .style-thumbnail img {
   height: 60px;
@@ -198,6 +231,9 @@
 .add-to-cart button {
   height: 30px;
   width: 120px;
+}
+.add-to-cart button:hover {
+  cursor: pointer;
 }
 
 .star-box {

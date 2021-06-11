@@ -25,6 +25,9 @@
   height: 550px;
   max-width: 750px;
 }
+.image-main:hover {
+  cursor: zoom-in;
+}
 
 .image-list {
   position: relative;

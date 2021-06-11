@@ -18,23 +18,89 @@ class App extends React.Component {
       noOfReviews: 0,
       avgRating: 0,
       filteredTotalReviews: [],
-      fileredCurrentReviews: [],
-      filteredNextReviews: []
+      filteredCurrentReviews: [],
+      filteredNextReviews: [],
+      selectedFilters: [],
+      removedAllFilters: false
     };
   }
 
-  filterReviews = (criteria, isSelected) => {
-    let filteredTotalReviews = this.state.totalReviews.filter((review) => review.rating === criteria);
-    let currentReviewsLength = this.state.currentReviews.length;
-    let fileredCurrentReviews = filteredTotalReviews.slice(0, currentReviewsLength);
-    let filteredNextReviews = filteredTotalReviews.slice(currentReviewsLength, currentReviewsLength + 2);
+  removeFilters = () => {
     this.setState((prevState) => {
       return {
-        filteredTotalReviews,
-        fileredCurrentReviews,
-        filteredNextReviews
+        filteredTotalReviews: [],
+        filteredCurrentReviews: [],
+        filteredNextReviews: [],
+        selectedFilters: [],
+        removedAllFilters: true
       }
     })
+  }
+
+  filterReviews = (criteria, isSelected) => {
+    //Currently no filters applied applied.
+    if (this.state.filteredTotalReviews.length === 0) {
+      let filteredTotalReviews = this.state.totalReviews.filter((review) => review.rating === criteria);
+      let currentReviewsLength = this.state.currentReviews.length;
+      let filteredCurrentReviews = filteredTotalReviews.slice(0, currentReviewsLength);
+      let filteredNextReviews = filteredTotalReviews.slice(currentReviewsLength, currentReviewsLength + 2);
+      let selectedFilters = [...this.state.selectedFilters, criteria]
+      this.setState((prevState) => {
+        return {
+          filteredTotalReviews,
+          filteredCurrentReviews,
+          filteredNextReviews,
+          selectedFilters,
+          removedAllFilters: false
+        }
+      },() => console.log('state after adding a filter for the first time', this.state))
+      //Filter has to applied
+    } else if (isSelected) {
+      let newFilteredReviews = this.state.totalReviews.filter((review) => review.rating === criteria);
+      let filteredTotalReviews = [...this.state.filteredTotalReviews, ...newFilteredReviews];
+      let currentReviewsLength = this.state.filteredCurrentReviews.length;
+      let filteredCurrentReviews = filteredTotalReviews.slice(0, currentReviewsLength);
+      let filteredNextReviews = filteredTotalReviews.slice(currentReviewsLength, currentReviewsLength + 2);
+      let selectedFilters = [...this.state.selectedFilters, criteria]
+      this.setState((prevState) => {
+        return {
+          filteredTotalReviews,
+          filteredCurrentReviews,
+          filteredNextReviews,
+          selectedFilters
+        }
+      }, () => console.log('state after adding a filter', this.state))
+      //Filter has to be removed but it is not the last filter
+    } else if (this.state.selectedFilters.length > 1) {
+      let filteredTotalReviews = this.state.filteredTotalReviews.filter((review) => review.rating !== criteria);
+      let currentReviewsLength = this.state.filteredCurrentReviews.length;
+      let filteredCurrentReviews = filteredTotalReviews.slice(0, currentReviewsLength);
+      let filteredNextReviews = filteredTotalReviews.slice(currentReviewsLength, currentReviewsLength + 2);
+      let selectedFilters = this.state.selectedFilters.filter((star) => star !== criteria)
+      this.setState((prevState) => {
+        return {
+          filteredTotalReviews,
+          filteredCurrentReviews,
+          filteredNextReviews,
+          selectedFilters
+        }
+      }, () => console.log('state after removing a filter', this.state))
+      //Last fiiler has to be removed. So display the currentReviews before the first filter was applied
+    } else {
+      let filteredTotalReviews = this.state.filteredTotalReviews.filter((review) => review.rating !== criteria);
+      let currentReviewsLength = this.state.currentReviews.length;
+      let filteredCurrentReviews = filteredTotalReviews.slice(0, currentReviewsLength);
+      let filteredNextReviews = filteredTotalReviews.slice(currentReviewsLength, currentReviewsLength + 2);
+      let selectedFilters = this.state.selectedFilters.filter((star) => star !== criteria)
+      this.setState((prevState) => {
+        return {
+          filteredTotalReviews,
+          filteredCurrentReviews,
+          filteredNextReviews,
+          selectedFilters
+        }
+      }, () => console.log('state after removing a filter', this.state))
+    }
   }
 
   sortReviews = (criteria) => {
@@ -71,13 +137,23 @@ class App extends React.Component {
   }
 
   get2Reviews = () => {
-    let idx = this.state.currentReviews.length + 2;
-    let currentReviews = this.state.totalReviews.slice(0, idx);
-    let nextReviews = this.state.totalReviews.slice(idx, idx + 2);
-    this.setState((prevState) => ({
-      currentReviews,
-      nextReviews
-    }), () => console.log('state after getting 2 more reviews', this.state))
+    if (this.state.filteredTotalReviews.length === 0) {
+      let idx = this.state.currentReviews.length + 2;
+      let currentReviews = this.state.totalReviews.slice(0, idx);
+      let nextReviews = this.state.totalReviews.slice(idx, idx + 2);
+      this.setState((prevState) => ({
+        currentReviews,
+        nextReviews
+      }), () => console.log('state after getting 2 more reviews', this.state))
+    } else {
+      let idx = this.state.filteredCurrentReviews.length + 2;
+      let filteredCurrentReviews = this.state.filteredTotalReviews.slice(0, idx);
+      let filteredNextReviews = this.state.filteredTotalReviews.slice(idx, idx + 2);
+      this.setState((prevState) => ({
+        filteredCurrentReviews,
+        filteredNextReviews
+      }), () => console.log('state after getting 2 more reviews', this.state))
+    }
   }
 
   increaseReviewHelpfulnesss = (reviewId) => {
@@ -141,15 +217,20 @@ class App extends React.Component {
             currentReviews={this.state.currentReviews}
             nextReviews={this.state.nextReviews}
             filteredTotalReviews={this.state.filteredTotalReviews}
-            fileredCurrentReviews={this.state.fileredCurrentReviews}
+            filteredCurrentReviews={this.state.filteredCurrentReviews}
             filteredNextReviews={this.state.filteredNextReviews}
+            selectedFilters={this.state.selectedFilters}
             noOfReviews={this.state.noOfReviews}
             avgRating={this.state.avgRating}
+            reviewCriteria={this.state.reviewCriteria}
+            removedAllFilters={this.state.removedAllFilters}
             increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss}
             reportReview={this.reportReview}
             get2Reviews={this.get2Reviews}
             sortReviews={this.sortReviews}
-            reviewCriteria={this.state.reviewCriteria}/>
+            filterReviews={this.filterReviews}
+            removeFilters={this.removeFilters}
+          />
         </ReviewsErrorBoundary>
       </div>
     );

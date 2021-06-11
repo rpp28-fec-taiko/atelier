@@ -12,7 +12,17 @@ class Bar extends React.Component {
     this.props.filterReviews(this.props.star, !this.state.selected);
     this.setState((prevState) => ({
       selected: !prevState.selected
-    }))
+    }), () => console.log('filter selected after click', this.state.selected, this.props.star))
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    if (this.props.removedAllFilters !== prevProps.removedAllFilters) {
+      if (this.props.removedAllFilters) {
+        this.setState({
+          selected: false
+        }, () => console.log('Bar after removing all filters', this.state.selected, this.props.star))
+      }
+    }
   }
 
   render () {

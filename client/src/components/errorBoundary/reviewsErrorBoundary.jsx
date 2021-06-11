@@ -4,7 +4,6 @@ class ReviewsErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
     this.state = { hasError: false };
-    console.log('ErrorBoundary constructor')
   }
 
   static getDerivedStateFromError(error) {
@@ -18,7 +17,6 @@ class ReviewsErrorBoundary extends React.Component {
   }
 
   render() {
-    console.log('ErrorBoundary render props', this.props)
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return <h2>Something went wrong with the Reviews Widget</h2>;

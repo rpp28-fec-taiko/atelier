@@ -18,7 +18,7 @@ class Reviews extends React.Component {
         <h2>RATINGS & REVIEWS</h2>
         <div className='reviews-body'>
           <div className='reviews-breakdown'>
-            <RatingBreakdown totalReviews={this.props.totalReviews} noOfReviews={this.props.noOfReviews} avgRating={this.props.avgRating}/>
+            <RatingBreakdown totalReviews={this.props.totalReviews} noOfReviews={this.props.noOfReviews} avgRating={this.props.avgRating} filterReviews={this.props.filterReviews} selectedFilters={this.props.selectedFilters} removeFilters={this.props.removeFilters} removedAllFilters={this.props.removedAllFilters}/>
             <PdtBreakdown />
           </div>
           {
@@ -32,7 +32,7 @@ class Reviews extends React.Component {
                 />
                 <Search />
                 <ReviewsList
-                  reviews={this.props.fileredCurrentReviews.length > 0 ? this.props.fileredCurrentReviews: this.props.currentReviews}
+                  reviews={this.props.filteredCurrentReviews.length > 0 ? this.props.filteredCurrentReviews: this.props.currentReviews}
                   increaseReviewHelpfulnesss={this.props.increaseReviewHelpfulnesss}
                   reportReview={this.props.reportReview}
                 />

@@ -25,6 +25,30 @@
   max-width: 750px;
 }
 
+.image-list {
+  position: relative;
+  /* bottom: 550px; */
+}
+
+.image-thumbnail {
+  margin: 10px;
+  margin-right: 35px;
+  /* border: 1px solid lightblue; */
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  padding: 3px;
+
+}
+
+.current-image-selection {
+  border: 3px solid rgb(255, 243, 133);
+}
+
+.non-current-image {
+  border: 3px solid lightgray;
+}
+
 .product-info {
   grid-area: 1 / 2 / span 1 / span 1;
   /* border: 1px solid lightblue; */

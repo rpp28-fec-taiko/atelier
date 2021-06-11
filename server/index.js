@@ -13,6 +13,20 @@ const apiUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp`;
 
 // Products API --------------------------------------------------------
 
+app.get('/products', (req, res) => {
+  return axios.get(`${apiUrl}/products?page=4`, {
+    headers: {
+      'Authorization': gitToken
+    }
+  })
+  .then((results) => {
+    console.log('results', results.data);
+  })
+  .catch(() => {
+    console.log('error fetching products');
+  });
+});
+
 app.get('/productInfo', (req, res) => {
   return axios.get(`${apiUrl}/products/${req.query.productId}`, {
     headers: {

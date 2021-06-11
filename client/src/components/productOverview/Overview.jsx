@@ -51,7 +51,7 @@ class Overview extends React.Component {
   setDefaultStyle() {
     return this.state.styles.forEach(style => {
       if (style['default?']) {
-        this.setState({currentStyle: style}, () => console.log('state', this.state));
+        this.setState({currentStyle: style}, () => console.log('overview state', this.state));
       }
     });
   }

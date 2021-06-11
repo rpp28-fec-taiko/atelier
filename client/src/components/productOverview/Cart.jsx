@@ -17,7 +17,7 @@ class Cart extends React.Component {
         return results.json();
       })
       .then((cart) => {
-        console.log('success getting cart from server', cart);
+        // console.log('success getting cart from server', cart);
       })
       .catch(() => {
         console.log('error getting Cart from server')
@@ -128,6 +128,7 @@ class Cart extends React.Component {
     // ADD TO CART
     let addToCart;
     if (outOfStock) {
+      // hide button if style is out of stock
       addToCart = <div className='add-to-cart'></div>
     } else {
       addToCart =

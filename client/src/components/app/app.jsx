@@ -10,14 +10,31 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      productId: '22122',
+      productId: '22161',
       totalReviews: [],
       currentReviews: [],
       nextReviews: [],
       reviewCriteria: 'relevant',
       noOfReviews: 0,
-      avgRating: 0
+      avgRating: 0,
+      filteredTotalReviews: [],
+      fileredCurrentReviews: [],
+      filteredNextReviews: []
     };
+  }
+
+  filterReviews = (criteria, isSelected) => {
+    let filteredTotalReviews = this.state.totalReviews.filter((review) => review.rating === criteria);
+    let currentReviewsLength = this.state.currentReviews.length;
+    let fileredCurrentReviews = filteredTotalReviews.slice(0, currentReviewsLength);
+    let filteredNextReviews = filteredTotalReviews.slice(currentReviewsLength, currentReviewsLength + 2);
+    this.setState((prevState) => {
+      return {
+        filteredTotalReviews,
+        fileredCurrentReviews,
+        filteredNextReviews
+      }
+    })
   }
 
   sortReviews = (criteria) => {
@@ -119,7 +136,20 @@ class App extends React.Component {
         <RelatedItems />
         <QAndA productId={this.state.productId}/>
         <ReviewsErrorBoundary>
-          <Reviews totalReviews={this.state.totalReviews} currentReviews={this.state.currentReviews} nextReviews={this.state.nextReviews} noOfReviews={this.state.noOfReviews} avgRating={this.state.avgRating} increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss} reportReview={this.reportReview} get2Reviews={this.get2Reviews} sortReviews={this.sortReviews} reviewCriteria={this.state.reviewCriteria}/>
+          <Reviews
+            totalReviews={this.state.totalReviews}
+            currentReviews={this.state.currentReviews}
+            nextReviews={this.state.nextReviews}
+            filteredTotalReviews={this.state.filteredTotalReviews}
+            fileredCurrentReviews={this.state.fileredCurrentReviews}
+            filteredNextReviews={this.state.filteredNextReviews}
+            noOfReviews={this.state.noOfReviews}
+            avgRating={this.state.avgRating}
+            increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss}
+            reportReview={this.reportReview}
+            get2Reviews={this.get2Reviews}
+            sortReviews={this.sortReviews}
+            reviewCriteria={this.state.reviewCriteria}/>
         </ReviewsErrorBoundary>
       </div>
     );

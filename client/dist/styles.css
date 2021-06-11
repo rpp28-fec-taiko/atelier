@@ -460,6 +460,11 @@
   grid-auto-flow: column;
 }
 
+.bar:hover {
+  background-color: peachpuff;
+  cursor: pointer;
+}
+
 .bar-container {
   width: 100%;
   background-color: grey;
@@ -469,7 +474,6 @@
 
 .bar-child {
   height: 10px;
-  width: 50%;
   background-color: rgb(133, 231, 182);
 }
 

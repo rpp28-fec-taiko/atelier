@@ -11,7 +11,6 @@ const StarBreakdown = ({ totalReviews, noOfReviews }) => {
         stars.map((star, idx) => {
           let filteredReviews = totalReviews.filter((review) => review.rating === star)
           let fillPercentage = Math.round((filteredReviews.length / totalReviews.length) * 100)
-          console.log('percent', fillPercentage)
           return <Bar key={idx} star={star} noOfStarReviews={filteredReviews.length} fill={fillPercentage}/>
         })
       }

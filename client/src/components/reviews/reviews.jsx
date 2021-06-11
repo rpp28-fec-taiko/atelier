@@ -25,9 +25,17 @@ class Reviews extends React.Component {
             this.props.currentReviews.length === 0 ?
               <AddReview /> :
               <div className='reviews-main'>
-                <Sort reviews={this.props.currentReviews} sortReviews={this.props.sortReviews} reviewCriteria={this.props.reviewCriteria} noOfReviews={this.props.noOfReviews}/>
+                <Sort
+                  sortReviews={this.props.sortReviews}
+                  reviewCriteria={this.props.reviewCriteria}
+                  noOfReviews={this.props.noOfReviews}
+                />
                 <Search />
-                <ReviewsList reviews={this.props.currentReviews} increaseReviewHelpfulnesss={this.props.increaseReviewHelpfulnesss} reportReview={this.props.reportReview}/>
+                <ReviewsList
+                  reviews={this.props.fileredCurrentReviews.length > 0 ? this.props.fileredCurrentReviews: this.props.currentReviews}
+                  increaseReviewHelpfulnesss={this.props.increaseReviewHelpfulnesss}
+                  reportReview={this.props.reportReview}
+                />
                 <div className='reviews-btns'>
                   {this.props.nextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null}
                   <AddReview />

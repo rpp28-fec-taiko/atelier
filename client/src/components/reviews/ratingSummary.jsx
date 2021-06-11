@@ -9,6 +9,7 @@ const RatingSummary = ({ noOfReviews, avgRating }) => {
       <div className='avgRating'> {avgRating} </div>
       <div className='stars'>
         <Stars size={18} rating={avgRating}/>
+        <div>{noOfReviews} reviews</div>
       </div>
     </div>
   )

@@ -18,7 +18,7 @@ class Reviews extends React.Component {
         <h2>RATINGS & REVIEWS</h2>
         <div className='reviews-body'>
           <div className='reviews-breakdown'>
-            <RatingBreakdown noOfReviews={this.props.noOfReviews} avgRating={this.props.avgRating}/>
+            <RatingBreakdown totalReviews={this.props.totalReviews} noOfReviews={this.props.noOfReviews} avgRating={this.props.avgRating}/>
             <PdtBreakdown />
           </div>
           {

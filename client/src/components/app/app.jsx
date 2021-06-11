@@ -119,7 +119,7 @@ class App extends React.Component {
         <RelatedItems />
         <QAndA productId={this.state.productId}/>
         <ReviewsErrorBoundary>
-          <Reviews currentReviews={this.state.currentReviews} nextReviews={this.state.nextReviews} noOfReviews={this.state.noOfReviews} avgRating={this.state.avgRating} increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss} reportReview={this.reportReview} get2Reviews={this.get2Reviews} sortReviews={this.sortReviews} reviewCriteria={this.state.reviewCriteria}/>
+          <Reviews totalReviews={this.state.totalReviews} currentReviews={this.state.currentReviews} nextReviews={this.state.nextReviews} noOfReviews={this.state.noOfReviews} avgRating={this.state.avgRating} increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss} reportReview={this.reportReview} get2Reviews={this.get2Reviews} sortReviews={this.sortReviews} reviewCriteria={this.state.reviewCriteria}/>
         </ReviewsErrorBoundary>
       </div>
     );

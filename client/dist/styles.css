@@ -453,3 +453,26 @@
   border: 1px solid blue;
   margin: 5px;
 }
+
+.bar {
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+  grid-auto-flow: column;
+}
+
+.bar-container {
+  width: 100%;
+  background-color: grey;
+  height: 10px;
+  margin-top: 5px;
+}
+
+.bar-child {
+  height: 10px;
+  width: 50%;
+  background-color: rgb(133, 231, 182);
+}
+
+.bar-number {
+  margin-left: 5px;
+}

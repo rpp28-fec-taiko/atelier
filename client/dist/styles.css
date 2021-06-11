@@ -14,29 +14,68 @@
   /* min-height: 600px; */
 }
 
-.image-gallery {
+/* default view */
+.image-gallery-default {
   grid-area: 1 / 1 / span 3 / span 1;
+
   position: relative;
 }
-
-.image-main {
+.image-main-default {
   /* need this grid-area bc its nested in image gallery */
   grid-area: 1 / 1 / span 3 / span 1;
   height: 550px;
-  max-width: 750px;
+  width: 100%;
+  object-fit: cover;
 }
-.image-main:hover {
+.image-main-default:hover {
   cursor: zoom-in;
 }
 
-.image-list {
+/* expanded view */
+.image-gallery-expanded {
+  grid-area: 1 / 1 / span 3 / span 2;
   position: relative;
-  /* bottom: 550px; */
+}
+.image-main-expanded {
+  /* need this grid-area bc its nested in image gallery */
+  grid-area: 1 / 1 / span 3 / span 2;
+  height: 550px;
+  width: 100%;
+  object-fit: cover;
+}
+.image-main-expanded:hover {
+  cursor: zoom-out;
+}
+.image-right-arrow-expanded {
+  position: absolute;
+  /* bottom: 600px; */
+  bottom: 55%;
+  left: 95%;
+  z-index: 1;
+}
+.image-right-arrow-expanded:hover {
+  cursor: pointer;
+}
+.image-left-arrow-expanded {
+  position: absolute;
+  /* bottom: 600px; */
+  /* left: 100px; */
+  bottom: 55%;
+  z-index: 1;
+}
+.image-left-arrow-expanded:hover {
+  cursor: pointer;
+}
+
+.image-list {
+  /* grid-area: 2 / 1 / span 1 / span 1; */
+  position: absolute;
+  bottom: 10px;
 }
 
 .image-thumbnail {
   margin: 10px;
-  margin-right: 35px;
+  margin-right: 22px;
   /* border: 1px solid lightblue; */
   display: inline-block;
   height: 60px;
@@ -47,25 +86,25 @@
   cursor: pointer;
 }
 
-.image-right-arrow {
+.image-right-arrow-default {
   position: absolute;
   /* bottom: 600px; */
   bottom: 55%;
   left: 690px;
   z-index: 1;
 }
-.image-right-arrow:hover {
+.image-right-arrow-default:hover {
   cursor: pointer;
 }
 
-.image-left-arrow {
+.image-left-arrow-default {
   position: absolute;
   /* bottom: 600px; */
   /* left: 100px; */
   bottom: 55%;
   z-index: 1;
 }
-.image-left-arrow:hover {
+.image-left-arrow-default:hover {
   cursor: pointer;
 }
 

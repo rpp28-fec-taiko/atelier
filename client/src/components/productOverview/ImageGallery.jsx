@@ -11,7 +11,7 @@ class ImageGallery extends React.Component {
       currentImage: '',
       photos: [],
       currentIndex: 0,
-      extendedView: false
+      // extendedView: false
     }
   }
 
@@ -68,17 +68,20 @@ class ImageGallery extends React.Component {
 
   render() {
 
+    // vars for classnames depending on whether expanded or default gallery layout
+    let view = this.props.expanded ? 'expanded' : 'default';
+
     // left-right arrows
     let leftArrow =
-      this.state.currentIndex !== 0 ? <ChevronLeft prevImage={this.prevImage.bind(this)} color='slategrey'/> : null;
+      this.state.currentIndex !== 0 ? <ChevronLeft view={view} prevImage={this.prevImage.bind(this)} color='slategrey'/> : null;
     let rightArrow =
-      this.state.currentIndex !== this.state.photos.length - 1 ? <ChevronRight nextImage={this.nextImage.bind(this)} color='slategrey'/> : null;
+      this.state.currentIndex !== this.state.photos.length - 1 ? <ChevronRight view={view} nextImage={this.nextImage.bind(this)} color='slategrey'/> : null;
 
     // main image and thumbnail list
     let mainImage;
     let imageList;
     if (this.props.currentStyle.photos) {
-      mainImage = <img className='image-main' src={this.state.currentImage.url}></img>
+      mainImage = <img className={`image-main-${view}`} src={this.state.currentImage.url} onClick={this.props.toggleExpandedView}></img>
       imageList = <ImageList currentImage={this.state.currentImage} updateMainImage={this.updateMainImage.bind(this)} photos={this.state.photos} />
     } else {
       mainImage = <div></div>
@@ -86,7 +89,7 @@ class ImageGallery extends React.Component {
     }
 
     return (
-      <div className='image-gallery'>
+      <div className={`image-gallery-${view}`}>
         {leftArrow}
         {mainImage}
         {rightArrow}

@@ -38,13 +38,14 @@ class ImageGallery extends React.Component {
 
   updateMainImage(e) {
     e.preventDefault();
-    this.state.photos.forEach(image => {
+    this.state.photos.forEach((image, idx) => {
       if (image.thumbnail_url === e.target.src) {
         this.setState({
-          currentImage: image
-        })
+          currentImage: image,
+          currentIndex: idx
+        });
       }
-    })
+    });
   }
 
   nextImage() {

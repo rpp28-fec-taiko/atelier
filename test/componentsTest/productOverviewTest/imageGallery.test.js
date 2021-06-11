@@ -12,5 +12,5 @@ const style = {
 
 test('checks that Image Gallery component renders correctly', () => {
   const wrapper = shallow(<ImageGallery currentStyle={style}/>);
-  expect(wrapper.children()).toHaveLength(2);
+  expect(wrapper.children()).toHaveLength(3);
 });

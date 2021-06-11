@@ -136,6 +136,12 @@
   margin: 5px;
 }
 
+.qAndA-list-answer-item-picture {
+  height: 40px;
+  width: 40px;
+  margin: 5px;
+}
+
 .qAndA-options {
   grid-template-rows: 1fr;
   border: 2px solid green;

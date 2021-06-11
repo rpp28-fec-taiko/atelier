@@ -37,7 +37,9 @@ class Reviews extends React.Component {
                   reportReview={this.props.reportReview}
                 />
                 <div className='reviews-btns'>
-                  {this.props.nextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null}
+                  { this.props.filteredCurrentReviews.length > 0 ? (this.props.filteredNextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null) :
+                    (this.props.nextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null)
+                  }
                   <AddReview />
                 </div>
               </div>

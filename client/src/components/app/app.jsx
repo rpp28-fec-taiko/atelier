@@ -57,7 +57,8 @@ class App extends React.Component {
       //Filter has to applied
     } else if (isSelected) {
       let newFilteredReviews = this.state.totalReviews.filter((review) => review.rating === criteria);
-      let filteredTotalReviews = [...this.state.filteredTotalReviews, ...newFilteredReviews];
+      let unsortedFiteredTotalReviews = [...this.state.filteredTotalReviews, ...newFilteredReviews];
+      let filteredTotalReviews = sortByCriteria(this.state.reviewCriteria, unsortedFiteredTotalReviews);
       let currentReviewsLength = this.state.filteredCurrentReviews.length;
       let filteredCurrentReviews = filteredTotalReviews.slice(0, currentReviewsLength);
       let filteredNextReviews = filteredTotalReviews.slice(currentReviewsLength, currentReviewsLength + 2);
@@ -104,15 +105,33 @@ class App extends React.Component {
   }
 
   sortReviews = (criteria) => {
-    let totalReviews = sortByCriteria(criteria, this.state.totalReviews.slice());
-    let currentReviews = totalReviews.slice(0, 2);
-    let nextReviews = totalReviews.slice(2, 4);
-    this.setState((prevState) => ({
-      totalReviews,
-      currentReviews,
-      nextReviews,
-      reviewCriteria: criteria
-    }), () => console.log(`state sorted by ${criteria}`, this.state))
+    if (this.state.filteredTotalReviews.length === 0) {
+      let totalReviews = sortByCriteria(criteria, this.state.totalReviews.slice());
+      let currentReviews = totalReviews.slice(0, 2);
+      let nextReviews = totalReviews.slice(2, 4);
+      this.setState((prevState) => ({
+        totalReviews,
+        currentReviews,
+        nextReviews,
+        reviewCriteria: criteria
+      }), () => console.log(`state sorted by ${criteria}`, this.state))
+    } else {
+      let totalReviews = sortByCriteria(criteria, this.state.totalReviews.slice());
+      let currentReviews = totalReviews.slice(0, 2);
+      let nextReviews = totalReviews.slice(2, 4);
+      let filteredTotalReviews = sortByCriteria(criteria, this.state.filteredTotalReviews);
+      let filteredCurrentReviews = filteredTotalReviews.slice(0, 2);
+      let filteredNextReviews = filteredTotalReviews.slice(2, 4)
+      this.setState((prevState) => ({
+        totalReviews,
+        currentReviews,
+        nextReviews,
+        filteredTotalReviews,
+        filteredCurrentReviews,
+        filteredNextReviews,
+        reviewCriteria: criteria
+      }), () => console.log(`state sorted by ${criteria}`, this.state))
+    }
   }
 
   getAllReviews = (endIdx = 2) => {

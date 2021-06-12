@@ -480,3 +480,32 @@
 .bar-number {
   margin-left: 5px;
 }
+
+/* .characteristic-bar {
+
+} */
+
+.characteristic-bar-container {
+  width: 100%;
+  /* background-color: grey; */
+  /* height: 10px; */
+}
+
+.characteristic-range {
+  width: 80%;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #d3d3d3;
+  height: 10px;
+  /* outline: none; */
+}
+
+.characteristic-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: 10px;
+  width: 0;
+  height: 0;
+  border: solid 10px;
+  border-color: #04AA6D transparent transparent transparent;
+}

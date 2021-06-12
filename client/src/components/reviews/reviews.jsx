@@ -14,7 +14,7 @@ class Reviews extends React.Component {
 
   render () {
     return (
-      <div className='reviews'>
+      <div className='reviews' id='reviews'>
         <h2>RATINGS & REVIEWS</h2>
         <div className='reviews-body'>
           <div className='reviews-breakdown'>

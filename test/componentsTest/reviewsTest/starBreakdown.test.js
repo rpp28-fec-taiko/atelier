@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import StarBreakdown from '../../../client/src/components/reviews/starBreakdown.jsx';
-import Bar from '../../../client/src/components/reviews/Bar.jsx'
+import Bar from '../../../client/src/components/reviews/bar.jsx'
 
 describe ('Star Breakdown', () => {
   const wrapper = shallow(<StarBreakdown selectedFilters={[]} totalReviews={[1,2]}/>);

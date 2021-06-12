@@ -10,7 +10,7 @@ describe ('Star Breakdown', () => {
     expect(wrapper.exists('.reviews-ratings-breakdown-star')).toBe(true);
   });
 
-  it('checks that Summary component is rendering children', () => {
+  it('checks that Star Breakdown component is rendering children', () => {
     expect(wrapper.children()).toHaveLength(7);
   });
 

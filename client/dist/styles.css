@@ -481,9 +481,16 @@
   margin-left: 5px;
 }
 
-/* .characteristic-bar {
+.characteristic-bar {
+  display: grid;
+  grid-template-rows: auto;
+}
 
-} */
+.range-meaning {
+  display: grid;
+  grid-template-columns: auto;
+  grid-auto-flow: column;
+}
 
 .characteristic-bar-container {
   width: 100%;

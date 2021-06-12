@@ -19,7 +19,7 @@ class Reviews extends React.Component {
         <div className='reviews-body'>
           <div className='reviews-breakdown'>
             <RatingBreakdown totalReviews={this.props.totalReviews} noOfReviews={this.props.noOfReviews} avgRating={this.props.avgRating} filterReviews={this.props.filterReviews} selectedFilters={this.props.selectedFilters} removeFilters={this.props.removeFilters} removedAllFilters={this.props.removedAllFilters}/>
-            <PdtBreakdown />
+            <PdtBreakdown characteristics={this.props.characteristics}/>
           </div>
           {
             this.props.currentReviews.length === 0 ?

@@ -1,13 +1,27 @@
 import React from 'react';
 
-const CharacteristicBar = () => {
+const CharacteristicBar = ({ label, value }) => {
+  if (label === 'Comfort' || label === 'Quality') {
+    var poor = 'Poor';
+    var avg = 'Average';
+    var great = 'Great';
+  } else {
+    var poor = 'Too small';
+    var avg = 'Perfect';
+    var great = 'Too big';
+  }
+
   return (
     <div className='characteristic-bar'>
-       <div>Label</div>
+       <div>{label}</div>
        <div className='characteristic-bar-container'>
-        <input name='range' className='characteristic-range' type='range' min='0' max='100' value='100' readOnly/>
+        <input name='range' className='characteristic-range' type='range' min='0' max='5' value={value} step='0.1' readOnly/>
        </div>
-       <div>Range meaning</div>
+       <div className='range-meaning'>
+         <div> {poor} </div>
+         <div> {avg} </div>
+         <div> {great} </div>
+       </div>
     </div>
   );
 };

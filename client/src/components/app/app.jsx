@@ -21,7 +21,8 @@ class App extends React.Component {
       filteredCurrentReviews: [],
       filteredNextReviews: [],
       selectedFilters: [],
-      removedAllFilters: false
+      removedAllFilters: false,
+      characteristics: {}
     };
   }
 
@@ -217,11 +218,22 @@ class App extends React.Component {
     .catch((err) => {
       console.log('ERROR REPORTING REVIEW', err)
     })
+  }
 
+  getCharacteristics = () => {
+    return fetch (`http://localhost:3000/reviewsMeta?productId=${this.state.productId}`)
+    .then((resp) => resp.json())
+    .then((characteristics) => {
+      this.setState({ characteristics }, () => console.log('characteristics', this.state));
+    })
+    .catch((err) => {
+      console.log('ERROR GETTING CHARACTERISTICS', err)
+    });
   }
 
   componentDidMount () {
-    this.getAllReviews();
+    this.getAllReviews()
+      .then(this.getCharacteristics)
   }
 
   render () {
@@ -243,6 +255,7 @@ class App extends React.Component {
             avgRating={this.state.avgRating}
             reviewCriteria={this.state.reviewCriteria}
             removedAllFilters={this.state.removedAllFilters}
+            characteristics={this.state.characteristics}
             increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss}
             reportReview={this.reportReview}
             get2Reviews={this.get2Reviews}

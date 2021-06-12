@@ -15,7 +15,7 @@ const ProductInfo = ({product, currentStyle, noOfReviews, avgRating}) => {
   return (
     <div className='product-info'>
       <div className='overview-stars'>{stars}</div>
-      <span className='read-reviews'>Read {noOfReviews} reviews</span>
+      <span className='read-reviews'><a href='#reviews'>Read {noOfReviews} reviews</a></span>
       <div className='product-category'>{product.category}</div>
       <div className='product-name'>{product.name}</div>
       {price}

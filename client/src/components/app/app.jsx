@@ -89,19 +89,14 @@ class App extends React.Component {
       }, () => console.log('state after removing a filter', this.state))
       //Last fiiler has to be removed. So display the currentReviews before the first filter was applied
     } else {
-      let filteredTotalReviews = this.state.filteredTotalReviews.filter((review) => review.rating !== criteria);
-      let currentReviewsLength = this.state.currentReviews.length;
-      let filteredCurrentReviews = filteredTotalReviews.slice(0, currentReviewsLength);
-      let filteredNextReviews = filteredTotalReviews.slice(currentReviewsLength, currentReviewsLength + 2);
-      let selectedFilters = this.state.selectedFilters.filter((star) => star !== criteria)
       this.setState((prevState) => {
         return {
-          filteredTotalReviews,
-          filteredCurrentReviews,
-          filteredNextReviews,
-          selectedFilters
+          filteredTotalReviews: [],
+          filteredCurrentReviews: [],
+          filteredNextReviews: [],
+          selectedFilters: []
         }
-      }, () => console.log('state after removing a filter', this.state))
+      }, () => console.log('state after removing the last filter', this.state))
     }
   }
 

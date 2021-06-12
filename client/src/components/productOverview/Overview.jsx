@@ -11,7 +11,8 @@ class Overview extends React.Component {
     this.state = {
       product: {},
       styles: [],
-      currentStyle: {}
+      currentStyle: {},
+      expandedView: false
     }
 
   }
@@ -67,15 +68,38 @@ class Overview extends React.Component {
     })
   }
 
+  toggleExpandedView() {
+    this.setState((prevState) => {
+      return {
+        expandedView: !prevState.expandedView
+      }
+    });
+  }
+
   render() {
-    return (
-      <div className='overview'>
-        <ImageGallery currentStyle={this.state.currentStyle}/>
-        <ProductInfo product={this.state.product} currentStyle={this.state.currentStyle} avgRating={this.props.avgRating} noOfReviews={this.props.noOfReviews}/>
-        <StyleSelector updateStyle={this.updateStyle.bind(this)} styles={this.state.styles} currentStyle={this.state.currentStyle}/>
-        <Cart currStyle={this.state.currentStyle}/>
-      </div>
-    );
+    // if expanded view is set to true only render the ImageGalleryExpanded comp and nothing else
+    // OR if expanded view is set to true only render the ImageGallery comp with updated classnames and nothing else
+
+    if (this.state.expandedView) {
+      // expanded view
+      return (
+        <div className='overview'>
+          <ImageGallery currentStyle={this.state.currentStyle} expanded={this.state.expandedView} toggleExpandedView={this.toggleExpandedView.bind(this)}/>
+        </div>
+      );
+
+    } else {
+      // default view
+      return (
+        <div className='overview'>
+          <ImageGallery currentStyle={this.state.currentStyle} expanded={this.state.expanded} toggleExpandedView={this.toggleExpandedView.bind(this)}/>
+          <ProductInfo product={this.state.product} currentStyle={this.state.currentStyle} avgRating={this.props.avgRating} noOfReviews={this.props.noOfReviews}/>
+          <StyleSelector updateStyle={this.updateStyle.bind(this)} styles={this.state.styles} currentStyle={this.state.currentStyle}/>
+          <Cart currStyle={this.state.currentStyle}/>
+        </div>
+      );
+    }
+
   }
 }
 

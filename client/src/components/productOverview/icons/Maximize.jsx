@@ -1,9 +1,9 @@
 import React from "react";
 
-const ChevronLeft = ({size=60, color="#000000", prevImage, view}) => (
+const Maximize = ({size=40, color="white", toggleExpandedView}) => (
   <svg
-    className={`image-left-arrow-${view}`}
-    onClick={prevImage}
+    onClick={toggleExpandedView}
+    className='maximize-image'
     xmlns="http://www.w3.org/2000/svg"
     width={size}
     height={size}
@@ -13,8 +13,8 @@ const ChevronLeft = ({size=60, color="#000000", prevImage, view}) => (
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round">
-    <path d="M15 18l-6-6 6-6"/>
+    <path d="M15 3h6v6M14 10l6.1-6.1M9 21H3v-6M10 14l-6.1 6.1"/>
   </svg>
 );
 
-export default ChevronLeft;
+export default Maximize;

@@ -2,6 +2,8 @@ import React from 'react';
 import ImageList from './ImageList.jsx';
 import ChevronLeft from './icons/ChevronLeft.jsx';
 import ChevronRight from './icons/ChevronRight.jsx';
+import Maximize from './icons/Maximize.jsx';
+import Minimize from './icons/Minimize.jsx';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -11,7 +13,7 @@ class ImageGallery extends React.Component {
       currentImage: '',
       photos: [],
       currentIndex: 0,
-      extendedView: false
+      // extendedView: false
     }
   }
 
@@ -39,7 +41,7 @@ class ImageGallery extends React.Component {
   updateMainImage(e) {
     e.preventDefault();
     this.state.photos.forEach((image, idx) => {
-      if (image.thumbnail_url === e.target.src) {
+      if (image.thumbnail_url === e.target.src || image.thumbnail_url === e.target.id) {
         this.setState({
           currentImage: image,
           currentIndex: idx
@@ -68,28 +70,33 @@ class ImageGallery extends React.Component {
 
   render() {
 
+    // vars for classnames depending on whether expanded or default gallery layout
+    let view = this.props.expanded ? 'expanded' : 'default';
+    let minMaxIcon = this.props.expanded ? <Minimize toggleExpandedView={this.props.toggleExpandedView}/> : <Maximize toggleExpandedView={this.props.toggleExpandedView}/>
+
     // left-right arrows
     let leftArrow =
-      this.state.currentIndex !== 0 ? <ChevronLeft prevImage={this.prevImage.bind(this)} color='slategrey'/> : null;
+      this.state.currentIndex !== 0 ? <ChevronLeft view={view} prevImage={this.prevImage.bind(this)} color='white'/> : null;
     let rightArrow =
-      this.state.currentIndex !== this.state.photos.length - 1 ? <ChevronRight nextImage={this.nextImage.bind(this)} color='slategrey'/> : null;
+      this.state.currentIndex !== this.state.photos.length - 1 ? <ChevronRight view={view} nextImage={this.nextImage.bind(this)} color='white'/> : null;
 
     // main image and thumbnail list
     let mainImage;
     let imageList;
     if (this.props.currentStyle.photos) {
-      mainImage = <img className='image-main' src={this.state.currentImage.url}></img>
-      imageList = <ImageList currentImage={this.state.currentImage} updateMainImage={this.updateMainImage.bind(this)} photos={this.state.photos} />
+      mainImage = <img className={`image-main-${view}`} src={this.state.currentImage.url} onClick={this.props.toggleExpandedView}></img>
+      imageList = <ImageList view={view} currentImage={this.state.currentImage} updateMainImage={this.updateMainImage.bind(this)} photos={this.state.photos} />
     } else {
       mainImage = <div></div>
       imageList = <div></div>
     }
 
     return (
-      <div className='image-gallery'>
+      <div className={`image-gallery-${view}`}>
         {leftArrow}
         {mainImage}
         {rightArrow}
+        {minMaxIcon}
         {imageList}
       </div>
     );

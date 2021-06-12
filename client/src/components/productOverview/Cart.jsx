@@ -97,7 +97,7 @@ class Cart extends React.Component {
       <span className='cart-size-select'>
         <select defaultValue='Select Size' onChange={this.handleSizeChange.bind(this)}>
         <option disabled>Select Size</option>
-        {availableSizes.map(size => <option value={size} key={size}>{size}</option>)}
+        {availableSizes.map((size, idx) => <option value={size} key={idx}>{size}</option>)}
         </select>
       </span>
 

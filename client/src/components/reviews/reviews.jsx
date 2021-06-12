@@ -1,5 +1,5 @@
 import React from 'react';
-import RatingsBreakdown from './ratingsBreakdown.jsx';
+import RatingBreakdown from './ratingBreakdown.jsx';
 import PdtBreakdown from './pdtBreakdown.jsx';
 import ReviewsList from './reviewsList.jsx';
 import Search from './search.jsx';
@@ -18,18 +18,28 @@ class Reviews extends React.Component {
         <h2>RATINGS & REVIEWS</h2>
         <div className='reviews-body'>
           <div className='reviews-breakdown'>
-            <RatingsBreakdown />
-            <PdtBreakdown />
+            <RatingBreakdown totalReviews={this.props.totalReviews} noOfReviews={this.props.noOfReviews} avgRating={this.props.avgRating} filterReviews={this.props.filterReviews} selectedFilters={this.props.selectedFilters} removeFilters={this.props.removeFilters} removedAllFilters={this.props.removedAllFilters}/>
+            <PdtBreakdown characteristics={this.props.characteristics}/>
           </div>
           {
             this.props.currentReviews.length === 0 ?
               <AddReview /> :
               <div className='reviews-main'>
-                <Sort reviews={this.props.currentReviews} sortReviews={this.props.sortReviews} reviewCriteria={this.props.reviewCriteria} noOfReviews={this.props.noOfReviews}/>
+                <Sort
+                  sortReviews={this.props.sortReviews}
+                  reviewCriteria={this.props.reviewCriteria}
+                  noOfReviews={this.props.noOfReviews}
+                />
                 <Search />
-                <ReviewsList reviews={this.props.currentReviews} increaseReviewHelpfulnesss={this.props.increaseReviewHelpfulnesss} reportReview={this.props.reportReview}/>
+                <ReviewsList
+                  reviews={this.props.filteredCurrentReviews.length > 0 ? this.props.filteredCurrentReviews: this.props.currentReviews}
+                  increaseReviewHelpfulnesss={this.props.increaseReviewHelpfulnesss}
+                  reportReview={this.props.reportReview}
+                />
                 <div className='reviews-btns'>
-                  {this.props.nextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null}
+                  { this.props.filteredCurrentReviews.length > 0 ? (this.props.filteredNextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null) :
+                    (this.props.nextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null)
+                  }
                   <AddReview />
                 </div>
               </div>

@@ -119,6 +119,20 @@ app.get('/allReviews', async (req, res) => {
   }
 });
 
+app.get('/reviewsMeta', async (req, res) => {
+  try {
+    let productId = req.query.productId;
+    let metaUrl = `${apiUrl}/reviews/meta?product_id=${productId}`;
+    let { data: { characteristics }} = await axios.get(metaUrl, {headers: {'Authorization': gitToken}});
+    // console.log('characteristics', characteristics);
+    res.status(200).send(characteristics);
+  } catch(err) {
+    console.log('ERROR GETTING CHARACTERISTICS', err)
+  }
+});
+
+
+
 app.put('/reviews/:reviewId/helpful', (req, res) => {
   // console.log('req', req.params, 'query', req.query);
   return axios.put(`${apiUrl}/reviews/${req.params.reviewId}/helpful`, null, {

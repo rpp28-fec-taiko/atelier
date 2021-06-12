@@ -316,6 +316,8 @@
 }
 
 .reviews-ratings-breakdown {
+  display: grid;
+  grid-template-rows: auto;
   border: 1px solid green;
   margin: 5px;
 }
@@ -423,4 +425,94 @@
 
 .reviews-tile-helpfulness {
   cursor: pointer;
+}
+
+.reviews-ratings-breakdown-summary {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-auto-flow: column;
+  border: 1px solid blue;
+  margin: 5px;
+}
+
+.reviews-ratings-breakdown-summary .avgRating{
+  font-size: 55px;
+  font-weight: bolder;
+}
+
+.reviews-ratings-breakdown-summary .stars{
+  margin-top: 10px;
+}
+
+.reviews-ratings-breakdown-recommend {
+  border: 1px solid blue;
+  margin: 5px;
+}
+
+.reviews-ratings-breakdown-star {
+  border: 1px solid blue;
+  margin: 5px;
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+  grid-auto-flow: column;
+}
+
+.bar:hover {
+  background-color: peachpuff;
+  cursor: pointer;
+}
+
+.bar-container {
+  width: 100%;
+  background-color: grey;
+  height: 10px;
+  margin-top: 5px;
+}
+
+.bar-child {
+  height: 10px;
+  background-color: rgb(133, 231, 182);
+}
+
+.bar-number {
+  margin-left: 5px;
+}
+
+.characteristic-bar {
+  display: grid;
+  grid-template-rows: auto;
+}
+
+.range-meaning {
+  display: grid;
+  grid-template-columns: auto;
+  grid-auto-flow: column;
+}
+
+.characteristic-bar-container {
+  width: 100%;
+  /* background-color: grey; */
+  /* height: 10px; */
+}
+
+.characteristic-range {
+  width: 80%;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #d3d3d3;
+  height: 10px;
+  /* outline: none; */
+}
+
+.characteristic-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: 10px;
+  width: 0;
+  height: 0;
+  border: solid 10px;
+  border-color: #04AA6D transparent transparent transparent;
 }

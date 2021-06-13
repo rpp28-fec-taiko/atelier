@@ -5,7 +5,7 @@ import ImageThumbnail from '../../../client/src/components/productOverview/Image
 import Circle from '../../../client/src/components/productOverview/icons/Circle.jsx';
 
 
-// view, photos, updateMainImage, currentImage
+// PROPS: view, photos, updateMainImage, currentImage
 
 describe ('Image List', () => {
   const wrapper = shallow(<ImageList photos={['a', 'b', 'c']} updateMainImage={() => {}} view={'default'} currentImage={''} />);

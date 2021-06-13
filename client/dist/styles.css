@@ -17,6 +17,7 @@
 /* default view ----------- */
 .image-gallery-default {
   grid-area: 1 / 1 / span 3 / span 1;
+  height: 550px;
   position: relative;
 }
 .image-main-default {
@@ -53,6 +54,7 @@
 /* expanded view ----------------- */
 .image-gallery-expanded {
   grid-area: 1 / 1 / span 3 / span 2;
+  height: 550px;
   position: relative;
 }
 .image-main-expanded {

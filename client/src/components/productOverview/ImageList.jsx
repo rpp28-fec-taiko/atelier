@@ -7,13 +7,13 @@ const ImageList = (props) => {
   if (props.view === 'default') {
     return (
       <div className='image-list-default'>
-        {props.photos.map(photo => <ImageThumbnail currentImage={props.currentImage} updateMainImage={props.updateMainImage} thumbnail={photo.thumbnail_url} />)}
+        {props.photos.map((photo, idx) => <ImageThumbnail currentImage={props.currentImage} updateMainImage={props.updateMainImage} thumbnail={photo.thumbnail_url} key={idx}/>)}
       </div>
     )
   } else {
     return (
       <div className='image-list-expanded'>
-        {props.photos.map(photo => <Circle currentImage={props.currentImage} updateMainImage={props.updateMainImage} thumbnail={photo.thumbnail_url} />)}
+        {props.photos.map((photo, idx) => <Circle currentImage={props.currentImage} updateMainImage={props.updateMainImage} thumbnail={photo.thumbnail_url} key={idx} />)}
       </div>
     )
   }

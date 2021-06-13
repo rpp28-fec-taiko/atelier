@@ -10,7 +10,7 @@ class ImageGallery extends React.Component {
     super(props);
 
     this.state = {
-      currentImage: '',
+      currentImage: {},
       photos: [],
       currentIndex: 0,
       // extendedView: false

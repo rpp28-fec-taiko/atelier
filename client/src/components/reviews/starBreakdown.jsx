@@ -2,7 +2,7 @@ import React from 'react'
 import Bar from './bar.jsx';
 import RemoveAllFilters from './removeAllFilters.jsx'
 
-const StarBreakdown = ({ totalReviews, noOfReviews, filterReviews, selectedFilters, removeFilters, removedAllFilters }) => {
+const StarBreakdown = ({ totalReviews, filterReviews, selectedFilters, removeFilters, removedAllFilters }) => {
   let stars = [5, 4, 3, 2, 1];
 
   return (

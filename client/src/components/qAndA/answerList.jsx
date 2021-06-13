@@ -6,8 +6,8 @@ const AnswerList = ({question}) => {
   for (var key in question) {
     answersData.push(question[key]);
   }
-  let result = answersData.map((answer) =>
-    <div>
+  let result = answersData.map((answer, idx) =>
+    <div key={idx}>
       <div className="qAndA-list-answer-item" >A: {answer.body}</div>
     </div>
   );

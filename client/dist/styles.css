@@ -280,8 +280,14 @@
 }
 
 .current-style-selection {
-  border: 3px solid rgba(89, 252, 39, 0.678);
+  border: 3px solid grey;
 }
+.current-style-selection svg {
+  position: relative;
+  bottom: 65px;
+  left: 45px;
+}
+
 .non-current-style {
   border: 3px solid grey;
 }

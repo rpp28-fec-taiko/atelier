@@ -50,11 +50,15 @@ class Overview extends React.Component {
   }
 
   setDefaultStyle() {
-    return this.state.styles.forEach(style => {
+
+    let firstStyle = this.state.styles[0];
+    this.state.styles.forEach(style => {
       if (style['default?']) {
-        this.setState({currentStyle: style}, () => console.log('overview state', this.state));
+        firstStyle = style;
       }
     });
+
+    return this.setState({currentStyle: firstStyle});
   }
 
   updateStyle(e) {
@@ -80,6 +84,7 @@ class Overview extends React.Component {
   render() {
     // if expanded view is set to true only render the ImageGalleryExpanded comp and nothing else
     // OR if expanded view is set to true only render the ImageGallery comp with updated classnames and nothing else
+    console.log('state', this.state)
 
     if (this.state.expandedView) {
       // expanded view

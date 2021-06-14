@@ -58,9 +58,10 @@ class Overview extends React.Component {
   }
 
   updateStyle(e) {
+    console.log('click', e);
     e.preventDefault();
     this.state.styles.forEach(style => {
-      if (style.photos[0].thumbnail_url === e.target.src) {
+      if (style.style_id === Number(e.target.id)) {
         this.setState({
           currentStyle: style
         }, () => console.log('update style state', this.state))

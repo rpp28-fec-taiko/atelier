@@ -8,13 +8,13 @@ const StyleThumbnail = (props) => {
   if (props.currentStyle.name === props.name) {
     thumbnail =
     <div className='style-thumbnail current-style-selection' onClick={props.updateStyle}>
-      <img src={props.thumbnail}></img>
+      <img id={props.id} src={props.thumbnail}></img>
       <CheckCircle size={20}/>
     </div>
   } else {
     thumbnail =
     <div className='style-thumbnail non-current-style' onClick={props.updateStyle}>
-      <img src={props.thumbnail}></img>
+      <img id={props.id} src={props.thumbnail}></img>
     </div>
   }
 

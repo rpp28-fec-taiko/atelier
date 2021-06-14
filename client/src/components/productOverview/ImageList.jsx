@@ -7,7 +7,7 @@ const ImageList = (props) => {
   if (props.view === 'default') {
     return (
       <div className='image-list-default'>
-        {props.photos.map((photo, idx) => <ImageThumbnail currentImage={props.currentImage} updateMainImage={props.updateMainImage} thumbnail={photo.thumbnail_url} key={idx}/>)}
+        {props.photos.map((photo, idx) => <ImageThumbnail currentImage={props.currentImage} updateMainImage={props.updateMainImage} thumbnail={photo.thumbnail_url} url={photo.url} key={idx}/>)}
       </div>
     )
   } else {

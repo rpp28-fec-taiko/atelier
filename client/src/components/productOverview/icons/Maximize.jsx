@@ -1,6 +1,6 @@
 import React from "react";
 
-const Maximize = ({size=40, color="white", toggleExpandedView}) => (
+const Maximize = ({size=30, color="white", toggleExpandedView}) => (
   <svg
     onClick={toggleExpandedView}
     className='maximize-image'

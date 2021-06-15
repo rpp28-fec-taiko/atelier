@@ -1,5 +1,6 @@
 import React from 'react';
 import Stars from '../stars/stars.jsx';
+import SelectCharacteristic from './selectCharacteristic.jsx';
 
 class AddReview extends React.Component {
   constructor (props) {
@@ -7,7 +8,9 @@ class AddReview extends React.Component {
     this.state = {
       productInfo: {},
       showModal: false,
-      selectedStars: 0
+      selectedStars: 0,
+      recommended: '',
+      characteristics: {}
     };
   }
 
@@ -26,6 +29,23 @@ class AddReview extends React.Component {
     }))
   }
 
+  onRecommendChange = (e) => {
+    // console.log('e', e);
+    this.setState((prevState) => ({
+      recommended: e.target.value
+    }), () => console.log('state rec', this.state))
+  }
+
+  onInputChange = (e, id, name) => {
+    // console.log('e', e.target.value);
+    this.setState((prevState) => ({
+      characteristics: {
+        ...prevState.characteristics,
+        [id]: e.target.value
+      }
+    }), () => console.log('After chngin', this.state))
+  }
+
   componentDidMount () {
     return fetch(`http://localhost:3000/productInfo?productId=${this.props.productId}`)
     .then((resp) => resp.json())
@@ -38,6 +58,15 @@ class AddReview extends React.Component {
   }
 
   render () {
+    let { characteristics } = this.props;
+    let characteristicNames = [];
+    for (let key in characteristics) {
+      characteristics[key].name = key;
+      characteristics[key].value = '';
+      characteristicNames.push(characteristics[key]);
+    }
+    // console.log('names', characteristicNames);
+
     return (
       <div>
         <button type='button' onClick={this.displayModal}> ADD A REVIEW </button>
@@ -57,14 +86,24 @@ class AddReview extends React.Component {
                   </div>
                 </div>
 
-                <div>
+                <div onClick={this.onRecommendChange}>
                   Do you recommend this product? *
                   <input type='radio' name='recommmend' id='yes' value='yes'/>
                   <label htmlFor='yes'> YES </label>
                   <input type='radio' name='recommmend' id='no' value='no'/>
                   <label htmlFor='no'> NO </label>
                 </div>
-                <div> Characteristics </div>
+
+                <div className='add-review-characteristics'>
+                  Characteristics
+                  {
+                    characteristicNames.map((item, idx) => {
+                      return <SelectCharacteristic key={idx} characteristics={this.state.characteristics} characteristicName={item.name} characteristicId={item.id} onInputChange={this.onInputChange}/>
+                    })
+                  }
+
+                </div>
+
                 <div> Review summary </div>
                 <div> Review body </div>
                 <div> Upload your photos </div>

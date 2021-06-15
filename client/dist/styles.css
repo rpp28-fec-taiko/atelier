@@ -641,3 +641,20 @@
   grid-template-columns: 100px ;
   grid-auto-flow: column;
 }
+
+.add-review-characteristics .characteristic {
+  display: grid;
+  grid-template-rows: auto;
+}
+
+.add-review-characteristics .characteristic .radios {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-auto-flow: column;
+}
+
+.add-review-characteristics .characteristic .radios .radio {
+  display: grid;
+  grid-template-rows: auto;
+  justify-items: center;
+}

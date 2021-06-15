@@ -52,11 +52,13 @@ class Overview extends React.Component {
   setDefaultStyle() {
 
     let firstStyle = this.state.styles[0];
-    this.state.styles.forEach(style => {
-      if (style['default?']) {
-        firstStyle = style;
-      }
-    });
+
+    // for using default style prop, not always first style though..
+    // this.state.styles.forEach(style => {
+    //   if (style['default?']) {
+    //     firstStyle = style;
+    //   }
+    // });
 
     return this.setState({currentStyle: firstStyle});
   }

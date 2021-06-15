@@ -11,6 +11,8 @@ class AddReview extends React.Component {
       recommend: '',
       summary: '',
       body: '',
+      nickname: '',
+      email: '',
       characteristics: {}
     };
   }
@@ -94,20 +96,32 @@ class AddReview extends React.Component {
                   }
                 </div>
 
-                <div>
+                <div className='add-review-summary'>
                   <label htmlFor='summary'> Review summary </label>
                   <input type='text' id='summary' name='summary' maxLength={60} placeholder='Example: Best purchase ever!' size={80} onChange={this.onInputChange}/>
                 </div>
 
-                <div>
+                <div className='add-review-body'>
                   <label htmlFor='body'> Review body * </label>
                   <textarea id='body' name='body' rows={10} cols={80} minLength={50} maxLength={1000} placeholder='Why did you like the product or not?' onChange={this.onInputChange}>
                   </textarea>
                   <p>Minimum required characters left: { this.state.body.length >= 50 ? 'Minimum reached' : (50 - this.state.body.length) } </p>
                 </div>
-                <div> Upload your photos </div>
-                <div> What is your nickname</div>
-                <div>  Your email </div>
+
+                <div className='add-review-photos'>  Upload your photos </div>
+
+                <div className='add-review-nickname'>
+                  <label htmlFor='nickname'> What is your nickname *</label>
+                  <input type='text' id='nickname' name='nickname' maxLength={60} placeholder='Example: jackson11!' onChange={this.onInputChange} />
+                  <p style={{marginTop: '0'}}>For privacy reasons, do not use your full name or email address</p>
+                </div>
+
+                <div className='add-review-email'>
+                  <label htmlFor='email'> Your email *</label>
+                  <input type='email' id='email' name='email' maxLength={60} placeholder='Example: jackson11@email.com' onChange={this.onInputChange} />
+                  <p style={{marginTop: '0'}}>For authentication reasons, you will not be emailed</p>
+                </div>
+
                 <div> Submit review </div>
                 <button type='button' onClick={this.displayModal} style={{cursor: 'pointer'}}>  CLOSE </button>
               </div>

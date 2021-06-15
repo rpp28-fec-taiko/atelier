@@ -13,6 +13,8 @@ const ProductInfo = ({product, currentStyle, noOfReviews, avgRating}) => {
   if (noOfReviews === 0) {
     stars = null;
     readReviews = null;
+  } else if (noOfReviews === 1) {
+    readReviews = <span className='read-reviews'><a href='#reviews'>Read {noOfReviews} review</a></span>
   }
 
   let price;

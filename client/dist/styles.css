@@ -624,8 +624,8 @@
   transform: translate(-50%,-50%);
 }
 
-.add-review-rating {
-  display: inline;
-  /* grid-template-columns: auto;
-  grid-auto-flow: column; */
+.add-review-rating .description{
+  display: grid;
+  grid-template-columns: 100px ;
+  grid-auto-flow: column;
 }

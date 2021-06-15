@@ -36,15 +36,22 @@ class AddReview extends React.Component {
                 <h3> Write Your Review </h3>
                 <h4> About Pdt Name  </h4>
                 <div className='add-review-rating'>
-                  Overall Rating
-                  <div onClick={this.starsClicked} style={{display: 'inline'}}>
+                  Overall Rating *
+                  <div className='description' onClick={this.starsClicked} >
                     <Stars size={18} rating={this.state.selectedStars} />
-                  </div>
                   {
                       ['Poor', 'Fair', 'Average', 'Good', 'Great'][this.state.selectedStars - 1]
                   }
+                  </div>
                 </div>
-                <div> Do you recommend this product? </div>
+
+                <div>
+                  Do you recommend this product? *
+                  <input type='radio' name='recommmend' id='yes' value='yes'/>
+                  <label htmlFor='yes'> YES </label>
+                  <input type='radio' name='recommmend' id='no' value='no'/>
+                  <label htmlFor='no'> NO </label>
+                </div>
                 <div> Characteristics </div>
                 <div> Review summary </div>
                 <div> Review body </div>

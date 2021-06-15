@@ -1,7 +1,12 @@
 import React from 'react';
 import Stars from '../stars/stars.jsx';
+import FacebookSquare from './icons/Facebook.jsx';
+import PinterestSquare from './icons/Pinterest.jsx';
+import TwitterSquare from './icons/Twitter.jsx';
 
 const ProductInfo = ({product, currentStyle, noOfReviews, avgRating}) => {
+
+  // check for whether reviews exist
 
   let stars = <Stars size={18} rating={avgRating}/>
 
@@ -24,9 +29,9 @@ const ProductInfo = ({product, currentStyle, noOfReviews, avgRating}) => {
       {/* <img src={require('./images/facebook.svg')} className='social-media-icon'></img> */}
       {/* <img src='images/twitter.png' className='social-media-icon'></img>
       <img src='images/pinterest.png' className='social-media-icon'></img> */}
-      <button className='social-media-icon'>Twitter</button>
-      <button className='social-media-icon'>Facebook</button>
-      <button className='social-media-icon'>Pinterest</button>
+      <FacebookSquare size={30}/>
+      <TwitterSquare size={30}/>
+      <PinterestSquare size={30}/>
     </div>
   )
 };

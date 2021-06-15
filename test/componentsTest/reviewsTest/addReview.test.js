@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import AddReview from '../../../client/src/components/reviews/addReview.jsx';
 
 describe ('Add Review Btn', () => {
-  const wrapper = shallow(<AddReview />);
+  const wrapper = shallow(<AddReview />, {disableLifecycleMethods: true});
 
   it ('checks if the component exists', () => {
     expect(wrapper.exists()).toBe(true);

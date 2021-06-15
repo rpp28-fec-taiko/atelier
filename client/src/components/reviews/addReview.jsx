@@ -5,6 +5,7 @@ class AddReview extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
+      productInfo: {},
       showModal: false,
       selectedStars: 0
     };
@@ -25,6 +26,17 @@ class AddReview extends React.Component {
     }))
   }
 
+  componentDidMount () {
+    return fetch(`http://localhost:3000/productInfo?productId=${this.props.productId}`)
+    .then((resp) => resp.json())
+    .then((productInfo) => {
+      this.setState({ productInfo }, () => console.log('PDT INFO', this.state));
+    })
+    .catch(() => {
+      console.log('Error fetching product info from server');
+    });
+  }
+
   render () {
     return (
       <div>
@@ -34,7 +46,7 @@ class AddReview extends React.Component {
             <div className='add-review-modal'>
               <div className='add-review-modal-main'>
                 <h3> Write Your Review </h3>
-                <h4> About Pdt Name  </h4>
+                <h4> About {this.state.productInfo.name} </h4>
                 <div className='add-review-rating'>
                   Overall Rating *
                   <div className='description' onClick={this.starsClicked} >

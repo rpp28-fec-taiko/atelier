@@ -239,6 +239,7 @@ class App extends React.Component {
         <QAndA productId={this.state.productId}/>
         <ReviewsErrorBoundary>
           <Reviews
+            productId={this.state.productId}
             totalReviews={this.state.totalReviews}
             currentReviews={this.state.currentReviews}
             nextReviews={this.state.nextReviews}

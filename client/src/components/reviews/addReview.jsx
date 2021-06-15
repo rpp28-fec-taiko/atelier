@@ -6,7 +6,6 @@ class AddReview extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
-      productInfo: {},
       showModal: false,
       selectedStars: 0,
       recommended: '',
@@ -46,16 +45,16 @@ class AddReview extends React.Component {
     }), () => console.log('After chngin', this.state))
   }
 
-  componentDidMount () {
-    return fetch(`http://localhost:3000/productInfo?productId=${this.props.productId}`)
-    .then((resp) => resp.json())
-    .then((productInfo) => {
-      this.setState({ productInfo }, () => console.log('PDT INFO', this.state));
-    })
-    .catch(() => {
-      console.log('Error fetching product info from server');
-    });
-  }
+  // componentDidMount () {
+  //   fetch(`http://localhost:3000/productInfo?productId=${this.props.productId}`)
+  //   .then((resp) => resp.json())
+  //   .then((productInfo) => {
+  //     this.setState({ productInfo }, () => console.log('state after getting pdt info', this.state));
+  //   })
+  //   .catch(() => {
+  //     console.log('Error fetching product info from server');
+  //   });
+  // }
 
   render () {
     let { characteristics } = this.props;
@@ -75,7 +74,7 @@ class AddReview extends React.Component {
             <div className='add-review-modal'>
               <div className='add-review-modal-main'>
                 <h3> Write Your Review </h3>
-                <h4> About {this.state.productInfo.name} </h4>
+                <h4> About {this.props.productName} </h4>
                 <div className='add-review-rating'>
                   Overall Rating *
                   <div className='description' onClick={this.starsClicked} >
@@ -95,16 +94,19 @@ class AddReview extends React.Component {
                 </div>
 
                 <div className='add-review-characteristics'>
-                  Characteristics
+                  Characteristics *
                   {
                     characteristicNames.map((item, idx) => {
                       return <SelectCharacteristic key={idx} characteristics={this.state.characteristics} characteristicName={item.name} characteristicId={item.id} onInputChange={this.onInputChange}/>
                     })
                   }
-
                 </div>
 
-                <div> Review summary </div>
+                <div>
+                  Review summary
+                  <input type='text' name='summary' />
+                </div>
+
                 <div> Review body </div>
                 <div> Upload your photos </div>
                 <div> What is your nickname</div>

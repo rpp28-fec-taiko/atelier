@@ -11,6 +11,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       productId: '22161',
+      productName: '',
       totalReviews: [],
       currentReviews: [],
       nextReviews: [],
@@ -226,9 +227,21 @@ class App extends React.Component {
     });
   }
 
+  getProductInfo = () => {
+    return fetch(`http://localhost:3000/productInfo?productId=${this.state.productId}`)
+    .then((resp) => resp.json())
+    .then(({ name }) => {
+      this.setState({ productName: name }, () => console.log('state after getting pdt info', this.state));
+    })
+    .catch(() => {
+      console.log('Error fetching product info from server');
+    });
+  }
+
   componentDidMount () {
     this.getAllReviews()
       .then(this.getCharacteristics)
+      .then(this.getProductInfo);
   }
 
   render () {
@@ -240,6 +253,7 @@ class App extends React.Component {
         <ReviewsErrorBoundary>
           <Reviews
             productId={this.state.productId}
+            productName={this.state.productName}
             totalReviews={this.state.totalReviews}
             currentReviews={this.state.currentReviews}
             nextReviews={this.state.nextReviews}

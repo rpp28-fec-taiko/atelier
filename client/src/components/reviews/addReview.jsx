@@ -103,7 +103,7 @@ class AddReview extends React.Component {
                   <label htmlFor='body'> Review body * </label>
                   <textarea id='body' name='body' rows={10} cols={80} minLength={50} maxLength={1000} placeholder='Why did you like the product or not?' onChange={this.onInputChange}>
                   </textarea>
-                  <p></p>
+                  <p>Minimum required characters left: { this.state.body.length >= 50 ? 'Minimum reached' : (50 - this.state.body.length) } </p>
                 </div>
                 <div> Upload your photos </div>
                 <div> What is your nickname</div>

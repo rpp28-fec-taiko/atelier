@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SelectCharacteristic = ({ characteristics, characteristicName, characteristicId, selectedValue, onInputChange }) => {
+const SelectCharacteristic = ({ characteristics, characteristicName, characteristicId, selectedValue, onCharacteristicChange }) => {
   let characteristicTable = {};
   let sizeMeaning = ['A size too small', '½ a size too small', 'Perfect', '½ a size too big', 'A size too wide'];
   let widthMeaning = ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'];
@@ -21,7 +21,7 @@ const SelectCharacteristic = ({ characteristics, characteristicName, characteris
   return  (
     <div className='characteristic'>
       {characteristicName} : {currentCharacteristic[Number(characteristics[characteristicId]) - 1] || 'none selected'}
-      <div className='radios' onClick={(e) => onInputChange(e, characteristicId, characteristicName)}>
+      <div className='radios' onClick={(e) => onCharacteristicChange(e, characteristicId)}>
         <div className='radio'>
           <input type='radio' name={characteristicName} id={`${characteristicId}-one`} value='1'/>
           <label htmlFor={`${characteristicId}-one`}> {currentCharacteristic[0]}  </label>

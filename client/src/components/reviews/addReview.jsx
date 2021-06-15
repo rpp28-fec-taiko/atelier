@@ -8,7 +8,9 @@ class AddReview extends React.Component {
     this.state = {
       showModal: false,
       selectedStars: 0,
-      recommended: '',
+      recommend: '',
+      summary: '',
+      body: '',
       characteristics: {}
     };
   }
@@ -28,14 +30,15 @@ class AddReview extends React.Component {
     }))
   }
 
-  onRecommendChange = (e) => {
-    // console.log('e', e);
+  onInputChange = (e) => {
+    console.log('e', e.target.name, e.target.value);
     this.setState((prevState) => ({
-      recommended: e.target.value
+      ...prevState,
+      [e.target.name]: e.target.value
     }), () => console.log('state rec', this.state))
   }
 
-  onInputChange = (e, id, name) => {
+  onCharacteristicChange = (e, id) => {
     // console.log('e', e.target.value);
     this.setState((prevState) => ({
       characteristics: {
@@ -44,17 +47,6 @@ class AddReview extends React.Component {
       }
     }), () => console.log('After chngin', this.state))
   }
-
-  // componentDidMount () {
-  //   fetch(`http://localhost:3000/productInfo?productId=${this.props.productId}`)
-  //   .then((resp) => resp.json())
-  //   .then((productInfo) => {
-  //     this.setState({ productInfo }, () => console.log('state after getting pdt info', this.state));
-  //   })
-  //   .catch(() => {
-  //     console.log('Error fetching product info from server');
-  //   });
-  // }
 
   render () {
     let { characteristics } = this.props;
@@ -85,11 +77,11 @@ class AddReview extends React.Component {
                   </div>
                 </div>
 
-                <div onClick={this.onRecommendChange}>
+                <div onClick={this.onInputChange}>
                   Do you recommend this product? *
-                  <input type='radio' name='recommmend' id='yes' value='yes'/>
+                  <input type='radio' name='recommend' id='yes' value='yes'/>
                   <label htmlFor='yes'> YES </label>
-                  <input type='radio' name='recommmend' id='no' value='no'/>
+                  <input type='radio' name='recommend' id='no' value='no'/>
                   <label htmlFor='no'> NO </label>
                 </div>
 
@@ -97,17 +89,22 @@ class AddReview extends React.Component {
                   Characteristics *
                   {
                     characteristicNames.map((item, idx) => {
-                      return <SelectCharacteristic key={idx} characteristics={this.state.characteristics} characteristicName={item.name} characteristicId={item.id} onInputChange={this.onInputChange}/>
+                      return <SelectCharacteristic key={idx} characteristics={this.state.characteristics} characteristicName={item.name} characteristicId={item.id} onCharacteristicChange={this.onCharacteristicChange}/>
                     })
                   }
                 </div>
 
                 <div>
-                  Review summary
-                  <input type='text' name='summary' maxLength={60} placeholder='Example: Best purchase ever!' size={80} />
+                  <label htmlFor='summary'> Review summary </label>
+                  <input type='text' id='summary' name='summary' maxLength={60} placeholder='Example: Best purchase ever!' size={80} onChange={this.onInputChange}/>
                 </div>
 
-                <div> Review body </div>
+                <div>
+                  <label htmlFor='body'> Review body * </label>
+                  <textarea id='body' name='body' rows={10} cols={80} minLength={50} maxLength={1000} placeholder='Why did you like the product or not?' onChange={this.onInputChange}>
+                  </textarea>
+                  <p></p>
+                </div>
                 <div> Upload your photos </div>
                 <div> What is your nickname</div>
                 <div>  Your email </div>

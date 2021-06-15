@@ -221,13 +221,14 @@
 .social-media-icon {
   /* background-color: white; */
   /* height: 25px; */
-  margin-right: 15px;
-  margin-top: 5px;
+  margin-right: 20px;
+  margin-top: 8px;
 }
 
 .social-media-icon:hover {
   /* background-color: rgb(77, 207, 247); */
   cursor: pointer;
+  fill: rgb(200, 225, 233);
 }
 
 .social-media {

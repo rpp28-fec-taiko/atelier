@@ -9,6 +9,11 @@ const ProductInfo = ({product, currentStyle, noOfReviews, avgRating}) => {
   // check for whether reviews exist
 
   let stars = <Stars size={18} rating={avgRating}/>
+  let readReviews = <span className='read-reviews'><a href='#reviews'>Read all {noOfReviews} reviews</a></span>
+  if (noOfReviews === 0) {
+    stars = null;
+    readReviews = null;
+  }
 
   let price;
   if (currentStyle.sale_price) {
@@ -20,7 +25,7 @@ const ProductInfo = ({product, currentStyle, noOfReviews, avgRating}) => {
   return (
     <div className='product-info'>
       <div className='overview-stars'>{stars}</div>
-      <span className='read-reviews'><a href='#reviews'>Read {noOfReviews} reviews</a></span>
+      {readReviews}
       <div className='product-category'>{product.category}</div>
       <div className='product-name'>{product.name}</div>
       {price}

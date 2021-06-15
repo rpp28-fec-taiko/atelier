@@ -68,13 +68,13 @@
 /* expanded view ----------------- */
 .image-gallery-expanded {
   grid-area: 1 / 1 / span 3 / span 2;
-  height: 550px;
+  height: 555px;
   position: relative;
 }
 .image-main-expanded {
   /* need this grid-area bc its nested in image gallery */
   grid-area: 1 / 1 / span 3 / span 2;
-  height: 550px;
+  height: 555px;
   width: 100%;
   object-fit: cover;
 }
@@ -139,6 +139,14 @@
 
 .non-current-image {
   border: 2.5px solid rgba(128, 128, 128, 0.507);
+}
+
+.arrow-up {
+  align-self: center;
+}
+
+.arrow-down {
+  align-self: center;
 }
 
 .maximize-image {

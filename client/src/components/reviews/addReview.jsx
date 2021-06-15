@@ -104,7 +104,7 @@ class AddReview extends React.Component {
 
                 <div>
                   Review summary
-                  <input type='text' name='summary' />
+                  <input type='text' name='summary' maxLength={60} placeholder='Example: Best purchase ever!' size={80} />
                 </div>
 
                 <div> Review body </div>

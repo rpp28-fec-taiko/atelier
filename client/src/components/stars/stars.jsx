@@ -43,7 +43,7 @@ const Stars = ({ size, rating }) => {
     <div>
       {
         gradients.map((ratingGradient, idx) => {
-          return <Star key={idx} size={size} gradient={ratingGradient}/>
+          return <Star key={idx} size={size} gradient={ratingGradient} starNumber={idx + 1}/>
         })
       }
     </div>

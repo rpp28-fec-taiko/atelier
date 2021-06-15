@@ -17,6 +17,7 @@
 /* default view ----------- */
 .image-gallery-default {
   grid-area: 1 / 1 / span 3 / span 1;
+  height: 550px;
   position: relative;
 }
 .image-main-default {
@@ -50,9 +51,15 @@
   cursor: pointer;
 }
 
+.image-list-default {
+  position: absolute;
+  bottom: 10px;
+}
+
 /* expanded view ----------------- */
 .image-gallery-expanded {
   grid-area: 1 / 1 / span 3 / span 2;
+  height: 550px;
   position: relative;
 }
 .image-main-expanded {
@@ -67,13 +74,9 @@
 .image-main-expanded:hover {
   cursor: zoom-in;
 }
-/* .image-main-expanded-zoom:hover {
-  cursor: zoom-out;
-} */
 
 .image-right-arrow-expanded {
   position: absolute;
-  /* bottom: 600px; */
   bottom: 50%;
   left: 95%;
   z-index: 1;
@@ -83,18 +86,11 @@
 }
 .image-left-arrow-expanded {
   position: absolute;
-  /* bottom: 600px; */
-  /* left: 100px; */
   bottom: 50%;
   z-index: 1;
 }
 .image-left-arrow-expanded:hover {
   cursor: pointer;
-}
-
-.image-list-default {
-  position: absolute;
-  bottom: 10px;
 }
 
 .image-thumbnail {
@@ -105,6 +101,7 @@
   width: 60px;
   padding: 3px;
 }
+
 .image-thumbnail:hover {
   cursor: pointer;
 }
@@ -119,10 +116,6 @@
 .image-thumbnail-expanded {
   margin: 10px;
   margin-right: 22px;
-  /* display: inline-block; */
-  /* height: 60px;
-  width: 60px;
-  padding: 3px; */
 }
 .image-thumbnail-expanded:hover {
   cursor: pointer;
@@ -138,7 +131,6 @@
 
 .maximize-image {
   position: absolute;
-  /* bottom: 600px; */
   bottom: 92%;
   left: 94%;
   z-index: 1;
@@ -149,9 +141,8 @@
 
 .minimize-image {
   position: absolute;
-  /* bottom: 600px; */
   bottom: 92.5%;
-  left: 96%;
+  left: 96.5%;
   z-index: 1;
 }
 
@@ -241,20 +232,12 @@
   padding: 4px;
 }
 
+/* style selector ------------------------- */
 .style-selector {
   grid-area: 2 / 2 / span 1 / span 1;
-  /* border: 1px solid lightblue; */
   border-top: 1px solid gray;
   padding: 4px;
   margin-left: 10px;
-  /* min-width: 600px; */
-}
-
-.current-style-selection {
-  border: 3px solid rgba(89, 252, 39, 0.678);
-}
-.non-current-style {
-  border: 3px solid grey;
 }
 
 .styles-text {
@@ -263,6 +246,11 @@
 
 .current-style-name {
   color: slategray;
+}
+
+.style-name {
+  font-size: 0.8em;
+  color: grey;
 }
 
 .style-row {
@@ -274,26 +262,37 @@
 .style-thumbnail {
   margin: 10px;
   margin-right: 35px;
-  /* border: 1px solid lightblue; */
   display: inline-block;
   height: 60px;
   width: 60px;
   padding: 3px;
+  border-radius: 60px;
 }
 .style-thumbnail:hover {
   cursor: pointer;
+  border: 3px solid darkgrey;
 }
 
 .style-thumbnail img {
   height: 60px;
   width: 60px;
+  border-radius: 60px;
 }
 
-.style-name {
-  font-size: 0.8em;
-  color: grey;
+.current-style-selection {
+  border: 3px solid grey;
+}
+.current-style-selection svg {
+  position: relative;
+  bottom: 65px;
+  left: 45px;
 }
 
+.non-current-style {
+  border: 3px solid grey;
+}
+
+/* ---- cart ------------------------ */
 .cart {
   grid-area: 3 / 2 / span 1 / span 1;
   border-top: 1px solid gray;

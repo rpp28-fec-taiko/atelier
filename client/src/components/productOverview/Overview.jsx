@@ -50,17 +50,24 @@ class Overview extends React.Component {
   }
 
   setDefaultStyle() {
-    return this.state.styles.forEach(style => {
-      if (style['default?']) {
-        this.setState({currentStyle: style}, () => console.log('overview state', this.state));
-      }
-    });
+
+    let firstStyle = this.state.styles[0];
+
+    // for using default style prop, not always first style though..
+    // this.state.styles.forEach(style => {
+    //   if (style['default?']) {
+    //     firstStyle = style;
+    //   }
+    // });
+
+    return this.setState({currentStyle: firstStyle});
   }
 
   updateStyle(e) {
+    console.log('click', e);
     e.preventDefault();
     this.state.styles.forEach(style => {
-      if (style.photos[0].thumbnail_url === e.target.src) {
+      if (style.style_id === Number(e.target.id)) {
         this.setState({
           currentStyle: style
         }, () => console.log('update style state', this.state))
@@ -79,6 +86,7 @@ class Overview extends React.Component {
   render() {
     // if expanded view is set to true only render the ImageGalleryExpanded comp and nothing else
     // OR if expanded view is set to true only render the ImageGallery comp with updated classnames and nothing else
+    console.log('state', this.state)
 
     if (this.state.expandedView) {
       // expanded view

@@ -28,11 +28,19 @@ class ImageGallery extends React.Component {
 
       // for style selector onclick
     } else if (prevProps.currentStyle.style_id) {
+      // if new style has been selected
       if (prevProps.currentStyle.style_id !== this.props.currentStyle.style_id) {
+        // if new style has less photos than prev style set currentIndex to 0 -- avoid out of range issue
+        let index = this.state.currentIndex;
+        if (this.props.currentStyle.photos.length <= this.state.currentIndex) {
+          index = 0;
+        }
+        console.log('image state', this.state)
         this.setState({
           // currentImage: this.props.currentStyle.photos[0],
-          currentImage: this.props.currentStyle.photos[this.state.currentIndex],
-          photos: this.props.currentStyle.photos
+          currentImage: this.props.currentStyle.photos[index],
+          photos: this.props.currentStyle.photos,
+          currentIndex: index
         });
       }
     }
@@ -41,7 +49,7 @@ class ImageGallery extends React.Component {
   updateMainImage(e) {
     e.preventDefault();
     this.state.photos.forEach((image, idx) => {
-      if (image.thumbnail_url === e.target.src || image.thumbnail_url === e.target.id) {
+      if (image.thumbnail_url === e.target.src || image.thumbnail_url === e.target.id || image.url === e.target.src) {
         this.setState({
           currentImage: image,
           currentIndex: idx

@@ -7,7 +7,7 @@ const CheckCircle = ({size=18, color="#000000"}) => {
       width={size}
       height={size}
       viewBox="0 0 24 24"
-      fill="none"
+      fill="white"
       stroke={color}
       strokeWidth="2"
       strokeLinecap="round"

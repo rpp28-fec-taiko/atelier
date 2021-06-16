@@ -8,7 +8,7 @@ import MoreReviews from './moreReviews.jsx';
 import Sort from './sort.jsx';
 import WithTracking from '../hoc/withTracking.jsx';
 
-class Reviews extends React.Component {
+export class Reviews extends React.Component {
   constructor (props) {
     super(props);
   }

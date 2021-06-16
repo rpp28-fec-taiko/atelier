@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Reviews from '../../../client/src/components/reviews/reviews.jsx';
+import {Reviews} from '../../../client/src/components/reviews/reviews.jsx';
 import RatingBreakdown from '../../../client/src/components/reviews/ratingBreakdown.jsx';
 import PdtBreakdown from '../../../client/src/components/reviews/pdtBreakdown.jsx';
 import Sort from '../../../client/src/components/reviews/sort.jsx';
@@ -15,6 +15,7 @@ describe ('Reviews Widget', () => {
   const wrapper = shallow(<Reviews currentReviews={[]}/>);
 
   it ('checks if the widget exists', () => {
+    console.log(wrapper.get(0))
     expect(wrapper.exists('.reviews')).toBe(true);
   });
 

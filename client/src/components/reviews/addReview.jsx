@@ -1,6 +1,7 @@
 import React from 'react';
 import Stars from '../stars/stars.jsx';
 import SelectCharacteristic from './selectCharacteristic.jsx';
+import UploadPhotos from './uploadPhotos.jsx';
 import {validateEmail} from '../../../../helper/reviewsHelper.js';
 
 class AddReview extends React.Component {
@@ -62,6 +63,22 @@ class AddReview extends React.Component {
         [id]: Number(e.target.value)
       }
     }), () => console.log('state after chnging characteristic', this.state))
+  }
+
+  uploadPhoto = (url) => {
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        photos: [...prevState.photos, url]
+      }
+    }, () => console.log('state after uploading a photo', this.state))
+  }
+
+  removePhoto = (url) => {
+    let filteredPhotos = this.state.photos.filter((photo) => url !== photo);
+    this.setState((prevState) => ({
+      photos: [...filteredPhotos]
+    }), () => console.log('state after removing a photo', this.state))
   }
 
   resetState = () => {
@@ -187,12 +204,19 @@ class AddReview extends React.Component {
 
                 <div className='add-review-body'>
                   <label htmlFor='body'> Review body * </label>
-                  <textarea id='body' name='body' rows={10} cols={80} minLength={50} maxLength={1000} placeholder='Why did you like the product or not?' onChange={this.onInputChange} required>
+                  <textarea id='body' name='body' cols={80} minLength={50} maxLength={1000} placeholder='Why did you like the product or not?' onChange={this.onInputChange} required>
                   </textarea>
                   <p>Minimum required characters left: { this.state.body.length >= 50 ? 'Minimum reached' : (50 - this.state.body.length) } </p>
                 </div>
 
-                <div className='add-review-photos'>  Upload your photos </div>
+                <div className='add-review-photos'>
+                  <UploadPhotos photos={this.state.photos} uploadPhoto={this.uploadPhoto}/>
+                  <div className='list'>
+                    {
+                      this.state.photos.map((photoUrl, idx) => <img key={idx} src={photoUrl} height='60px' width='60px' onClick={() => this.removePhoto(photoUrl)}/> )
+                    }
+                  </div>
+                </div>
 
                 <div className='add-review-nickname'>
                   <label htmlFor='nickname'> What is your nickname *</label>
@@ -208,9 +232,9 @@ class AddReview extends React.Component {
 
                 <div className='add-review-submit'>
                   <button type='submit' style={{cursor: 'pointer'}}>  SUBMIT REVIEW </button>
+                  <button type='button' onClick={this.resetState} style={{cursor: 'pointer'}}>  CLOSE </button>
                 </div>
 
-                <button type='button' onClick={this.resetState} style={{cursor: 'pointer'}}>  CLOSE </button>
               </div>
             </form> :
             null

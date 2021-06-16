@@ -6,6 +6,7 @@ import Search from './search.jsx';
 import AddReview from './addReview.jsx';
 import MoreReviews from './moreReviews.jsx';
 import Sort from './sort.jsx';
+import WithTracking from '../hoc/withTracking.jsx';
 
 class Reviews extends React.Component {
   constructor (props) {
@@ -14,7 +15,7 @@ class Reviews extends React.Component {
 
   render () {
     return (
-      <div className='reviews' id='reviews'>
+      <div className='reviews' id='reviews' onClick={(e) => this.props.onWrappedComponentClick(e)}>
         <h2>RATINGS & REVIEWS</h2>
         <div className='reviews-body'>
           <div className='reviews-breakdown'>
@@ -52,4 +53,5 @@ class Reviews extends React.Component {
   }
 }
 
-export default Reviews;
+const ReviewsWithTracking = WithTracking(Reviews);
+export default ReviewsWithTracking;

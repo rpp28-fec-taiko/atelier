@@ -228,7 +228,7 @@ class App extends React.Component {
     .then((resp) => resp.json())
     .then((characteristics) => {
       // console.log('server characteristics', characteristics)
-      this.setState({ characteristics: [...characteristics] }, () => console.log('characteristics', this.state));
+      this.setState({ characteristics: [...characteristics] }, () => console.log('state after getting characteristics', this.state));
     })
     .catch((err) => {
       console.log('ERROR GETTING CHARACTERISTICS', err)

@@ -13,7 +13,7 @@ class ImageGallery extends React.Component {
       currentImage: {},
       photos: [],
       currentIndex: 0,
-      // extendedView: false
+      zoomView: false
     }
   }
 
@@ -76,6 +76,14 @@ class ImageGallery extends React.Component {
     });
   }
 
+  toggleZoomView() {
+    this.setState((prevState) => {
+      return {
+        zoomView: !prevState.zoomView
+      }
+    });
+  }
+
   render() {
 
     // vars for classnames depending on whether expanded or default gallery layout
@@ -88,15 +96,28 @@ class ImageGallery extends React.Component {
     let rightArrow =
       this.state.currentIndex !== this.state.photos.length - 1 ? <ChevronRight view={view} nextImage={this.nextImage.bind(this)} color='white'/> : null;
 
+    // if in default mode onclick should go to to expanded view
+    // if already in expanded mode, click handler should toggle the zoomed mode
+    let imageClickHandler = view === 'default' ? this.props.toggleExpandedView : this.toggleZoomView.bind(this);
+
     // main image and thumbnail list
     let mainImage;
     let imageList;
     if (this.props.currentStyle.photos) {
-      mainImage = <img className={`image-main-${view}`} src={this.state.currentImage.url} onClick={this.props.toggleExpandedView}></img>
+      mainImage = <img className={`image-main-${view}`} src={this.state.currentImage.url} onClick={imageClickHandler}></img>
       imageList = <ImageList view={view} currentImage={this.state.currentImage} updateMainImage={this.updateMainImage.bind(this)} photos={this.state.photos} />
     } else {
       mainImage = <div></div>
       imageList = <div></div>
+    }
+
+    // zoom view
+    if (this.state.zoomView) {
+      return (
+        <div className={`image-zoom-wrap`}>
+          <img className={`image-main-zoom`} src={this.state.currentImage.url} onClick={this.toggleZoomView.bind(this)}></img>
+        </div>
+      );
     }
 
     return (

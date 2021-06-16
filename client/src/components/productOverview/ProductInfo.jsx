@@ -1,9 +1,21 @@
 import React from 'react';
 import Stars from '../stars/stars.jsx';
+import FacebookSquare from './icons/Facebook.jsx';
+import PinterestSquare from './icons/Pinterest.jsx';
+import TwitterSquare from './icons/Twitter.jsx';
 
 const ProductInfo = ({product, currentStyle, noOfReviews, avgRating}) => {
 
+  // check for whether reviews exist
+
   let stars = <Stars size={18} rating={avgRating}/>
+  let readReviews = <span className='read-reviews'><a href='#reviews'>Read all {noOfReviews} reviews</a></span>
+  if (noOfReviews === 0) {
+    stars = null;
+    readReviews = null;
+  } else if (noOfReviews === 1) {
+    readReviews = <span className='read-reviews'><a href='#reviews'>Read {noOfReviews} review</a></span>
+  }
 
   let price;
   if (currentStyle.sale_price) {
@@ -15,7 +27,7 @@ const ProductInfo = ({product, currentStyle, noOfReviews, avgRating}) => {
   return (
     <div className='product-info'>
       <div className='overview-stars'>{stars}</div>
-      <span className='read-reviews'><a href='#reviews'>Read {noOfReviews} reviews</a></span>
+      {readReviews}
       <div className='product-category'>{product.category}</div>
       <div className='product-name'>{product.name}</div>
       {price}
@@ -24,9 +36,9 @@ const ProductInfo = ({product, currentStyle, noOfReviews, avgRating}) => {
       {/* <img src={require('./images/facebook.svg')} className='social-media-icon'></img> */}
       {/* <img src='images/twitter.png' className='social-media-icon'></img>
       <img src='images/pinterest.png' className='social-media-icon'></img> */}
-      <button className='social-media-icon'>Twitter</button>
-      <button className='social-media-icon'>Facebook</button>
-      <button className='social-media-icon'>Pinterest</button>
+      <FacebookSquare size={30}/>
+      <TwitterSquare size={30}/>
+      <PinterestSquare size={30}/>
     </div>
   )
 };

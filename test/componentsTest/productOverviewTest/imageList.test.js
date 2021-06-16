@@ -14,8 +14,9 @@ describe ('Image List', () => {
     expect(wrapper.exists('.image-list-default')).toBe(true);
   });
 
-  it('checks that component is rendering the correct number of child components', () => {
-    expect(wrapper.children()).toHaveLength(3);
+  // includes arrows..
+  it('checks that component is rendering the correct number of children', () => {
+    expect(wrapper.children()).toHaveLength(5);
   });
 
   it ('should render image thumbnails when main image is in default view', () => {

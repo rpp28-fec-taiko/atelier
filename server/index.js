@@ -127,8 +127,19 @@ app.get('/reviewsMeta', async (req, res) => {
     let productId = req.query.productId;
     let metaUrl = `${apiUrl}/reviews/meta?product_id=${productId}`;
     let { data: { characteristics }} = await axios.get(metaUrl, {headers: {'Authorization': gitToken}});
+
+    let mapCharacteristics = [];
+    for (let key in characteristics) {
+      let newObj = {
+        ...characteristics[key],
+        name: key,
+        value: Number(characteristics[key].value).toFixed(1)
+      };
+      mapCharacteristics.push(newObj);
+    }
     // console.log('characteristics', characteristics);
-    res.status(200).send(characteristics);
+    // console.log('new characteristics', mapCharacteristics);
+    res.status(200).send(mapCharacteristics);
   } catch(err) {
     console.log('ERROR GETTING CHARACTERISTICS', err)
   }

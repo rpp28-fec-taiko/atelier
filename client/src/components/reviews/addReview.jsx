@@ -61,7 +61,21 @@ class AddReview extends React.Component {
         ...prevState.characteristics,
         [id]: Number(e.target.value)
       }
-    }), () => console.log('After chnging characteristics', this.state))
+    }), () => console.log('state after chnging characteristic', this.state))
+  }
+
+  resetState = () => {
+    this.setState({
+      showModal: false,
+      rating: 0,
+      recommend: '',
+      summary: '',
+      body: '',
+      nickname: '',
+      email: '',
+      characteristics: {},
+      photos: []
+    })
   }
 
   handleSubmit = (e) => {
@@ -82,13 +96,10 @@ class AddReview extends React.Component {
     }
 
     //Characteristics validation
-    let originalCharacteristicsList = Object.values(this.props.characteristics);
-    let userSelectedCharacteristics = Object.keys(characteristics);
-    // console.log('OK', originalCharacteristicsList, userSelectedCharacteristics)
+    let userSelectedCharacteristicIds = Object.keys(characteristics);
 
-    for (let i = 0; i < originalCharacteristicsList.length; i++) {
-      if (userSelectedCharacteristics.indexOf(String(originalCharacteristicsList[i].id)) === -1) {
-        console.log('CHECL', originalCharacteristicsList[i].id)
+    for (let i = 0; i < this.props.characteristics.length; i++) {
+      if (userSelectedCharacteristicIds.indexOf(String(this.props.characteristics[i].id)) === -1) {
         window.alert(`You must enter the following: \n Characteristics`)
         return;
       }
@@ -108,9 +119,6 @@ class AddReview extends React.Component {
     finalData.characteristics = characteristics;
     finalData.photos = photos;
 
-    // console.log('finalData', finalData);
-    // console.log('json final', JSON.stringify(finalData));
-
     fetch (`http://localhost:3000/reviews`, {
       method: 'POST',
       headers: {
@@ -122,10 +130,11 @@ class AddReview extends React.Component {
       // console.log('resp', resp)
       if (resp.status === 201) {
         window.alert('SUCCESSFULLY CREATED A NEW REVIEW');
-        return this.displayModal()
+        // return this.displayModal()
       } else {
         window.alert('THERE WAS AN ERROR WHILE ADDING YOUR REVIEW. PLEASE TRY AGAIN LATER.')
       }
+      this.resetState();
     })
     .catch((err) => {
       console.log('ERROR CREATING A NEW REVIEW', err);
@@ -133,15 +142,6 @@ class AddReview extends React.Component {
   }
 
   render () {
-    let { characteristics } = this.props;
-    let characteristicNames = [];
-    for (let key in characteristics) {
-      characteristics[key].name = key;
-      characteristics[key].value = '';
-      characteristicNames.push(characteristics[key]);
-    }
-    // console.log('names', characteristicNames);
-
     return (
       <div>
         <button type='button' onClick={this.displayModal}> ADD A REVIEW </button>
@@ -174,7 +174,7 @@ class AddReview extends React.Component {
                 <div className='add-review-characteristics'>
                   Characteristics *
                   {
-                    characteristicNames.map((item, idx) => {
+                    this.props.characteristics.map((item, idx) => {
                       return <SelectCharacteristic key={idx} characteristics={this.state.characteristics} characteristicName={item.name} characteristicId={item.id} onCharacteristicChange={this.onCharacteristicChange}/>
                     })
                   }
@@ -210,7 +210,7 @@ class AddReview extends React.Component {
                   <button type='submit' style={{cursor: 'pointer'}}>  SUBMIT REVIEW </button>
                 </div>
 
-                <button type='button' onClick={this.displayModal} style={{cursor: 'pointer'}}>  CLOSE </button>
+                <button type='button' onClick={this.resetState} style={{cursor: 'pointer'}}>  CLOSE </button>
               </div>
             </form> :
             null
@@ -221,6 +221,3 @@ class AddReview extends React.Component {
 };
 
 export default AddReview;
-
-
-//aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

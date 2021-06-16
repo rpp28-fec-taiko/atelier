@@ -23,7 +23,7 @@ class App extends React.Component {
       filteredNextReviews: [],
       selectedFilters: [],
       removedAllFilters: false,
-      characteristics: {}
+      characteristics: []
     };
   }
 
@@ -220,7 +220,8 @@ class App extends React.Component {
     return fetch (`http://localhost:3000/reviewsMeta?productId=${this.state.productId}`)
     .then((resp) => resp.json())
     .then((characteristics) => {
-      this.setState({ characteristics }, () => console.log('characteristics', this.state));
+      console.log('server characteristics', characteristics)
+      this.setState({ characteristics: [...characteristics] }, () => console.log('characteristics', this.state));
     })
     .catch((err) => {
       console.log('ERROR GETTING CHARACTERISTICS', err)

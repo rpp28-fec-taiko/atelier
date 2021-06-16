@@ -29,6 +29,7 @@
 }
 .image-main-default:hover {
   cursor: zoom-in;
+  /* cursor: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E") 5 5, pointer; */
 }
 
 .image-list-default {
@@ -81,7 +82,6 @@
 }
 .image-main-expanded:hover {
   cursor: zoom-in;
-  /* transform: scale(1.5); */
 }
 
 /* handle zoom  ----------------------*/
@@ -97,7 +97,8 @@
 #image-main-zoom {
   grid-area: 1 / 1 / span 3 / span 2;
   height: 555px;
-  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
   /* object-fit: contain; */
   object-fit: cover;
   position: absolute;
@@ -110,6 +111,7 @@
 
 #image-zoom-wrap:hover {
   cursor: zoom-out;
+  /* transform: translate(-50%, -50%) scale(2); */
   /* transform: scale(2.5); */
 }
 

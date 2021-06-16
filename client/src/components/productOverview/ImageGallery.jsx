@@ -17,6 +17,12 @@ class ImageGallery extends React.Component {
     }
   }
 
+  // componentDidMount() {
+  //   if (this.state.zoomView) {
+  //     this.zoomImage();
+  //   }
+  // }
+
   componentDidUpdate(prevProps) {
     // check to make sure valid props are being passed in - it takes a few renders before they do..
     if (!prevProps.currentStyle.photos && this.props.currentStyle.photos) {
@@ -84,12 +90,22 @@ class ImageGallery extends React.Component {
     });
   }
 
-
   zoomImage(e) {
     console.log('event', e);
+    let zoomWrap = document.getElementById('image-zoom-wrap');
+    let zoomImage = document.getElementById('image-main-zoom');
+    let clientX = e.clientX - zoomWrap.offsetLeft;
+    let clientY = e.clientY - zoomWrap.offsetTop;
+
+    let minWidth = zoomWrap.offsetWidth;
+    let minHeight = zoomWrap.offsetHeight;
+
+    clientX = clientX / minWidth * 100;
+    clientY = clientY / minHeight * 100;
+    console.log(clientX, clientY);
+
+    zoomImage.style.transform = `translate(-${clientX}%, -${clientY}%) scale(2)`;
   }
-
-
 
 
   render() {
@@ -122,7 +138,7 @@ class ImageGallery extends React.Component {
     // zoom view
     if (this.state.zoomView) {
       return (
-        <div id={`image-zoom-wrap`} onMouseMove={this.zoomImage} onClick={this.toggleZoomView.bind(this)}>
+        <div id={`image-zoom-wrap`} onMouseMove={this.zoomImage} onMouseOver={this.zoomImage} onClick={this.toggleZoomView.bind(this)}>
           <img id={`image-main-zoom`} src={this.state.currentImage.url} ></img>
         </div>
       );

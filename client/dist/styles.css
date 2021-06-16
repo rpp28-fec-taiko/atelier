@@ -636,9 +636,9 @@
   justify-self: center;
 }
 
-.add-review-rating .description{
+.add-review-rating .description {
   display: grid;
-  grid-template-columns: 100px ;
+  grid-template-columns: 95px 100px;
   grid-auto-flow: column;
 }
 

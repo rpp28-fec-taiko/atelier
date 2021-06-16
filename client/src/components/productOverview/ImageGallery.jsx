@@ -91,7 +91,7 @@ class ImageGallery extends React.Component {
   }
 
   zoomImage(e) {
-    console.log('event', e);
+    // refactor with refs?
     let zoomWrap = document.getElementById('image-zoom-wrap');
     let zoomImage = document.getElementById('image-main-zoom');
     let clientX = e.clientX - zoomWrap.offsetLeft;
@@ -102,7 +102,6 @@ class ImageGallery extends React.Component {
 
     clientX = clientX / minWidth * 100;
     clientY = clientY / minHeight * 100;
-    console.log(clientX, clientY);
 
     zoomImage.style.transform = `translate(-${clientX}%, -${clientY}%) scale(2)`;
   }

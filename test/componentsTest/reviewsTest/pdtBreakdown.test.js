@@ -3,25 +3,13 @@ import { shallow } from 'enzyme';
 import PdtBreakdown from '../../../client/src/components/reviews/pdtBreakdown.jsx';
 
 describe ('Pdt Breakdown', () => {
-  let dummyCharacteristics = {
-    "Fit": {
-        "id": 74402,
-        "value": "3.4666666666666667"
-    },
-    "Length": {
-        "id": 74403,
-        "value": "3.1333333333333333"
-    },
-    "Comfort": {
-        "id": 74404,
-        "value": "2.6666666666666667"
-    },
-    "Quality": {
-        "id": 74405,
-        "value": "3.0000000000000000"
-    }
-}
-  let dummyKeys = Object.keys(dummyCharacteristics);
+  let dummyCharacteristics = [
+    { id: 74406, value: '2.8', name: 'Size' },
+    { id: 74407, value: '2.7', name: 'Width' },
+    { id: 74408, value: '2.8', name: 'Comfort' },
+    { id: 74409, value: '2.7', name: 'Quality' }
+  ]
+
   const wrapper = shallow(<PdtBreakdown characteristics={dummyCharacteristics}/>);
 
   it ('checks if the component exists', () => {
@@ -29,6 +17,6 @@ describe ('Pdt Breakdown', () => {
   });
 
   it('checks that Pdt Breakdown component is rendering children and the no of children depends upon the no of characteristics', () => {
-    expect(wrapper.children()).toHaveLength(dummyKeys.length);
+    expect(wrapper.children()).toHaveLength(dummyCharacteristics.length);
   });
 });

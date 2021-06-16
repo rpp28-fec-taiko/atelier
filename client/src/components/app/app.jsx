@@ -11,6 +11,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       productId: '22161',
+      productName: '',
       totalReviews: [],
       currentReviews: [],
       nextReviews: [],
@@ -22,7 +23,7 @@ class App extends React.Component {
       filteredNextReviews: [],
       selectedFilters: [],
       removedAllFilters: false,
-      characteristics: {}
+      characteristics: []
     };
   }
 
@@ -219,16 +220,29 @@ class App extends React.Component {
     return fetch (`http://localhost:3000/reviewsMeta?productId=${this.state.productId}`)
     .then((resp) => resp.json())
     .then((characteristics) => {
-      this.setState({ characteristics }, () => console.log('characteristics', this.state));
+      console.log('server characteristics', characteristics)
+      this.setState({ characteristics: [...characteristics] }, () => console.log('characteristics', this.state));
     })
     .catch((err) => {
       console.log('ERROR GETTING CHARACTERISTICS', err)
     });
   }
 
+  getProductInfo = () => {
+    return fetch(`http://localhost:3000/productInfo?productId=${this.state.productId}`)
+    .then((resp) => resp.json())
+    .then(({ name }) => {
+      this.setState({ productName: name }, () => console.log('state after getting pdt info', this.state));
+    })
+    .catch(() => {
+      console.log('Error fetching product info from server');
+    });
+  }
+
   componentDidMount () {
     this.getAllReviews()
       .then(this.getCharacteristics)
+      .then(this.getProductInfo);
   }
 
   render () {
@@ -239,6 +253,8 @@ class App extends React.Component {
         <QAndA productId={this.state.productId}/>
         <ReviewsErrorBoundary>
           <Reviews
+            productId={this.state.productId}
+            productName={this.state.productName}
             totalReviews={this.state.totalReviews}
             currentReviews={this.state.currentReviews}
             nextReviews={this.state.nextReviews}

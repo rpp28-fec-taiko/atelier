@@ -3,7 +3,7 @@ import AnswerList from './answerList.jsx';
 
 const QAndAList = ({questions}) => (
   <div className="qAndA-list">
-    {console.log('questions obj inside qanda: ', questions)}
+    {/* {console.log('questions obj inside qanda: ', questions)} */}
     {questions.length !== 0 ? questions.results.map((item, idx) =>
       <div key={idx} className="qAndA-list-question-item">
         Q: {item.question_body}<br />

@@ -11,6 +11,9 @@ app.use(express.static(servingPath));
 
 const apiUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp`;
 
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+
 // Products API --------------------------------------------------------
 
 app.get('/products', (req, res) => {
@@ -124,14 +127,35 @@ app.get('/reviewsMeta', async (req, res) => {
     let productId = req.query.productId;
     let metaUrl = `${apiUrl}/reviews/meta?product_id=${productId}`;
     let { data: { characteristics }} = await axios.get(metaUrl, {headers: {'Authorization': gitToken}});
+
+    let mapCharacteristics = [];
+    for (let key in characteristics) {
+      let newObj = {
+        ...characteristics[key],
+        name: key,
+        value: Number(characteristics[key].value).toFixed(1)
+      };
+      mapCharacteristics.push(newObj);
+    }
     // console.log('characteristics', characteristics);
-    res.status(200).send(characteristics);
+    // console.log('new characteristics', mapCharacteristics);
+    res.status(200).send(mapCharacteristics);
   } catch(err) {
     console.log('ERROR GETTING CHARACTERISTICS', err)
   }
 });
 
-
+app.post('/reviews', async (req, res) => {
+  try {
+    // console.log('req body', req.body)
+    let url = `${apiUrl}/reviews`;
+    let { data } = await axios.post(url, req.body, {headers: {'Authorization': gitToken}})
+    res.status(201).send(data);
+  } catch (err) {
+    console.log('ERROR CREATING A REVIEW', err);
+    res.send(err);
+  }
+})
 
 app.put('/reviews/:reviewId/helpful', (req, res) => {
   // console.log('req', req.params, 'query', req.query);

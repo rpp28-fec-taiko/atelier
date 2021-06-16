@@ -12,9 +12,4 @@ describe ('Rating Summary', () => {
   it('checks that Summary component is rendering children', () => {
     expect(wrapper.children()).toHaveLength(2);
   });
-
-  // it('should display Rating Summary and Star Breakdown components', () => {
-  //   expect(wrapper.find(RatingSummary).exists()).toBe(true);
-  //   expect(wrapper.find(StarBreakdown).exists()).toBe(true);
-  // })
 });

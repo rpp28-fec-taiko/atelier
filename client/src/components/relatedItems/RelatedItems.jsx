@@ -10,7 +10,7 @@ class RelatedItems extends React.Component {
   }
 
   componentDidMount() {
-    console.log('card_container children: ', this.card_container.children[0]);
+    // console.log('card_container children: ', this.card_container.children[0]);
     let first_card_clone = this.card_container.children[0].cloneNode(true);
     let last_card_clone = this.card_container.children[this.card_container.children.length - 1].cloneNode(true);
 
@@ -21,7 +21,7 @@ class RelatedItems extends React.Component {
   }
 
   handle_next = () => {
-    console.log('Click triggered');
+    // console.log('Click triggered');
     if (this.state.current_card < this.card_container.children.length - 1) {
       let new_current_card = this.state.current_card + 1;
 

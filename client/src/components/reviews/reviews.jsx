@@ -23,7 +23,8 @@ class Reviews extends React.Component {
           </div>
           {
             this.props.currentReviews.length === 0 ?
-              <AddReview /> :
+              <AddReview productId={this.props.productId} productName={this.props.productName} characteristics={this.props.characteristics} />
+              :
               <div className='reviews-main'>
                 <Sort
                   sortReviews={this.props.sortReviews}
@@ -40,7 +41,7 @@ class Reviews extends React.Component {
                   { this.props.filteredCurrentReviews.length > 0 ? (this.props.filteredNextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null) :
                     (this.props.nextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null)
                   }
-                  <AddReview />
+                  <AddReview productId={this.props.productId} productName={this.props.productName} characteristics={this.props.characteristics} />
                 </div>
               </div>
           }

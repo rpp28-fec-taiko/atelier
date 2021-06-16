@@ -1,6 +1,7 @@
 import React from 'react';
 import Stars from '../stars/stars.jsx';
 import SelectCharacteristic from './selectCharacteristic.jsx';
+import {validateEmail} from '../../../../helper/reviewsHelper.js';
 
 class AddReview extends React.Component {
   constructor (props) {
@@ -13,7 +14,8 @@ class AddReview extends React.Component {
       body: '',
       nickname: '',
       email: '',
-      characteristics: {}
+      characteristics: {},
+      photos: []
     };
   }
 
@@ -57,26 +59,32 @@ class AddReview extends React.Component {
     this.setState((prevState) => ({
       characteristics: {
         ...prevState.characteristics,
-        [id]: e.target.value
+        [id]: Number(e.target.value)
       }
     }), () => console.log('After chnging characteristics', this.state))
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    //Any mandatory fields are blank: Recommend, body, name and email are taken care of by input element validation.
-    let {rating, recommend, body, nickname, email, characteristics } = this.state;
-    // console.log('pre submit', rating, recommend, body, nickname, email, characteristics)
-      //rating = 0 || recommend = '' || body = '' || nickname = '' || email = '' || loop over char obj and see that all th required keys have a value
+    //Any mandatory fields are not blank: Recommend, body, name and email are taken care of by input element validation.
+    let { rating, recommend, summary, body, nickname, email, characteristics, photos } = this.state;
+
+    //Email validation
+    if (!validateEmail(email)) {
+      window.alert(`You must enter the following: \n Email in a correct format`)
+      return;
+    }
+
+    //RATING validation
     if (rating === 0) {
       window.alert(`You must enter the following: \n Overall Rating`)
       return;
     }
-    // let { characteristics } = this.props;
-    // console.log('character', characteristics, this.props.characteristics);
+
+    //Characteristics validation
     let originalCharacteristicsList = Object.values(this.props.characteristics);
     let userSelectedCharacteristics = Object.keys(characteristics);
-    console.log('OK', originalCharacteristicsList, userSelectedCharacteristics)
+    // console.log('OK', originalCharacteristicsList, userSelectedCharacteristics)
 
     for (let i = 0; i < originalCharacteristicsList.length; i++) {
       if (userSelectedCharacteristics.indexOf(String(originalCharacteristicsList[i].id)) === -1) {
@@ -85,9 +93,43 @@ class AddReview extends React.Component {
         return;
       }
     }
-    //Body < 50
-    //email not in correct format
-    //The images selected are invalid or unable to be uploaded.
+
+    //Photos validation: The images selected are invalid or unable to be uploaded.
+
+    //Transform data according to required format
+    let finalData = {};
+    finalData.product_id = Number(this.props.productId);
+    finalData.rating = rating;
+    finalData.recommend = recommend === 'yes' ? true : false;
+    finalData.summary = summary;
+    finalData.body = body;
+    finalData.name = nickname;
+    finalData.email = email;
+    finalData.characteristics = characteristics;
+    finalData.photos = photos;
+
+    // console.log('finalData', finalData);
+    // console.log('json final', JSON.stringify(finalData));
+
+    fetch (`http://localhost:3000/reviews`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(finalData)
+    })
+    .then((resp) => {
+      // console.log('resp', resp)
+      if (resp.status === 201) {
+        window.alert('SUCCESSFULLY CREATED A NEW REVIEW');
+        return this.displayModal()
+      } else {
+        window.alert('THERE WAS AN ERROR WHILE ADDING YOUR REVIEW. PLEASE TRY AGAIN LATER.')
+      }
+    })
+    .catch((err) => {
+      console.log('ERROR CREATING A NEW REVIEW', err);
+    })
   }
 
   render () {

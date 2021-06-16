@@ -11,6 +11,9 @@ app.use(express.static(servingPath));
 
 const apiUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp`;
 
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+
 // Products API --------------------------------------------------------
 
 app.get('/products', (req, res) => {
@@ -131,7 +134,17 @@ app.get('/reviewsMeta', async (req, res) => {
   }
 });
 
-
+app.post('/reviews', async (req, res) => {
+  try {
+    // console.log('req body', req.body)
+    let url = `${apiUrl}/reviews`;
+    let { data } = await axios.post(url, req.body, {headers: {'Authorization': gitToken}})
+    res.status(201).send(data);
+  } catch (err) {
+    console.log('ERROR CREATING A REVIEW', err);
+    res.send(err);
+  }
+})
 
 app.put('/reviews/:reviewId/helpful', (req, res) => {
   // console.log('req', req.params, 'query', req.query);

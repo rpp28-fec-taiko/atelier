@@ -84,6 +84,14 @@ class ImageGallery extends React.Component {
     });
   }
 
+
+  zoomImage(e) {
+    console.log('event', e);
+  }
+
+
+
+
   render() {
 
     // vars for classnames depending on whether expanded or default gallery layout
@@ -114,8 +122,8 @@ class ImageGallery extends React.Component {
     // zoom view
     if (this.state.zoomView) {
       return (
-        <div className={`image-zoom-wrap`}>
-          <img className={`image-main-zoom`} src={this.state.currentImage.url} onClick={this.toggleZoomView.bind(this)}></img>
+        <div id={`image-zoom-wrap`} onMouseMove={this.zoomImage} onClick={this.toggleZoomView.bind(this)}>
+          <img id={`image-main-zoom`} src={this.state.currentImage.url} ></img>
         </div>
       );
     }

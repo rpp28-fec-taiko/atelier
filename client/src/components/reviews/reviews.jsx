@@ -34,7 +34,13 @@ export class Reviews extends React.Component {
                 />
                 <Search onReviewsSearch={this.props.onReviewsSearch}/>
                 <ReviewsList
-                  reviews={this.props.searchedCurrentReviews.length > 0 ? this.props.searchedCurrentReviews :(this.props.filteredCurrentReviews.length > 0 ? this.props.filteredCurrentReviews: this.props.currentReviews) }
+                  reviews={this.props.filteredSearchedCurrentReviews.length > 0 ? this.props.filteredSearchedCurrentReviews :
+                    (this.props.searchedCurrentReviews.length > 0 ? this.props.searchedCurrentReviews :
+                      (this.props.filteredCurrentReviews.length > 0 ? this.props.filteredCurrentReviews:
+                        this.props.currentReviews
+                      )
+                    )
+                  }
                   increaseReviewHelpfulnesss={this.props.increaseReviewHelpfulnesss}
                   reportReview={this.props.reportReview}
                   helpfulReviews={this.props.helpfulReviews}
@@ -53,5 +59,5 @@ export class Reviews extends React.Component {
   }
 }
 
-const ReviewsWithTracking = WithTracking(Reviews);
+const ReviewsWithTracking = WithTracking(Reviews, 'reviews');
 export default ReviewsWithTracking;

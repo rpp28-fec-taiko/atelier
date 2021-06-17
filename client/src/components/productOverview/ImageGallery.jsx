@@ -17,12 +17,6 @@ class ImageGallery extends React.Component {
     }
   }
 
-  // componentDidMount() {
-  //   if (this.state.zoomView) {
-  //     this.zoomImage();
-  //   }
-  // }
-
   componentDidUpdate(prevProps) {
     // check to make sure valid props are being passed in - it takes a few renders before they do..
     if (!prevProps.currentStyle.photos && this.props.currentStyle.photos) {
@@ -91,7 +85,7 @@ class ImageGallery extends React.Component {
   }
 
   zoomImage(e) {
-    console.log('event', e);
+    // refactor with refs?
     let zoomWrap = document.getElementById('image-zoom-wrap');
     let zoomImage = document.getElementById('image-main-zoom');
     let clientX = e.clientX - zoomWrap.offsetLeft;
@@ -102,7 +96,6 @@ class ImageGallery extends React.Component {
 
     clientX = clientX / minWidth * 100;
     clientY = clientY / minHeight * 100;
-    console.log(clientX, clientY);
 
     zoomImage.style.transform = `translate(-${clientX}%, -${clientY}%) scale(2)`;
   }
@@ -129,7 +122,7 @@ class ImageGallery extends React.Component {
     let imageList;
     if (this.props.currentStyle.photos) {
       mainImage = <img className={`image-main-${view}`} src={this.state.currentImage.url} onClick={imageClickHandler}></img>
-      imageList = <ImageList view={view} currentImage={this.state.currentImage} updateMainImage={this.updateMainImage.bind(this)} photos={this.state.photos} />
+      imageList = <ImageList view={view} currentImage={this.state.currentImage} updateMainImage={this.updateMainImage.bind(this)} photos={this.state.photos} currentIndex={this.state.currentIndex} next={this.nextImage.bind(this)} prev={this.prevImage.bind(this)}/>
     } else {
       mainImage = <div></div>
       imageList = <div></div>

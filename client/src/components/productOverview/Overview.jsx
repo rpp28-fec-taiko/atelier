@@ -64,7 +64,7 @@ class Overview extends React.Component {
   }
 
   updateStyle(e) {
-    console.log('click', e);
+    // console.log('click', e);
     e.preventDefault();
     this.state.styles.forEach(style => {
       if (style.style_id === Number(e.target.id)) {

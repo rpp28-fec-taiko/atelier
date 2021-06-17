@@ -1,8 +1,9 @@
 import React from "react";
 
-const ArrowDown = ({size=24, color="#FFFFFF"}) => (
+const ArrowDown = ({size=24, color="#FFFFFF", moveDown}) => (
   <svg
     className='arrow-down'
+    onClick={moveDown}
     xmlns="http://www.w3.org/2000/svg"
     width={size}
     height={size}

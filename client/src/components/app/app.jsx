@@ -32,6 +32,7 @@ class App extends React.Component {
   }
 
   onReviewsSearch = (searchTerm) => {
+    searchTerm = searchTerm.toLowerCase();
     // console.log('searchterm', searchTerm)
     if (searchTerm.length < 4) {
       this.setState((prevState) => ({
@@ -43,7 +44,7 @@ class App extends React.Component {
     }
     this.setState((prevState) => {
       if (prevState.filteredTotalReviews.length === 0) {
-        let searchedTotalReviews = prevState.totalReviews.filter(({ summary, body, response, reviewer_name }) => summary.includes(searchTerm) || body.includes(searchTerm) || (!response ? ''.includes(searchTerm) : response.includes(searchTerm)) || reviewer_name.includes(searchTerm));
+        let searchedTotalReviews = prevState.totalReviews.filter(({ summary, body, response, reviewer_name }) => summary.toLowerCase().includes(searchTerm) || body.toLowerCase().includes(searchTerm) || (!response ? ''.includes(searchTerm) : response.toLowerCase().includes(searchTerm)) || reviewer_name.toLowerCase().includes(searchTerm));
         // console.log('searchedTotal', searchedTotalReviews)
         let currentReviewsLength = prevState.currentReviews.length;
         let searchedCurrentReviews = searchedTotalReviews.slice(0, currentReviewsLength);
@@ -55,7 +56,7 @@ class App extends React.Component {
           searchedNextReviews
         }
       } else {
-        let searchedTotalReviews = prevState.filteredTotalReviews.filter(({ summary, body, response, reviewer_name }) => summary.includes(searchTerm) || body.includes(searchTerm) || (!response ? ''.includes(searchTerm) : response.includes(searchTerm)) || reviewer_name.includes(searchTerm));
+        let searchedTotalReviews = prevState.filteredTotalReviews.filter(({ summary, body, response, reviewer_name }) => summary.toLowerCase().includes(searchTerm) || body.toLowerCase().includes(searchTerm) || (!response ? ''.includes(searchTerm) : response.toLowerCase().includes(searchTerm)) || reviewer_name.toLowerCase().includes(searchTerm));
         // console.log('searchedTotal', searchedTotalReviews)
         let currentReviewsLength = prevState.filteredCurrentReviews.length;
         let searchedCurrentReviews = searchedTotalReviews.slice(0, currentReviewsLength);
@@ -85,6 +86,12 @@ class App extends React.Component {
   filterReviews = (criteria, isSelected) => {
     //Currently no filters applied applied.
     if (this.state.filteredTotalReviews.length === 0) {
+      if (this.state.searchedTotalReviews.length > 0) {
+        var searchedTotalReviews = this.state.searchedTotalReviews.filter((review) => review.rating === criteria);
+        let currentReviewsLength = this.state.currentReviewsLength.length;
+        var searchedCurrentReviews = searchedTotalReviews.slice(0, currentReviewsLength);
+        var searchedNextReviews = searchedTotalReviews.slice(currentReviewsLength, currentReviewsLength + 2);
+      }
       let filteredTotalReviews = this.state.totalReviews.filter((review) => review.rating === criteria);
       let currentReviewsLength = this.state.currentReviews.length;
       let filteredCurrentReviews = filteredTotalReviews.slice(0, currentReviewsLength);
@@ -96,7 +103,10 @@ class App extends React.Component {
           filteredCurrentReviews,
           filteredNextReviews,
           selectedFilters,
-          removedAllFilters: false
+          removedAllFilters: false,
+          searchedTotalReviews: searchedTotalReviews || [],
+          searchedCurrentReviews: searchedCurrentReviews || [],
+          searchedNextReviews: searchedNextReviews || []
         }
       },() => console.log('state after adding a filter for the first time', this.state))
       //Filter has to applied

@@ -4,7 +4,7 @@ import Modal from './modal.jsx';
 import CheckCircle from './checkCircle.jsx';
 import Response from './response.jsx';
 
-export let getHighlightedText = (text, highlight) => {
+let getHighlightedText = (text, highlight) => {
   if (highlight === '') {
     return <span>{text}</span>
   }

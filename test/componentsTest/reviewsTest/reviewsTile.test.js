@@ -25,7 +25,7 @@ describe ('Reviews Tile', () => {
         }
     ]
 }
-  const wrapper = shallow(<ReviewsTile review={dummyReview}/>);
+  const wrapper = shallow(<ReviewsTile review={dummyReview} searchTerm=''/>);
 
   it ('checks if the component exists', () => {
     expect(wrapper.exists('.reviews-tile')).toBe(true);

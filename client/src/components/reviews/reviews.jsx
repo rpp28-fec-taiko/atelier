@@ -6,15 +6,16 @@ import Search from './search.jsx';
 import AddReview from './addReview.jsx';
 import MoreReviews from './moreReviews.jsx';
 import Sort from './sort.jsx';
+import WithTracking from '../hoc/withTracking.jsx';
 
-class Reviews extends React.Component {
+export class Reviews extends React.Component {
   constructor (props) {
     super(props);
   }
 
   render () {
     return (
-      <div className='reviews' id='reviews'>
+      <div className='reviews' id='reviews' onClick={(e) => this.props.onWrappedComponentClick(e)}>
         <h2>RATINGS & REVIEWS</h2>
         <div className='reviews-body'>
           <div className='reviews-breakdown'>
@@ -36,6 +37,7 @@ class Reviews extends React.Component {
                   reviews={this.props.filteredCurrentReviews.length > 0 ? this.props.filteredCurrentReviews: this.props.currentReviews}
                   increaseReviewHelpfulnesss={this.props.increaseReviewHelpfulnesss}
                   reportReview={this.props.reportReview}
+                  helpfulReviews={this.props.helpfulReviews}
                 />
                 <div className='reviews-btns'>
                   { this.props.filteredCurrentReviews.length > 0 ? (this.props.filteredNextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null) :
@@ -51,4 +53,5 @@ class Reviews extends React.Component {
   }
 }
 
-export default Reviews;
+const ReviewsWithTracking = WithTracking(Reviews);
+export default ReviewsWithTracking;

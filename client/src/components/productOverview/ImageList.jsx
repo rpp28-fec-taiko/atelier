@@ -46,7 +46,7 @@ class ImageList extends React.Component {
         start: prevState.start + 1,
         end: prevState.end + 1
       }
-    });
+    }, () => console.log('down', this.state));
   }
 
   moveUp() {
@@ -64,15 +64,22 @@ class ImageList extends React.Component {
         start: prevState.start - 1,
         end: prevState.end - 1
       }
-    });
+    }, () => console.log('up', this.state));
 
   }
 
 
   render() {
-    // add down button here on condition that there are more thumbanils to be displayed
+    // // add down button here on condition that there are more thumbanils below to be displayed
+    // let downArrow = this.state.end < this.props.photos.length - 1 ? <ArrowDown moveDown={this.moveDown.bind(this)} /> : null;
+    // // add up button on condition that there are more thumbnails above to show
+    // let upArrow = this.state.start > 0 ? <ArrowUp moveUp={this.moveUp.bind(this)}/> : null;
 
-    // add up button on condition that there are more thumbnails to show
+    // add down button here on condition that there are more thumbanils below to be displayed
+    let downStatus = this.state.end < this.props.photos.length - 1 ? 'visible' : 'hidden';
+    // add up button on condition that there are more thumbnails above to show
+    let upStatus = this.state.start > 0 ? 'visible' : 'hidden';
+
 
     // only map and render the photos in the current range mangaged in state, groups of 7
     let thumbnailList = this.props.photos.slice(this.state.start, this.state.end);
@@ -81,9 +88,11 @@ class ImageList extends React.Component {
     if (this.props.view === 'default') {
       return (
         <div className='image-list-default'>
-          <ArrowUp moveUp={this.moveDown.bind(this)}/>
+          {/* {upArrow} */}
+          <ArrowUp showHide={upStatus} moveUp={this.moveUp.bind(this)} />
           {thumbnailList.map((photo, idx) => <ImageThumbnail currentImage={this.props.currentImage} updateMainImage={this.props.updateMainImage} thumbnail={photo.thumbnail_url} url={photo.url} key={idx}/>)}
-          <ArrowDown moveDown={this.moveDown.bind(this)} />
+          {/* {downArrow} */}
+          <ArrowDown showHide={downStatus} moveDown={this.moveDown.bind(this)} />
         </div>
       )
     } else {

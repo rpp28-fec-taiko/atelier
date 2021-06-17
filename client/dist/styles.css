@@ -38,7 +38,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  overflow: hidden;
+  /* overflow: hidden; */
   max-height: 95%;
 }
 
@@ -174,11 +174,11 @@
   border: 2.5px solid rgba(128, 128, 128, 0.507);
 }
 
-.arrow-up {
+#arrow-up {
   align-self: center;
 }
 
-.arrow-down {
+#arrow-down {
   align-self: center;
 }
 

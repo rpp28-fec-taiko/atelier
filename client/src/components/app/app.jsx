@@ -30,7 +30,8 @@ class App extends React.Component {
       filteredSearchedTotalReviews: [],
       filteredSearchedCurrentReviews: [],
       filteredSearchedNextReviews: [],
-      helpfulReviews: []
+      helpfulReviews: [],
+      searchTerm: ''
     };
   }
 
@@ -44,7 +45,8 @@ class App extends React.Component {
         searchedCurrentReviews: [],
         filteredSearchedTotalReviews: [],
         filteredSearchedCurrentReviews: [],
-        filteredSearchedNextReviews: []
+        filteredSearchedNextReviews: [],
+        searchTerm: ''
       }), () => console.log('state after searchTerm is less than 3', this.state))
       return;
     }
@@ -61,6 +63,7 @@ class App extends React.Component {
           searchedTotalReviews,
           searchedCurrentReviews,
           searchedNextReviews,
+          searchTerm
         }
       }, () => console.log('state after searching', this.state))
     } else {
@@ -82,7 +85,8 @@ class App extends React.Component {
           searchedNextReviews,
           filteredSearchedTotalReviews,
           filteredSearchedCurrentReviews,
-          filteredSearchedNextReviews
+          filteredSearchedNextReviews,
+          searchTerm
         }
       }, () => console.log('state after searching', this.state))
     }
@@ -421,6 +425,7 @@ class App extends React.Component {
             filteredSearchedCurrentReviews={this.state.filteredSearchedCurrentReviews}
             filteredSearchedNextReviews={this.state.filteredSearchedNextReviews}
             helpfulReviews={this.state.helpfulReviews}
+            searchTerm={this.state.searchTerm}
             increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss}
             reportReview={this.reportReview}
             get2Reviews={this.get2Reviews}

@@ -41,6 +41,7 @@ export class Reviews extends React.Component {
                       )
                     )
                   }
+                  searchTerm={this.props.searchTerm}
                   increaseReviewHelpfulnesss={this.props.increaseReviewHelpfulnesss}
                   reportReview={this.props.reportReview}
                   helpfulReviews={this.props.helpfulReviews}

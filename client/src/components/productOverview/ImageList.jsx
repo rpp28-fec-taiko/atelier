@@ -24,7 +24,7 @@ class ImageList extends React.Component {
     this.state = {
       // will have to adjust something here for 'start' when current index is out of 0-7 range on rendering
       start: 0,
-      end: 6
+      end: 7
       // end: this.props.photos.length > 7 ? 6 : this.props.photos.length,
     }
 
@@ -50,16 +50,19 @@ class ImageList extends React.Component {
     // scrolling down should update the main image to be the next index over
     // set this as the callback in setState to activate
 
-    let callback = this.props.currentIndex === this.state.start ? this.props.next : null
+    if (this.props.currentIndex === this.state.start) {
+      this.props.next()
+    }
     // bug: this is using an update start when calling next()
 
     // always change the range in state
     this.setState((prevState) => {
+      console.log('something', this.state);
       return {
         start: prevState.start + 1,
         end: prevState.end + 1
       }
-    }, callback);
+    }, () => console.log(this.state));
   }
 
   moveUp() {
@@ -69,8 +72,9 @@ class ImageList extends React.Component {
     // if currently selected index is the bottom most image thumbnail
     // scrolling up should update the main image to be the prev index in the array
     // set this as the callback in setState to activate
-    let callback = this.props.currentIndex === this.state.end - 1 ? this.props.prev : null
-
+    if (this.props.currentIndex === this.state.end - 1) {
+      this.props.prev();
+    }
 
     // always change the range in state
     this.setState((prevState) => {
@@ -78,7 +82,7 @@ class ImageList extends React.Component {
         start: prevState.start - 1,
         end: prevState.end - 1
       }
-    }, callback);
+    });
 
   }
 

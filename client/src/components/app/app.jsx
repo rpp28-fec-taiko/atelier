@@ -23,8 +23,30 @@ class App extends React.Component {
       filteredNextReviews: [],
       selectedFilters: [],
       removedAllFilters: false,
-      characteristics: []
+      characteristics: [],
+      searchedTotalReviews: [],
+      searchedNextReviews: [],
+      searchedCurrentReviews: []
     };
+  }
+
+  onReviewsSearch = (searchTerm) => {
+    // console.log('searchterm', searchTerm)
+    this.setState((prevState) => {
+      if (prevState.filteredTotalReviews.length === 0) {
+        let searchedTotalReviews = prevState.totalReviews.filter(({ summary, body, response, reviewer_name }) => summary.includes(searchTerm) || body.includes(searchTerm) || (!response ? ''.includes(searchTerm) : response.includes(searchTerm)) || reviewer_name.includes(searchTerm));
+        // console.log('searchedTotal', searchedTotalReviews)
+        let currentReviewsLength = prevState.currentReviews.length;
+        let searchedCurrentReviews = searchedTotalReviews.slice(0, currentReviewsLength);
+        let searchedNextReviews = searchedTotalReviews.slice(currentReviewsLength, currentReviewsLength + 2);
+
+        return {
+          searchedTotalReviews,
+          searchedCurrentReviews,
+          searchedNextReviews
+        }
+      }
+    }, () => console.log('state after searching', this.state))
   }
 
   removeFilters = () => {
@@ -267,12 +289,16 @@ class App extends React.Component {
             reviewCriteria={this.state.reviewCriteria}
             removedAllFilters={this.state.removedAllFilters}
             characteristics={this.state.characteristics}
+            searchedTotalReviews={this.state.searchedTotalReviews}
+            searchedCurrentReviews={this.state.searchedCurrentReviews}
+            searchedNextReviews={this.state.searchedNextReviews}
             increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss}
             reportReview={this.reportReview}
             get2Reviews={this.get2Reviews}
             sortReviews={this.sortReviews}
             filterReviews={this.filterReviews}
             removeFilters={this.removeFilters}
+            onReviewsSearch={this.onReviewsSearch}
           />
         </ReviewsErrorBoundary>
       </div>

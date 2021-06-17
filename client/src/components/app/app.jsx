@@ -33,6 +33,14 @@ class App extends React.Component {
 
   onReviewsSearch = (searchTerm) => {
     // console.log('searchterm', searchTerm)
+    if (searchTerm.length < 4) {
+      this.setState((prevState) => ({
+        searchedTotalReviews: [],
+        searchedNextReviews: [],
+        searchedCurrentReviews: [],
+      }), () => console.log('state after searchTerm is less than 3', this.state))
+      return;
+    }
     this.setState((prevState) => {
       if (prevState.filteredTotalReviews.length === 0) {
         let searchedTotalReviews = prevState.totalReviews.filter(({ summary, body, response, reviewer_name }) => summary.includes(searchTerm) || body.includes(searchTerm) || (!response ? ''.includes(searchTerm) : response.includes(searchTerm)) || reviewer_name.includes(searchTerm));
@@ -137,7 +145,29 @@ class App extends React.Component {
   }
 
   sortReviews = (criteria) => {
-    if (this.state.filteredTotalReviews.length === 0) {
+    if (this.state.searchedTotalReviews.length > 0) {
+      let searchedTotalReviews = sortByCriteria(criteria, this.state.searchedTotalReviews.slice());
+      let searchedCurrentReviews = searchedTotalReviews.slice(0, 2);
+      let searchedNextReviews = searchedTotalReviews.slice(2, 4);
+      let totalReviews = sortByCriteria(criteria, this.state.totalReviews.slice());
+      let currentReviews = totalReviews.slice(0, 2);
+      let nextReviews = totalReviews.slice(2, 4);
+      let filteredTotalReviews = sortByCriteria(criteria, this.state.filteredTotalReviews);
+      let filteredCurrentReviews = filteredTotalReviews.slice(0, 2);
+      let filteredNextReviews = filteredTotalReviews.slice(2, 4)
+      this.setState((prevState) => ({
+        searchedTotalReviews,
+        searchedCurrentReviews,
+        searchedNextReviews,
+        totalReviews,
+        currentReviews,
+        nextReviews,
+        filteredTotalReviews,
+        filteredCurrentReviews,
+        filteredNextReviews,
+        reviewCriteria: criteria
+      }), () => console.log('state after sorting searched reviews', this.state))
+    } else if (this.state.filteredTotalReviews.length === 0) {
       let totalReviews = sortByCriteria(criteria, this.state.totalReviews.slice());
       let currentReviews = totalReviews.slice(0, 2);
       let nextReviews = totalReviews.slice(2, 4);

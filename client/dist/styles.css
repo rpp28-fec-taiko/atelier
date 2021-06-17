@@ -34,7 +34,7 @@
 
 .image-list-default {
   position: absolute;
-  top: 15px;
+  top: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -139,10 +139,10 @@
 
 .image-thumbnail {
   margin: 8px;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
   display: inline-block;
-  height: 50px;
-  width: 50px;
+  height: 48px;
+  width: 48px;
   padding: 3px;
   flex: 0 0 auto;
 }
@@ -177,9 +177,15 @@
 #arrow-up {
   align-self: center;
 }
+#arrow-up:hover {
+  cursor: pointer;
+}
 
 #arrow-down {
   align-self: center;
+}
+#arrow-down:hover {
+  cursor: pointer;
 }
 
 .maximize-image {

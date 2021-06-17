@@ -32,16 +32,26 @@ export class Reviews extends React.Component {
                   reviewCriteria={this.props.reviewCriteria}
                   noOfReviews={this.props.noOfReviews}
                 />
-                <Search />
+                <Search onReviewsSearch={this.props.onReviewsSearch}/>
                 <ReviewsList
-                  reviews={this.props.filteredCurrentReviews.length > 0 ? this.props.filteredCurrentReviews: this.props.currentReviews}
+                  reviews={this.props.filteredSearchedCurrentReviews.length > 0 ? this.props.filteredSearchedCurrentReviews :
+                    (this.props.searchedCurrentReviews.length > 0 ? this.props.searchedCurrentReviews :
+                      (this.props.filteredCurrentReviews.length > 0 ? this.props.filteredCurrentReviews:
+                        this.props.currentReviews
+                      )
+                    )
+                  }
+                  searchTerm={this.props.searchTerm}
                   increaseReviewHelpfulnesss={this.props.increaseReviewHelpfulnesss}
                   reportReview={this.props.reportReview}
                   helpfulReviews={this.props.helpfulReviews}
                 />
                 <div className='reviews-btns'>
-                  { this.props.filteredCurrentReviews.length > 0 ? (this.props.filteredNextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null) :
-                    (this.props.nextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null)
+                  {
+                    this.props.filteredSearchedCurrentReviews.length > 0 ? (this.props.filteredSearchedNextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null) :
+                    this.props.searchedCurrentReviews.length > 0 ? (this.props.searchedNextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null) :
+                    this.props.filteredCurrentReviews.length > 0 ? (this.props.filteredNextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null) :
+                    this.props.nextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null
                   }
                   <AddReview productId={this.props.productId} productName={this.props.productName} characteristics={this.props.characteristics} />
                 </div>
@@ -53,5 +63,5 @@ export class Reviews extends React.Component {
   }
 }
 
-const ReviewsWithTracking = WithTracking(Reviews);
+const ReviewsWithTracking = WithTracking(Reviews, 'reviews');
 export default ReviewsWithTracking;

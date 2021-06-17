@@ -24,7 +24,7 @@ describe ('Reviews Widget', () => {
   });
 
   it('should render class "reviews-main" dynamically', () => {
-    wrapper.setProps({ filteredCurrentReviews:[1], filteredNextReviews:[1] });
+    wrapper.setProps({ filteredCurrentReviews:[1], filteredNextReviews:[1], filteredSearchedCurrentReviews:[1], filteredSearchedNextReviews:[1] });
     expect(wrapper.find('.reviews-main').exists()).toBe(false);
 
     wrapper.setProps({ currentReviews: [1], nextReviews: [2] });

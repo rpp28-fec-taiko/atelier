@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WithTracking = (WrappedComponent) => {
+const WithTracking = (WrappedComponent, widget) => {
   return class extends React.Component {
     constructor(props) {
       super(props);
@@ -17,10 +17,10 @@ const WithTracking = (WrappedComponent) => {
 
       let interactionObj = {
         element,
-        widget: 'reviews',
+        widget,
         time: interactionTime
       }
-      // console.log('interactionObj', interactionObj);
+      console.log('interactionObj', interactionObj);
 
       fetch(`http://localhost:3000/interactions`, {
         method: 'POST',

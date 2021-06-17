@@ -49,10 +49,11 @@ class AddReview extends React.Component {
 
   onInputChange = (e) => {
     console.log('e', e.target.name, e.target.value);
+    let value = e.target.value.trim();
     this.setState((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value
-    }), () => console.log('state after updating recommend', this.state))
+      [e.target.name]: value
+    }), () => console.log(`state after updating ${e.target.name}`, this.state))
   }
 
   onCharacteristicChange = (e, id) => {
@@ -99,6 +100,12 @@ class AddReview extends React.Component {
     e.preventDefault();
     //Any mandatory fields are not blank: Recommend, body, name and email are taken care of by input element validation.
     let { rating, recommend, summary, body, nickname, email, characteristics, photos } = this.state;
+
+    //Body length validation
+    if (body.length < 50 || body.length > 1000) {
+      window.alert('Body must be between 50 - 1000 characters');
+      return;
+    }
 
     //Email validation
     if (!validateEmail(email)) {

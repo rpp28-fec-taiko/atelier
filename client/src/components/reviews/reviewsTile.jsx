@@ -4,20 +4,33 @@ import Modal from './modal.jsx';
 import CheckCircle from './checkCircle.jsx';
 import Response from './response.jsx';
 
+let getHighlightedText = (text, highlight) => {
+  if (highlight === '') {
+    return <span>{text}</span>
+  }
+  // Split text on highlight term, include term itself into parts, ignore case
+  const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
+  return (
+    <span>
+      {parts.map((part, idx) => part.toLowerCase() === highlight.toLowerCase() ? <mark key={idx}>{part}</mark> : part)}
+    </span>
+  );
+}
+
 class ReviewsTile extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
       showModal: false,
       url: '',
+      expandedBody: false
     }
   }
 
   handleExpandBodyClick = (e) => {
-    // console.log('e', e);
-    let prevSibling = e.target.previousSibling;
-    prevSibling.innerText = this.props.review.body;
-    e.target.innerText = '';
+    this.setState((prevState) => ({
+      expandedBody: true
+    }))
   }
 
   displayModal = (url) => {
@@ -57,12 +70,18 @@ class ReviewsTile extends React.Component {
       <div className='reviews-tile'>
         <div className='reviews-tile-stars-date'>
           <div className='reviews-tile-stars'> <Stars size={24} rating={rating}/> </div>
-          <div className='reviews-tile-usernameDate'>{reviewer_name}, {new Date(date).toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+          <div className='reviews-tile-usernameDate'>{getHighlightedText(reviewer_name, this.props.searchTerm)}, {new Date(date).toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
         </div>
-        <div className='reviews-tile-summary'> {summary} </div>
+        <div className='reviews-tile-summary'> {getHighlightedText(summary, this.props.searchTerm) } </div>
         <div className='reviews-tile-body'>
-          <div className='reviews-tile-body-short'> {shortBody} </div>
-          {body.length > 250 ? <div className='reviews-tile-body-expand' onClick={this.handleExpandBodyClick}> SHOW MORE </div> : null}
+          <div className='reviews-tile-body-short'>
+            {this.state.expandedBody ? getHighlightedText(body, this.props.searchTerm) : getHighlightedText(shortBody, this.props.searchTerm)}
+          </div>
+          {
+            ((body.length > 250) && (!this.state.expandedBody)) ?
+            <div className='reviews-tile-body-expand' onClick={this.handleExpandBodyClick}> SHOW MORE </div> :
+            null
+          }
           <div className='reviews-tile-body-images'>
             {
               photos.length === 0

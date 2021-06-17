@@ -26,7 +26,8 @@ class App extends React.Component {
       characteristics: [],
       searchedTotalReviews: [],
       searchedNextReviews: [],
-      searchedCurrentReviews: []
+      searchedCurrentReviews: [],
+      helpfulReviews: []
     };
   }
 
@@ -172,13 +173,15 @@ class App extends React.Component {
       // console.log('all reviews', allReviews)
       let avgRating = findAvgRating(allReviews);
       let totalReviews = sortByCriteria(this.state.reviewCriteria, allReviews)
+      let helpfulReviews = JSON.parse(window.localStorage.getItem('helpfulReviews'));
 
       this.setState({
         totalReviews,
         noOfReviews: totalReviews.length,
         avgRating,
         currentReviews: totalReviews.slice(0, endIdx),
-        nextReviews: totalReviews.slice(endIdx, endIdx + 2)
+        nextReviews: totalReviews.slice(endIdx, endIdx + 2),
+        helpfulReviews: helpfulReviews === null ? [] : helpfulReviews
       }, () => console.log('state after fetching all reviews', this.state))
     })
     .catch((err) => {
@@ -230,11 +233,15 @@ class App extends React.Component {
         }
         return review;
       })
+
       // console.log('new current reviews', newCurrentReviews)
       this.setState((prevState) => {
+        let newHelpfulReviews = [...prevState.helpfulReviews, reviewId];
+        window.localStorage.setItem('helpfulReviews', JSON.stringify(newHelpfulReviews));
         return {
           ...prevState,
-          currentReviews: [...newCurrentReviews]
+          currentReviews: [...newCurrentReviews],
+          helpfulReviews: newHelpfulReviews
         }
       }, () => console.log('helpful state', this.state))
     })
@@ -262,8 +269,8 @@ class App extends React.Component {
     return fetch (`http://localhost:3000/reviewsMeta?productId=${this.state.productId}`)
     .then((resp) => resp.json())
     .then((characteristics) => {
-      console.log('server characteristics', characteristics)
-      this.setState({ characteristics: [...characteristics] }, () => console.log('characteristics', this.state));
+      // console.log('server characteristics', characteristics)
+      this.setState({ characteristics: [...characteristics] }, () => console.log('state after getting characteristics', this.state));
     })
     .catch((err) => {
       console.log('ERROR GETTING CHARACTERISTICS', err)
@@ -312,6 +319,7 @@ class App extends React.Component {
             searchedTotalReviews={this.state.searchedTotalReviews}
             searchedCurrentReviews={this.state.searchedCurrentReviews}
             searchedNextReviews={this.state.searchedNextReviews}
+            helpfulReviews={this.state.helpfulReviews}
             increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss}
             reportReview={this.reportReview}
             get2Reviews={this.get2Reviews}

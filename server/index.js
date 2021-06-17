@@ -153,7 +153,7 @@ app.post('/reviews', async (req, res) => {
     res.status(201).send(data);
   } catch (err) {
     console.log('ERROR CREATING A REVIEW', err);
-    res.send(err);
+    res.status(500).send(err);
   }
 })
 
@@ -186,6 +186,18 @@ app.put('/reviews/:reviewId/report', (req, res) => {
   .catch((err) => {
     console.log('ERROR REPORTING REVIEW', err)
   })
+})
+
+app.post('/interactions', async (req, res) => {
+  try {
+    // console.log('req body', req.body);
+    let url = `${apiUrl}/interactions`;
+    let { data } = await axios.post(url, req.body, {headers: {'Authorization': gitToken}})
+    res.status(201).send(data);
+  } catch (err) {
+    console.log('ERROR POSTING INTERACTION', err);
+    res.status(500).send(err);
+  }
 })
 
 //Questions

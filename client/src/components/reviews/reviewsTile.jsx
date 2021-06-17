@@ -10,7 +10,6 @@ class ReviewsTile extends React.Component {
     this.state = {
       showModal: false,
       url: '',
-      clickedHelpful: false
     }
   }
 
@@ -33,8 +32,11 @@ class ReviewsTile extends React.Component {
   }
 
   handleYesClick = () => {
+    if (this.props.helpfulReviews.indexOf(this.props.review.review_id) > -1) {
+      window.alert('YOU HAVE ALREADY MARKED THIS REVIEW HElPFUL.')
+      return;
+    }
     this.props.increaseReviewHelpfulnesss(this.props.review.review_id);
-    this.setState({clickedHelpful: true});
   }
 
   handleReportClick = () => {
@@ -76,7 +78,7 @@ class ReviewsTile extends React.Component {
         {response ? <Response response={response}/> : null}
         <div>
           <p>WAS THIS REVIEW HELPFUL?
-          <span className='reviews-tile-helpfulness' onClick={!this.state.clickedHelpful ? this.handleYesClick : null}> YES </span> ({helpfulness}) OR
+          <span className='reviews-tile-helpfulness' onClick={this.handleYesClick}> YES </span> ({helpfulness}) OR
           <span> NO </span> (#) |
           <span className='reviews-tile-helpfulness' onClick={this.handleReportClick}> REPORT </span>
           </p>

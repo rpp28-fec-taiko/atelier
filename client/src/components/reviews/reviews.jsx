@@ -46,8 +46,11 @@ export class Reviews extends React.Component {
                   helpfulReviews={this.props.helpfulReviews}
                 />
                 <div className='reviews-btns'>
-                  { this.props.filteredCurrentReviews.length > 0 ? (this.props.filteredNextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null) :
-                    (this.props.nextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null)
+                  {
+                    this.props.filteredSearchedCurrentReviews.length > 0 ? (this.props.filteredSearchedNextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null) :
+                    this.props.searchedCurrentReviews.length > 0 ? (this.props.searchedNextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null) :
+                    this.props.filteredCurrentReviews.length > 0 ? (this.props.filteredNextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null) :
+                    this.props.nextReviews.length > 0 ? <MoreReviews get2Reviews={this.props.get2Reviews}/> : null
                   }
                   <AddReview productId={this.props.productId} productName={this.props.productName} characteristics={this.props.characteristics} />
                 </div>

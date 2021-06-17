@@ -42,6 +42,9 @@ class App extends React.Component {
         searchedTotalReviews: [],
         searchedNextReviews: [],
         searchedCurrentReviews: [],
+        filteredSearchedTotalReviews: [],
+        filteredSearchedCurrentReviews: [],
+        filteredSearchedNextReviews: []
       }), () => console.log('state after searchTerm is less than 3', this.state))
       return;
     }
@@ -91,10 +94,13 @@ class App extends React.Component {
         filteredTotalReviews: [],
         filteredCurrentReviews: [],
         filteredNextReviews: [],
+        filteredSearchedTotalReviews: [],
+        filteredSearchedCurrentReviews: [],
+        filteredSearchedNextReviews: [],
         selectedFilters: [],
         removedAllFilters: true
       }
-    })
+    }, () => console.log('state after removing all filters', this.state))
   }
 
   filterReviews = (criteria, isSelected) => {
@@ -136,7 +142,7 @@ class App extends React.Component {
       let newFilteredSearchedReviews = this.state.searchedTotalReviews.filter((review) => review.rating === criteria);
       let unsortedFilteredSearchedReviews = [...this.state.filteredSearchedTotalReviews, ...newFilteredSearchedReviews];
       let filteredSearchedTotalReviews = sortByCriteria(this.state.reviewCriteria, unsortedFilteredSearchedReviews);
-      let filteredSearchedCurrentReviewsLength = this.state.filteredSearchedCurrentReviews.length;
+      let filteredSearchedCurrentReviewsLength = this.state.filteredSearchedCurrentReviews.length === 0 ? this.state.filteredCurrentReviews.length : this.state.filteredSearchedCurrentReviews.length;
       var filteredSearchedCurrentReviews = filteredSearchedTotalReviews.slice(0, filteredSearchedCurrentReviewsLength);
       var filteredSearchedNextReviews = filteredSearchedTotalReviews.slice(filteredSearchedCurrentReviewsLength, filteredSearchedCurrentReviewsLength + 2);
 
@@ -157,12 +163,22 @@ class App extends React.Component {
       let currentReviewsLength = this.state.filteredCurrentReviews.length;
       let filteredCurrentReviews = filteredTotalReviews.slice(0, currentReviewsLength);
       let filteredNextReviews = filteredTotalReviews.slice(currentReviewsLength, currentReviewsLength + 2);
-      let selectedFilters = this.state.selectedFilters.filter((star) => star !== criteria)
+
+      let filteredSearchedTotalReviews = this.state.filteredSearchedTotalReviews.filter((review) => review.rating !== criteria);
+      let searchedCurrentReviewsLength = this.state.filteredSearchedCurrentReviews.length;
+      let filteredSearchedCurrentReviews = filteredSearchedTotalReviews.slice(0, searchedCurrentReviewsLength);
+      let filteredSearchedNextReviews = filteredSearchedTotalReviews.slice(searchedCurrentReviewsLength, searchedCurrentReviewsLength + 2);
+
+      let selectedFilters = this.state.selectedFilters.filter((star) => star !== criteria);
+
       this.setState((prevState) => {
         return {
           filteredTotalReviews,
           filteredCurrentReviews,
           filteredNextReviews,
+          filteredSearchedTotalReviews,
+          filteredSearchedCurrentReviews,
+          filteredSearchedNextReviews,
           selectedFilters
         }
       }, () => console.log('state after removing a filter', this.state))
@@ -173,6 +189,9 @@ class App extends React.Component {
           filteredTotalReviews: [],
           filteredCurrentReviews: [],
           filteredNextReviews: [],
+          filteredSearchedTotalReviews: [],
+          filteredSearchedCurrentReviews: [],
+          filteredSearchedNextReviews: [],
           selectedFilters: []
         }
       }, () => console.log('state after removing the last filter', this.state))

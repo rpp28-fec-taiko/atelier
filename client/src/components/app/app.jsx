@@ -45,6 +45,18 @@ class App extends React.Component {
           searchedCurrentReviews,
           searchedNextReviews
         }
+      } else {
+        let searchedTotalReviews = prevState.filteredTotalReviews.filter(({ summary, body, response, reviewer_name }) => summary.includes(searchTerm) || body.includes(searchTerm) || (!response ? ''.includes(searchTerm) : response.includes(searchTerm)) || reviewer_name.includes(searchTerm));
+        // console.log('searchedTotal', searchedTotalReviews)
+        let currentReviewsLength = prevState.filteredCurrentReviews.length;
+        let searchedCurrentReviews = searchedTotalReviews.slice(0, currentReviewsLength);
+        let searchedNextReviews = searchedTotalReviews.slice(currentReviewsLength, currentReviewsLength + 2);
+
+        return {
+          searchedTotalReviews,
+          searchedCurrentReviews,
+          searchedNextReviews
+        }
       }
     }, () => console.log('state after searching', this.state))
   }
@@ -175,7 +187,15 @@ class App extends React.Component {
   }
 
   get2Reviews = () => {
-    if (this.state.filteredTotalReviews.length === 0) {
+    if (this.state.searchedTotalReviews.length > 0) {
+      let idx = this.state.searchedCurrentReviews.length + 2;
+      let searchedCurrentReviews = this.state.searchedTotalReviews.slice(0, idx);
+      let searchedNextReviews = this.state.searchedTotalReviews.slice(idx, idx + 2);
+      this.setState((prevState) => ({
+        searchedCurrentReviews,
+        searchedNextReviews
+      }), () => console.log('state after getting 2 more searched reviews', this.state) )
+    } else if (this.state.filteredTotalReviews.length === 0) {
       let idx = this.state.currentReviews.length + 2;
       let currentReviews = this.state.totalReviews.slice(0, idx);
       let nextReviews = this.state.totalReviews.slice(idx, idx + 2);
@@ -190,7 +210,7 @@ class App extends React.Component {
       this.setState((prevState) => ({
         filteredCurrentReviews,
         filteredNextReviews
-      }), () => console.log('state after getting 2 more reviews', this.state))
+      }), () => console.log('state after getting 2 more filtered reviews', this.state))
     }
   }
 

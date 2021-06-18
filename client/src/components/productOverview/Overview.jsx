@@ -3,6 +3,7 @@ import ProductInfo from './ProductInfo.jsx';
 import Cart from './Cart.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import ImageGallery from './ImageGallery.jsx';
+import WithTracking from '../hoc/withTracking.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -91,7 +92,7 @@ class Overview extends React.Component {
     if (this.state.expandedView) {
       // expanded view
       return (
-        <div className='overview'>
+        <div className='overview' onClick={(e) => this.props.onWrappedComponentClick(e)}>
           <ImageGallery currentStyle={this.state.currentStyle} expanded={this.state.expandedView} toggleExpandedView={this.toggleExpandedView.bind(this)}/>
         </div>
       );
@@ -99,7 +100,7 @@ class Overview extends React.Component {
     } else {
       // default view
       return (
-        <div className='overview'>
+        <div className='overview' onClick={(e) => this.props.onWrappedComponentClick(e)}>
           <ImageGallery currentStyle={this.state.currentStyle} expanded={this.state.expanded} toggleExpandedView={this.toggleExpandedView.bind(this)}/>
           <ProductInfo product={this.state.product} currentStyle={this.state.currentStyle} avgRating={this.props.avgRating} noOfReviews={this.props.noOfReviews}/>
           <StyleSelector updateStyle={this.updateStyle.bind(this)} styles={this.state.styles} currentStyle={this.state.currentStyle}/>
@@ -111,4 +112,5 @@ class Overview extends React.Component {
   }
 }
 
-export default Overview;
+const OverviewWithTracking = WithTracking(Overview, 'overview');
+export default OverviewWithTracking;

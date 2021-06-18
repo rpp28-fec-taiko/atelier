@@ -1,4 +1,5 @@
 import React from 'react';
+import CartStar from './icons/CartStar.jsx';
 
 class Cart extends React.Component {
   constructor(props) {
@@ -146,6 +147,7 @@ class Cart extends React.Component {
           </span>
         </div>
         {addToCart}
+        <CartStar />
         {/* <div className='star-box'>Star</div> */}
       </div>
     );

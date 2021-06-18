@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Overview from '../../../client/src/components/productOverview/Overview.jsx';
+import { Overview } from '../../../client/src/components/productOverview/Overview.jsx';
 import ImageGallery from '../../../client/src/components/productOverview/ImageGallery.jsx';
 import StyleSelector from '../../../client/src/components/productOverview/StyleSelector.jsx';
 import Cart from '../../../client/src/components/productOverview/Cart.jsx';

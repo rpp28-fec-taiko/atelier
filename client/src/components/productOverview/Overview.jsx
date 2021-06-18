@@ -5,7 +5,7 @@ import StyleSelector from './StyleSelector.jsx';
 import ImageGallery from './ImageGallery.jsx';
 import WithTracking from '../hoc/withTracking.jsx';
 
-class Overview extends React.Component {
+export class Overview extends React.Component {
   constructor(props) {
     super(props);
 

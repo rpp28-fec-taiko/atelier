@@ -5,12 +5,13 @@ import QAndA from '../qAndA/qAndA.jsx';
 import RelatedItems from '../relatedItems/RelatedItems.jsx';
 import {findAvgRating, sortByCriteria} from '../../../../helper/reviewsHelper.js';
 import ReviewsErrorBoundary from '../errorBoundary/reviewsErrorBoundary.jsx';
+import OverviewErrorBoundary from '../errorBoundary/overviewErrorBoundary.jsx'
 
 class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      productId: '22161',
+      productId: '22129',
       productName: '',
       totalReviews: [],
       currentReviews: [],
@@ -399,7 +400,9 @@ class App extends React.Component {
   render () {
     return (
       <div className='app'>
-        <Overview productId={this.state.productId} avgRating={this.state.avgRating} noOfReviews={this.state.noOfReviews}/>
+        <OverviewErrorBoundary>
+          <Overview productId={this.state.productId} avgRating={this.state.avgRating} noOfReviews={this.state.noOfReviews}/>
+        </OverviewErrorBoundary>
         <RelatedItems />
         <QAndA productId={this.state.productId}/>
         <ReviewsErrorBoundary>

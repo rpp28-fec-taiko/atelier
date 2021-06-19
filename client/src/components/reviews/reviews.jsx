@@ -31,6 +31,9 @@ export class Reviews extends React.Component {
                   sortReviews={this.props.sortReviews}
                   reviewCriteria={this.props.reviewCriteria}
                   noOfReviews={this.props.noOfReviews}
+                  noOfFilteredTotalReviews={this.props.filteredTotalReviews.length}
+                  noOfSearchedTotalReviews={this.props.searchedTotalReviews.length}
+                  noOfFilteredSearchedTotalReviews={this.props.filteredSearchedTotalReviews.length}
                 />
                 <Search onReviewsSearch={this.props.onReviewsSearch}/>
                 <ReviewsList

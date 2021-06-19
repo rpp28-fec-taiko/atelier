@@ -287,12 +287,13 @@
   /* height: 25px; */
   margin-right: 20px;
   margin-top: 8px;
+  fill: rgb(129, 216, 243);
 }
 
 .social-media-icon:hover {
   /* background-color: rgb(77, 207, 247); */
   cursor: pointer;
-  fill: rgb(200, 225, 233);
+  fill: lightblue;
 }
 
 .social-media {
@@ -416,13 +417,13 @@
   width: 150px;
   border-radius: 10px;
   border: none;
-  background-color: lightblue;
+  background-color: rgb(129, 216, 243);
   color: white;
   font-size: 1.1em;
 }
 .add-to-cart button:hover {
   cursor: pointer;
-  background-color: rgb(202, 232, 241);
+  background-color: lightblue;
 }
 
 .star-box {
@@ -432,6 +433,12 @@
   height: 28px;
   width: 28px;
 }
+
+.star-box:hover {
+  background-color: rgba(231, 231, 231, 0.822);
+  cursor: pointer;
+}
+
 
 /*----- QUESTIONS & ANSWERS -------*/
 

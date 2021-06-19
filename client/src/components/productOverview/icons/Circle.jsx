@@ -4,8 +4,8 @@ const Circle = ({size=25, color="grey", updateMainImage, currentImage, thumbnail
 
   let fill;
   if (thumbnail === currentImage.thumbnail_url) {
-    fill = 'yellow';
-    size += 10;
+    fill = 'white';
+    size += 7;
   } else {
     fill = 'grey'
   }

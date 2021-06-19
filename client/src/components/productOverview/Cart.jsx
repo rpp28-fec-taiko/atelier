@@ -7,7 +7,8 @@ class Cart extends React.Component {
 
     this.state = {
       size: null,
-      quantity: 1
+      quantity: 1,
+      clickNoSize: false
     }
   }
 
@@ -23,6 +24,12 @@ class Cart extends React.Component {
       .catch(() => {
         console.log('error getting Cart from server')
       });
+  }
+
+  componentDidUpdate() {
+    if (this.state.size && this.state.clickNoSize) {
+      this.setState({ clickNoSize: false});
+    }
   }
 
   handleSizeChange(e) {
@@ -68,6 +75,8 @@ class Cart extends React.Component {
         .catch(() => {
           console.log('error posting one item to server')
         });
+    } else if (!this.state.size) {
+      this.setState({ clickNoSize: true});
     }
   }
 
@@ -96,8 +105,8 @@ class Cart extends React.Component {
     // SIZE SELECT predefine in case OUT OF STOCK needs to be rendered instead
     let cartSizeSelect =
       <span className='cart-size-select'>
-        <select defaultValue='Select Size' onChange={this.handleSizeChange.bind(this)}>
-        <option disabled>Select Size</option>
+        <select defaultValue='SELECT SIZE' onChange={this.handleSizeChange.bind(this)}>
+        <option disabled>SELECT SIZE</option>
         {availableSizes.map((size, idx) => <option value={size} key={idx}>{size}</option>)}
         </select>
       </span>
@@ -138,6 +147,13 @@ class Cart extends React.Component {
       </div>
     }
 
+    let sizePrompt;
+    if (this.state.clickNoSize) {
+      sizePrompt = <span className='cart-text-prompt'>Please select a size!</span>
+    } else {
+      sizePrompt = null;
+    }
+
     return (
       <div className='cart'>
         <div className='size-qty-container'>
@@ -145,10 +161,12 @@ class Cart extends React.Component {
           <span className='cart-quantity-select'>
             {qtySelector}
           </span>
+          <CartStar />
         </div>
-        {addToCart}
-        <CartStar />
-        {/* <div className='star-box'>Star</div> */}
+        <div className='cart-button-container'>
+          {addToCart}
+          {sizePrompt}
+        </div>
       </div>
     );
   }

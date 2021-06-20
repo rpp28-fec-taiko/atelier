@@ -224,7 +224,7 @@ app.post('/uploadImage', upload.single('imageFile'), async (req, res) => {
         console.log('File Error', err);
     });
 
-    var uploadParams = {Bucket: 'addreview-photos', Key: req.file.filename, Body: fileStream, ContentType:'image/jpeg'};
+    var uploadParams = {Bucket: 'addreview-photos', Key: `${req.file.filename}-${Date.now()}`, Body: fileStream, ContentType:'image/jpeg'};
 
     s3.upload (uploadParams).promise()
     .then((data) => {
@@ -240,30 +240,6 @@ app.post('/uploadImage', upload.single('imageFile'), async (req, res) => {
     res.status(500).send(err);
   }
 })
-
-//AWS S3
-// s3 = new AWS.S3({apiVersion: '2006-03-01'});
-
-// //Upload a file
-// var file = path.join(__dirname, '..', '..', '..', '..', 'testImage5.png')
-// console.log('file', file)
-
-// var fileStream = fs.createReadStream(file);
-// fileStream.on('error', function(err) {
-//     console.log('File Error', err);
-// });
-
-// var uploadParams = {Bucket: 'addreview-photos', Key: '', Body: '', ContentType:'image/jpeg'};
-// uploadParams.Key = path.basename(file);
-// uploadParams.Body = fileStream;
-
-// s3.upload (uploadParams).promise()
-// .then((data) => {
-//   console.log("Upload Success", data.Location);
-// })
-// .catch((err) => {
-//   console.log("Error", err);
-// })
 
 //Questions
 

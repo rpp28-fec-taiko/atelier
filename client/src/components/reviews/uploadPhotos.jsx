@@ -1,4 +1,5 @@
 import React from 'react';
+import Spinner from './spinner.jsx';
 
 class UploadPhotos extends React.Component {
   constructor(props) {
@@ -6,7 +7,8 @@ class UploadPhotos extends React.Component {
     this.state = {
       showImageModal: false,
       file: '',
-      photoUrl: ''
+      photoUrl: '',
+      loading: false
     }
   }
 
@@ -16,23 +18,11 @@ class UploadPhotos extends React.Component {
     }))
   }
 
-  closeImageModal = (e) => {
-    // if (this.state.photoUrl.length === 0) {
-    //   return this.displayImageModal();
-    // }
-    // this.props.uploadPhoto(this.state.photoUrl)
-    this.displayImageModal();
-  }
-
   handleFileChange = (e) => {
     this.setState({file: e.target.files[0]}, () => console.log('file', this.state))
   }
 
-  handleFileSubmission = (e) => {
-    if (typeof this.state.file === 'string' || !this.state.file.type.includes('image')) {
-      window.alert('Please choose an image file');
-      return;
-    }
+  sendFile = () => {
     let formData = new FormData();
     formData.append('imageFile', this.state.file);
     // console.log('formdata', formData.get('imageFile'));
@@ -46,10 +36,21 @@ class UploadPhotos extends React.Component {
     .then((url) => {
       // console.log('url in Upload Photot', url);
       this.props.uploadPhoto(url);
+      this.setState({showImageModal:false, photoUrl: url, loading: false, file: ''}, () => console.log('loader state', this.state))
     })
     .catch((err) => {
       console.log('ERROR UPLOADING PHOTO', err)
     })
+  }
+
+  handleFileSubmission = (e) => {
+    if (typeof this.state.file === 'string' || !this.state.file.type.includes('image')) {
+      window.alert('Please choose an image file');
+      return;
+    }
+    this.setState((prevState) => ({
+      loading: true
+    }), this.sendFile)
   }
 
   render () {
@@ -62,15 +63,22 @@ class UploadPhotos extends React.Component {
         {
           this.state.showImageModal ?
           <div className='upload-photos-modal'>
-            <div className='upload-photos-modal-main'>
-              <h3> Upload A Photo </h3>
-              <div>
-                <label htmlFor='upload-photo'>Add Photo Url</label>
-                <input type='file' name='upload-photo' id='upload-photo' onChange={this.handleFileChange} />
-                <button type='button' onClick={this.handleFileSubmission} > CLick here to Upload your photo </button>
+              <div className='upload-photos-modal-main'>
+                <div className='heading'>
+                  <h3> Upload A Photo</h3>
+                  <button type='button' onClick={this.displayImageModal}>Close</button>
+                </div>
+
+
+                <div>
+                  <label htmlFor='upload-photo'>Add Photo From Your Computer</label> <br />
+                  <input type='file' name='upload-photo' id='upload-photo' onChange={this.handleFileChange} /> <br />
+                </div>
+                {
+                  this.state.loading ? <Spinner /> :
+                  <button type='button' onClick={this.handleFileSubmission} style={{cursor: 'pointer'}}>  DONE </button>
+                }
               </div>
-              <button type='button' onClick={this.closeImageModal} style={{cursor: 'pointer'}}>  CLOSE </button>
-            </div>
           </div>
           : null
         }

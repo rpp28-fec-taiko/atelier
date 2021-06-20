@@ -5,6 +5,7 @@ class UploadPhotos extends React.Component {
     super(props);
     this.state = {
       showImageModal: false,
+      file: '',
       photoUrl: ''
     }
   }
@@ -16,16 +17,39 @@ class UploadPhotos extends React.Component {
   }
 
   closeImageModal = (e) => {
-    if (this.state.photoUrl.length === 0) {
-      return this.displayImageModal();
-    }
-    this.props.uploadPhoto(this.state.photoUrl)
+    // if (this.state.photoUrl.length === 0) {
+    //   return this.displayImageModal();
+    // }
+    // this.props.uploadPhoto(this.state.photoUrl)
     this.displayImageModal();
   }
 
-  onUrlChange = (e) => {
-    console.log('e', e)
-    this.setState({photoUrl: e.target.value})
+  handleFileChange = (e) => {
+    this.setState({file: e.target.files[0]}, () => console.log('file', this.state))
+  }
+
+  handleFileSubmission = (e) => {
+    if (typeof this.state.file === 'string' || !this.state.file.type.includes('image')) {
+      window.alert('Please choose an image file');
+      return;
+    }
+    let formData = new FormData();
+    formData.append('imageFile', this.state.file);
+    // console.log('formdata', formData.get('imageFile'));
+    fetch(`http://localhost:3000/uploadImage`, {
+      method: 'POST',
+      body: formData
+    })
+    .then((resp) => {
+      return resp.json();
+    })
+    .then((url) => {
+      // console.log('url in Upload Photot', url);
+      this.props.uploadPhoto(url);
+    })
+    .catch((err) => {
+      console.log('ERROR UPLOADING PHOTO', err)
+    })
   }
 
   render () {
@@ -40,11 +64,12 @@ class UploadPhotos extends React.Component {
           <div className='upload-photos-modal'>
             <div className='upload-photos-modal-main'>
               <h3> Upload A Photo </h3>
-              <div onChange={this.onUrlChange}>
+              <div>
                 <label htmlFor='upload-photo'>Add Photo Url</label>
-                <input type='url' name='upload-photo' id='upload-photo' size={100} />
+                <input type='file' name='upload-photo' id='upload-photo' onChange={this.handleFileChange} />
+                <button type='button' onClick={this.handleFileSubmission} > CLick here to Upload your photo </button>
               </div>
-              <button type='button' onClick={this.closeImageModal} style={{cursor: 'pointer'}}>  Done </button>
+              <button type='button' onClick={this.closeImageModal} style={{cursor: 'pointer'}}>  CLOSE </button>
             </div>
           </div>
           : null

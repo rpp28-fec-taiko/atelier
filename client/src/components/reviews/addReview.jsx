@@ -67,6 +67,7 @@ class AddReview extends React.Component {
   }
 
   uploadPhoto = (url) => {
+    console.log('url in Add review', url)
     this.setState((prevState) => {
       return {
         ...prevState,

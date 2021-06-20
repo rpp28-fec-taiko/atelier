@@ -49,6 +49,9 @@ class AddReview extends React.Component {
 
   onInputChange = (e) => {
     console.log('e', e.target.name, e.target.value);
+    if (e.target.name === undefined || e.target.value === undefined) {
+      return
+    }
     let value = e.target.value.trim();
     this.setState((prevState) => ({
       ...prevState,

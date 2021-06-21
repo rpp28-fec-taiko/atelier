@@ -10,6 +10,8 @@ class Cart extends React.Component {
       quantity: 1,
       clickNoSize: false
     }
+
+    this.selectBox = React.createRef();
   }
 
   componentDidMount() {
@@ -29,6 +31,10 @@ class Cart extends React.Component {
   componentDidUpdate() {
     if (this.state.size && this.state.clickNoSize) {
       this.setState({ clickNoSize: false});
+    }
+
+    if (this.state.clickNoSize) {
+      this.selectBox.focus();
     }
   }
 
@@ -103,9 +109,10 @@ class Cart extends React.Component {
     }
 
     // SIZE SELECT predefine in case OUT OF STOCK needs to be rendered instead
+    console.log('nosize', this.state.clickNoSize);
     let cartSizeSelect =
       <span className='cart-size-select'>
-        <select defaultValue='SELECT SIZE' onChange={this.handleSizeChange.bind(this)}>
+        <select ref={input => this.selectBox = input} autoFocus={this.state.clickNoSize} id='size-select' defaultValue='SELECT SIZE' onChange={this.handleSizeChange.bind(this)}>
         <option disabled>SELECT SIZE</option>
         {availableSizes.map((size, idx) => <option value={size} key={idx}>{size}</option>)}
         </select>
@@ -149,7 +156,17 @@ class Cart extends React.Component {
 
     let sizePrompt;
     if (this.state.clickNoSize) {
+      // console.log('clicknosize', this.state.clickNoSize)
+      // cartSizeSelect =
+      // <span className='cart-size-select'>
+      //   <select autoFocus={true} id='size-select' defaultValue='SELECT SIZE' onChange={this.handleSizeChange.bind(this)}>
+      //   <option disabled>SELECT SIZE</option>
+      //   {availableSizes.map((size, idx) => <option value={size} key={idx}>{size}</option>)}
+      //   </select>
+      // </span>
+
       sizePrompt = <span className='cart-text-prompt'>Please select a size!</span>
+      // open dropdown menu?
     } else {
       sizePrompt = null;
     }

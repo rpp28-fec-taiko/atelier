@@ -1,13 +1,14 @@
 import React from "react";
 
-const CartStar = ({size=30, color="#000000"}) => (
+const CartStar = ({size=20, color="#000000"}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className='star-box'
     width={size}
     height={size}
     viewBox="0 0 24 24"
-    fill="#FFDF00"
+    // fill="#FFDF00" yellow for when added
+    fill="none"
     stroke={color}
     strokeWidth="1"
     strokeLinecap="round"

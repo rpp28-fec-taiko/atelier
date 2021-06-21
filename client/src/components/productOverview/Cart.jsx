@@ -26,6 +26,7 @@ class Cart extends React.Component {
       .catch(() => {
         console.log('error getting Cart from server')
       });
+
   }
 
   componentDidUpdate() {
@@ -35,7 +36,10 @@ class Cart extends React.Component {
 
     if (this.state.clickNoSize) {
       this.selectBox.focus();
+      // document.body.addEventListener('click', () => this.setState({ clickNoSize: false}))
+      // setTimeout(() => this.setState({ clickNoSize: false}), 5000);
     }
+
   }
 
   handleSizeChange(e) {

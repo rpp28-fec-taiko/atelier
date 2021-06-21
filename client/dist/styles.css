@@ -405,6 +405,7 @@
   cursor: pointer;
 }
 
+
 .size-qty-container {
   margin-bottom: 12px;
   display: flex;
@@ -433,10 +434,10 @@
 }
 
 .star-box:hover {
-  background-color: rgba(231, 231, 231, 0.822);
+  background-color: rgba(245, 244, 244, 0.911);
   cursor: pointer;
+  fill: #FFDF00;
 }
-
 
 /*----- QUESTIONS & ANSWERS -------*/
 

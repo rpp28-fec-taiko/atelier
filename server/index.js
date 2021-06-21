@@ -1,17 +1,30 @@
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
+const AWS = require("aws-sdk");
+const multer  = require('multer');
+const bodyParser = require('body-parser');
 require('dotenv').config();
+
+const apiUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp`;
 const gitToken = process.env.GIT_API_TOKEN;
+const s3 = new AWS.S3({apiVersion: '2006-03-01'});
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, 'tempImage')
+  }
+})
+
+var upload = multer({ storage: storage })
 
 const app = express();
 const servingPath = path.join(__dirname, '..', 'client', 'dist');
-
 app.use(express.static(servingPath));
-
-const apiUrl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp`;
-
-const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 // Products API --------------------------------------------------------
@@ -196,6 +209,34 @@ app.post('/interactions', async (req, res) => {
     res.status(201).send(data);
   } catch (err) {
     console.log('ERROR POSTING INTERACTION', err);
+    res.status(500).send(err);
+  }
+})
+
+app.post('/uploadImage', upload.single('imageFile'), async (req, res) => {
+  try {
+    console.log('req body', req.body, 'file', req.file);
+    var file = path.join(__dirname, '..', 'uploads', 'tempImage')
+    // console.log('file', file)
+
+    var fileStream = fs.createReadStream(file);
+    fileStream.on('error', function(err) {
+        console.log('File Error', err);
+    });
+
+    var uploadParams = {Bucket: 'addreview-photos', Key: `${req.file.filename}-${Date.now()}`, Body: fileStream, ContentType:'image/jpeg'};
+
+    s3.upload (uploadParams).promise()
+    .then((data) => {
+      console.log("Upload Success", data.Location);
+      res.status(201).send(JSON.stringify(data.Location));
+    })
+    .catch((err) => {
+      console.log("Error", err);
+    })
+
+  } catch (err) {
+    console.log('ERROR POSTING IMAGE', err);
     res.status(500).send(err);
   }
 })

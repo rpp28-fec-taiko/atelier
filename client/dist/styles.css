@@ -809,3 +809,18 @@
   margin-right: 10px;
   cursor: pointer;
 }
+
+.upload-photos-modal-main .heading {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  grid-auto-flow: column;
+}
+
+.upload-photos-modal-main .heading h3{
+  justify-self: center;
+}
+
+.upload-photos-modal-main .heading button{
+  justify-self: end;
+  height: 20px;
+}

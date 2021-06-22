@@ -20,7 +20,7 @@ const WithTracking = (WrappedComponent, widget) => {
         widget,
         time: interactionTime
       }
-      console.log('interactionObj', interactionObj);
+      // console.log('interactionObj', interactionObj);
 
       fetch(`http://localhost:3000/interactions`, {
         method: 'POST',

@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import CharacteristicBar from '../../../client/src/components/reviews/characteristicBar.jsx';
 
 describe ('Bar', () => {
-  const wrapper = shallow(<CharacteristicBar filterReviews={() => {}}/>);
+  const wrapper = shallow(<CharacteristicBar />);
 
   it ('checks if the component exists', () => {
     expect(wrapper.find('.characteristic-bar').exists()).toBe(true);

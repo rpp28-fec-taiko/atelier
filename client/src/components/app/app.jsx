@@ -400,11 +400,12 @@ class App extends React.Component {
   render () {
     return (
       <div className='app'>
+        <div className='nav'><h1>Atelier</h1></div>
         <OverviewErrorBoundary>
           <Overview productId={this.state.productId} avgRating={this.state.avgRating} noOfReviews={this.state.noOfReviews}/>
         </OverviewErrorBoundary>
-        <RelatedItems />
-        <QAndA productId={this.state.productId}/>
+        {/* <RelatedItems /> */}
+        {/* <QAndA productId={this.state.productId}/> */}
         <ReviewsErrorBoundary>
           <Reviews
             productId={this.state.productId}

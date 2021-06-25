@@ -241,8 +241,11 @@
 }
 
 .product-name {
-  font-size: 2em;
+  font-size: 2.1em;
   padding-bottom: 3px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  color:rgb(48, 48, 48);
 }
 
 .read-reviews a {
@@ -266,20 +269,20 @@
 }
 
 .price {
-  font-size: 1.2em;
+  font-size: 1.3em;
   color: rgb(90, 90, 90);
   padding-bottom: 4px;
 }
 
 .sale-price {
-  font-size: 1.2em;
+  font-size: 1.3em;
   color: red;
   padding-right: 10px;
   padding-bottom: 4px;
 }
 
 .original-price {
-  font-size: 1.2em;
+  font-size: 1.3em;
   color: grey;
   text-decoration-line: line-through;
   padding-bottom: 4px;
@@ -291,8 +294,9 @@
   flex-direction: row;
   justify-content: center;
   grid-area: 4 / 1 / span 1 / span 2;
-  /* width: 80%; */
+  width: 85%;
   margin-left: 10%;
+  margin-top: 15px;
 }
 
 .slogan-description {

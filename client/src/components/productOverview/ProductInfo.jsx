@@ -39,9 +39,9 @@ const ProductInfo = ({product, currentStyle, noOfReviews, avgRating}) => {
       {/* <img src='images/twitter.png' className='social-media-icon'></img>
       <img src='images/pinterest.png' className='social-media-icon'></img> */}
       <div>
-        <FacebookSquare size={30}/>
-        <TwitterSquare size={30}/>
-        <PinterestSquare size={30}/>
+        <FacebookSquare size={35}/>
+        <TwitterSquare size={35}/>
+        <PinterestSquare size={35}/>
       </div>
       {/* <FacebookSquare size={30}/>
       <TwitterSquare size={30}/>

@@ -404,8 +404,8 @@ class App extends React.Component {
         <OverviewErrorBoundary>
           <Overview productId={this.state.productId} avgRating={this.state.avgRating} noOfReviews={this.state.noOfReviews}/>
         </OverviewErrorBoundary>
-        {/* <RelatedItems /> */}
-        {/* <QAndA productId={this.state.productId}/> */}
+        <RelatedItems />
+        <QAndA productId={this.state.productId}/>
         <ReviewsErrorBoundary>
           <Reviews
             productId={this.state.productId}

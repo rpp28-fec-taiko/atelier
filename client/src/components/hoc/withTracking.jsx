@@ -1,5 +1,6 @@
 import React from 'react';
-import {BACKEND_URL} from '../app/app.jsx';
+
+const BACKEND_URL = process.env.NODE_ENV === 'development' ? `http://localhost:3000` : `http://34.225.154.204`;
 
 const WithTracking = (WrappedComponent, widget) => {
   return class extends React.Component {

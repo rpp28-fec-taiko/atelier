@@ -61,6 +61,9 @@ class AddReview extends React.Component {
 
   onCharacteristicChange = (e, id) => {
     // console.log('e', e.target.value);
+    if (e.target.value === undefined) {
+      return;
+    }
     this.setState((prevState) => ({
       characteristics: {
         ...prevState.characteristics,
@@ -191,7 +194,7 @@ class AddReview extends React.Component {
                   </div>
                 </div>
 
-                <div onClick={this.onInputChange}>
+                <div className='add-review-recommend' onClick={this.onInputChange}>
                   Do you recommend this product? *
                   <input type='radio' name='recommend' id='yes' value='yes' required/>
                   <label htmlFor='yes'> YES </label>
@@ -242,8 +245,8 @@ class AddReview extends React.Component {
                 </div>
 
                 <div className='add-review-submit'>
-                  <button type='submit' style={{cursor: 'pointer'}}>  SUBMIT REVIEW </button>
-                  <button type='button' onClick={this.resetState} style={{cursor: 'pointer'}}>  CLOSE </button>
+                  <button className='submit' type='submit' style={{cursor: 'pointer'}}>  SUBMIT REVIEW </button>
+                  <button className='close' type='button' onClick={this.resetState} style={{cursor: 'pointer'}}>  CLOSE </button>
                 </div>
 
               </div>

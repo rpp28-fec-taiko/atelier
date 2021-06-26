@@ -57,7 +57,7 @@ class UploadPhotos extends React.Component {
     return (
       <div>
         {
-          this.props.photos.length >= 5 ? null : <button type='button' onClick={this.displayImageModal}> Upload your photos </button>
+          this.props.photos.length >= 5 ? null : <button className='upload-photos-btn' type='button' onClick={this.displayImageModal}> Upload your photos </button>
         }
 
         {
@@ -76,7 +76,7 @@ class UploadPhotos extends React.Component {
                 </div>
                 {
                   this.state.loading ? <Spinner /> :
-                  <button type='button' onClick={this.handleFileSubmission} style={{cursor: 'pointer'}}>  DONE </button>
+                  <button className='upload-photo-submit' type='button' onClick={this.handleFileSubmission} style={{cursor: 'pointer'}}>  DONE </button>
                 }
               </div>
           </div>

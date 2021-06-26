@@ -520,6 +520,15 @@
   fill: #FFDF00;
 }
 
+/* related items */
+
+.related-items {
+  width: 100%;
+  margin-left: 8.5%;
+}
+
+
+
 /*----- QUESTIONS & ANSWERS -------*/
 
 .qAndA-body {

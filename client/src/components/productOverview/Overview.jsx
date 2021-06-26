@@ -4,6 +4,7 @@ import Cart from './Cart.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import ImageGallery from './ImageGallery.jsx';
 import WithTracking from '../hoc/withTracking.jsx';
+import {BACKEND_URL} from '../app/app.jsx';
 import SloganDescription from './SloganDescription.jsx';
 import Features from './Features.jsx';
 
@@ -31,7 +32,7 @@ export class Overview extends React.Component {
   }
 
   fetchProductInfo() {
-    return fetch(`http://localhost:3000/productInfo?productId=${this.props.productId}`)
+    return fetch(`${BACKEND_URL}/productInfo?productId=${this.props.productId}`)
       .then((results) => {
         return results.json();
       })
@@ -44,7 +45,7 @@ export class Overview extends React.Component {
   }
 
   fetchStyles() {
-    return fetch(`http://localhost:3000/styles?productId=${this.props.productId}`)
+    return fetch(`${BACKEND_URL}/styles?productId=${this.props.productId}`)
       .then((results) => {
         return results.json();
       })

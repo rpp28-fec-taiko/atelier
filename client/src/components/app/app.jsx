@@ -7,6 +7,8 @@ import {findAvgRating, sortByCriteria} from '../../../../helper/reviewsHelper.js
 import ReviewsErrorBoundary from '../errorBoundary/reviewsErrorBoundary.jsx';
 import OverviewErrorBoundary from '../errorBoundary/overviewErrorBoundary.jsx'
 
+export const BACKEND_URL = process.env.NODE_ENV === 'development' ? `http://localhost:3000` : `http://34.225.154.204`;
+
 class App extends React.Component {
   constructor (props) {
     super(props);
@@ -262,7 +264,10 @@ class App extends React.Component {
   }
 
   getAllReviews = (endIdx = 2) => {
-    return fetch(`http://localhost:3000/allReviews?productId=${this.state.productId}`)
+    // console.log('process env', process.env.NODE_ENV)
+    let reviewsUrl = `${BACKEND_URL}/allReviews?productId=${this.state.productId}`;
+
+    return fetch(reviewsUrl)
     .then((resp) => resp.json())
     .then((allReviews) => {
       // console.log('all reviews', allReviews)
@@ -322,7 +327,7 @@ class App extends React.Component {
 
   increaseReviewHelpfulnesss = (reviewId) => {
     // console.log('got id', reviewId);
-    return fetch (`http://localhost:3000/reviews/${reviewId}/helpful`, {
+    return fetch (`${BACKEND_URL}/reviews/${reviewId}/helpful`, {
       method: 'PUT'
     })
     .then(() => {
@@ -354,7 +359,7 @@ class App extends React.Component {
   }
 
   reportReview = (reviewId) => {
-    return fetch (`http://localhost:3000/reviews/${reviewId}/report`, {
+    return fetch (`${BACKEND_URL}/reviews/${reviewId}/report`, {
       method: 'PUT'
     })
     .then(() => {
@@ -369,7 +374,7 @@ class App extends React.Component {
   }
 
   getCharacteristics = () => {
-    return fetch (`http://localhost:3000/reviewsMeta?productId=${this.state.productId}`)
+    return fetch (`${BACKEND_URL}/reviewsMeta?productId=${this.state.productId}`)
     .then((resp) => resp.json())
     .then((characteristics) => {
       // console.log('server characteristics', characteristics)
@@ -381,7 +386,7 @@ class App extends React.Component {
   }
 
   getProductInfo = () => {
-    return fetch(`http://localhost:3000/productInfo?productId=${this.state.productId}`)
+    return fetch(`${BACKEND_URL}/productInfo?productId=${this.state.productId}`)
     .then((resp) => resp.json())
     .then(({ name }) => {
       this.setState({ productName: name }, () => console.log('state after getting pdt info', this.state));

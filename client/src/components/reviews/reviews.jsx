@@ -30,6 +30,8 @@ export class Reviews extends React.Component {
                 <Sort
                   sortReviews={this.props.sortReviews}
                   reviewCriteria={this.props.reviewCriteria}
+                  searchTerm={this.props.searchTerm}
+                  selectedFilters={this.props.selectedFilters}
                   noOfReviews={this.props.noOfReviews}
                   noOfFilteredTotalReviews={this.props.filteredTotalReviews.length}
                   noOfSearchedTotalReviews={this.props.searchedTotalReviews.length}
@@ -37,10 +39,11 @@ export class Reviews extends React.Component {
                 />
                 <Search onReviewsSearch={this.props.onReviewsSearch}/>
                 <ReviewsList
-                  reviews={this.props.filteredSearchedCurrentReviews.length > 0 ? this.props.filteredSearchedCurrentReviews :
-                    (this.props.searchedCurrentReviews.length > 0 ? this.props.searchedCurrentReviews :
-                      (this.props.filteredCurrentReviews.length > 0 ? this.props.filteredCurrentReviews:
-                        this.props.currentReviews
+                  reviews={
+                    this.props.searchTerm.length >= 4 && this.props.selectedFilters.length > 0 ? this.props.filteredSearchedCurrentReviews :
+                    (this.props.searchTerm.length >=4 && this.props.selectedFilters.length === 0 ? this.props.searchedCurrentReviews :
+                      (this.props.searchTerm.length < 4 && this.props.selectedFilters.length > 0 ? this.props.filteredCurrentReviews :
+                        (this.props.currentReviews)
                       )
                     )
                   }

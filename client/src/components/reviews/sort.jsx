@@ -13,7 +13,14 @@ class Sort extends React.Component {
     return (
       <div className='reviews-sort'>
         <label htmlFor='sortSelect'>
-          {this.props.noOfFilteredSearchedTotalReviews ? this.props.noOfFilteredSearchedTotalReviews : (this.props.noOfSearchedTotalReviews ? this.props.noOfSearchedTotalReviews: (this.props.noOfFilteredTotalReviews ? this.props.noOfFilteredTotalReviews : this.props.noOfReviews))} reviews, sorted by
+          {
+            this.props.searchTerm.length >= 4 && this.props.selectedFilters.length > 0 ? this.props.noOfFilteredSearchedTotalReviews :
+            (this.props.searchTerm.length >=4 && this.props.selectedFilters.length === 0 ? this.props.noOfSearchedTotalReviews :
+              (this.props.searchTerm.length < 4 && this.props.selectedFilters.length > 0 ? this.props.noOfFilteredTotalReviews :
+                (this.props.noOfReviews)
+              )
+            )
+          } reviews, sorted by
         </label>
         <select id='sortSelect' value={this.props.reviewCriteria} onChange={this.handleSortChange}>
           <option value='relevant'> Relevant </option>

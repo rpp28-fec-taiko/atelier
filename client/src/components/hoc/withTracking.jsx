@@ -1,4 +1,5 @@
 import React from 'react';
+import {BACKEND_URL} from '../app/app.jsx';
 
 const WithTracking = (WrappedComponent, widget) => {
   return class extends React.Component {
@@ -22,7 +23,7 @@ const WithTracking = (WrappedComponent, widget) => {
       }
       // console.log('interactionObj', interactionObj);
 
-      fetch(`http://localhost:3000/interactions`, {
+      fetch(`${BACKEND_URL}/interactions`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

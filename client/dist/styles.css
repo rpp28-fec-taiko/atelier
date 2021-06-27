@@ -780,6 +780,8 @@
 }
 
 .characteristic-bar-container {
+  display: grid;
+  grid-template-rows: auto;
   width: 100%;
   /* background-color: grey; */
   /* height: 10px; */

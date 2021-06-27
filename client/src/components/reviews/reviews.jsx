@@ -19,7 +19,15 @@ export class Reviews extends React.Component {
         <h2>RATINGS & REVIEWS</h2>
         <div className='reviews-body'>
           <div className='reviews-breakdown'>
-            <RatingBreakdown totalReviews={this.props.totalReviews} noOfReviews={this.props.noOfReviews} avgRating={this.props.avgRating} filterReviews={this.props.filterReviews} selectedFilters={this.props.selectedFilters} removeFilters={this.props.removeFilters} removedAllFilters={this.props.removedAllFilters}/>
+            <RatingBreakdown
+              totalReviews={this.props.totalReviews}
+              noOfReviews={this.props.noOfReviews}
+              avgRating={this.props.avgRating}
+              filterReviews={this.props.filterReviews}
+              selectedFilters={this.props.selectedFilters}
+              removeFilters={this.props.removeFilters}
+              removedAllFilters={this.props.removedAllFilters}
+            />
             <PdtBreakdown characteristics={this.props.characteristics}/>
           </div>
           {

@@ -19,7 +19,15 @@ export class Reviews extends React.Component {
         <h2>RATINGS & REVIEWS</h2>
         <div className='reviews-body'>
           <div className='reviews-breakdown'>
-            <RatingBreakdown totalReviews={this.props.totalReviews} noOfReviews={this.props.noOfReviews} avgRating={this.props.avgRating} filterReviews={this.props.filterReviews} selectedFilters={this.props.selectedFilters} removeFilters={this.props.removeFilters} removedAllFilters={this.props.removedAllFilters}/>
+            <RatingBreakdown
+              totalReviews={this.props.totalReviews}
+              noOfReviews={this.props.noOfReviews}
+              avgRating={this.props.avgRating}
+              filterReviews={this.props.filterReviews}
+              selectedFilters={this.props.selectedFilters}
+              removeFilters={this.props.removeFilters}
+              removedAllFilters={this.props.removedAllFilters}
+            />
             <PdtBreakdown characteristics={this.props.characteristics}/>
           </div>
           {
@@ -30,6 +38,8 @@ export class Reviews extends React.Component {
                 <Sort
                   sortReviews={this.props.sortReviews}
                   reviewCriteria={this.props.reviewCriteria}
+                  searchTerm={this.props.searchTerm}
+                  selectedFilters={this.props.selectedFilters}
                   noOfReviews={this.props.noOfReviews}
                   noOfFilteredTotalReviews={this.props.filteredTotalReviews.length}
                   noOfSearchedTotalReviews={this.props.searchedTotalReviews.length}
@@ -37,10 +47,11 @@ export class Reviews extends React.Component {
                 />
                 <Search onReviewsSearch={this.props.onReviewsSearch}/>
                 <ReviewsList
-                  reviews={this.props.filteredSearchedCurrentReviews.length > 0 ? this.props.filteredSearchedCurrentReviews :
-                    (this.props.searchedCurrentReviews.length > 0 ? this.props.searchedCurrentReviews :
-                      (this.props.filteredCurrentReviews.length > 0 ? this.props.filteredCurrentReviews:
-                        this.props.currentReviews
+                  reviews={
+                    this.props.searchTerm.length >= 4 && this.props.selectedFilters.length > 0 ? this.props.filteredSearchedCurrentReviews :
+                    (this.props.searchTerm.length >=4 && this.props.selectedFilters.length === 0 ? this.props.searchedCurrentReviews :
+                      (this.props.searchTerm.length < 4 && this.props.selectedFilters.length > 0 ? this.props.filteredCurrentReviews :
+                        (this.props.currentReviews)
                       )
                     )
                   }

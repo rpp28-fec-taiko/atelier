@@ -578,10 +578,9 @@
 }
 
 /*------ REVIEWS & RATINGS --------*/
-/* .reviews {
-  overflow-y: scroll;
-  max-height: 1200px;
-} */
+.reviews {
+  margin-bottom: 10px;
+}
 .reviews-body {
   display: grid;
   grid-template-columns: 1fr 3fr;
@@ -598,7 +597,7 @@
 
 .reviews-main {
   display: grid;
-  grid-template-rows: auto;
+  grid-template-rows: 30px 25px auto 60px;
   border: 2px solid red;
   margin: 5px;
 }
@@ -622,6 +621,7 @@
   margin: 5px;
   font-size: 20px;
   font-weight: bold;
+  height: 30px;
 }
 
 #sortSelect {
@@ -635,6 +635,7 @@
   border: 1px solid green;
   margin: 5px;
   max-height: 820px;
+  /* min-height: 100px; */
   overflow-y: scroll;
 }
 
@@ -646,6 +647,7 @@
 .reviews-search {
   border: 1px solid green;
   margin: 5px;
+  height: 25px;
 }
 
 .reviews-tile {

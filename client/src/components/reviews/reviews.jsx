@@ -48,9 +48,9 @@ export class Reviews extends React.Component {
                 <Search onReviewsSearch={this.props.onReviewsSearch}/>
                 <ReviewsList
                   reviews={
-                    this.props.searchTerm.length >= 4 && this.props.selectedFilters.length > 0 ? this.props.filteredSearchedCurrentReviews :
-                    (this.props.searchTerm.length >=4 && this.props.selectedFilters.length === 0 ? this.props.searchedCurrentReviews :
-                      (this.props.searchTerm.length < 4 && this.props.selectedFilters.length > 0 ? this.props.filteredCurrentReviews :
+                    this.props.searchTerm.length >= 3 && this.props.selectedFilters.length > 0 ? this.props.filteredSearchedCurrentReviews :
+                    (this.props.searchTerm.length >=3 && this.props.selectedFilters.length === 0 ? this.props.searchedCurrentReviews :
+                      (this.props.searchTerm.length < 3 && this.props.selectedFilters.length > 0 ? this.props.filteredCurrentReviews :
                         (this.props.currentReviews)
                       )
                     )

@@ -620,6 +620,15 @@
 .reviews-sort {
   border: 1px solid green;
   margin: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#sortSelect {
+  border: none;
+  border-bottom: 2px solid black;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .reviews-list {

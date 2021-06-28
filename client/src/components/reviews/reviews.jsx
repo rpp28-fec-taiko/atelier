@@ -16,7 +16,7 @@ export class Reviews extends React.Component {
   render () {
     return (
       <div className='reviews' id='reviews' onClick={(e) => this.props.onWrappedComponentClick(e)}>
-        <h2>RATINGS & REVIEWS</h2>
+        <h4>RATINGS & REVIEWS</h4>
         <div className='reviews-body'>
           <div className='reviews-breakdown'>
             <RatingBreakdown

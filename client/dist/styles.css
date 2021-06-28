@@ -631,23 +631,22 @@
   font-weight: bold;
 }
 
+.reviews-search {
+  border: 1px solid green;
+  margin: 5px;
+  height: 25px;
+}
+
 .reviews-list {
   border: 1px solid green;
   margin: 5px;
   max-height: 820px;
-  /* min-height: 100px; */
   overflow-y: scroll;
 }
 
 .reviews-btns {
   border: 1px solid green;
   margin: 5px;
-}
-
-.reviews-search {
-  border: 1px solid green;
-  margin: 5px;
-  height: 25px;
 }
 
 .reviews-tile {

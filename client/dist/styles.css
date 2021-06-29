@@ -2,7 +2,7 @@
 .app {
   display: grid;
   grid-template-rows: auto;
-  margin-left: 0;
+  margin: 0 10%;
   background-color: rgba(226, 181, 181, 0.15);
 }
 
@@ -16,11 +16,23 @@
   display: flex;
   align-items: center;
   flex-direction: row;
+  justify-content: space-between;
+}
+
+.app-search {
+  margin-right: 10%;
+}
+
+.input-bar input {
+  height: 35px;
+  width: 200px;
 }
 
 .nav h1 {
   letter-spacing: 0.2em;
 }
+
+
 
 .main-container {
   display: grid;

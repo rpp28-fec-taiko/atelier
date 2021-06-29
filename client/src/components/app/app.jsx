@@ -427,10 +427,8 @@ class App extends React.Component {
   render () {
     return (
       <div className='app'>
-        <div className='nav'><h1>Atelier</h1></div>
-        <div className='main-container'>
-          <AppSearch handlePdtChange={this.handlePdtChange}/>
-
+        <div className='nav'><h1>Atelier</h1><AppSearch handlePdtChange={this.handlePdtChange}/></div>
+        {/* <div className='main-container'> */}
           <div className='app-container'>
             <OverviewErrorBoundary>
               <Overview productId={this.state.productId} avgRating={this.state.avgRating} noOfReviews={this.state.noOfReviews}/>
@@ -472,7 +470,7 @@ class App extends React.Component {
             </ReviewsErrorBoundary>
           </div>
         </div>
-      </div>
+      // </div>
     );
   }
 };

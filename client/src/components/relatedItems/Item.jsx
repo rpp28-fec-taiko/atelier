@@ -19,7 +19,7 @@ class Item extends React.Component {
   render() {
     return (
       // <div style={styles.card}>
-      <div className='card'>
+      <div className='card' onClick={() => this.props.updateProductId(this.props.id)}>
         <img className='card-image' alt='related-image' height='225px' width='198px' src={this.props.photo}></img>
         <div className='card-text-box'>
           <div className='card-category'>{this.props.category}</div>

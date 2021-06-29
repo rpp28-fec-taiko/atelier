@@ -396,6 +396,21 @@ class App extends React.Component {
     });
   }
 
+  //  update product id from related items widget
+  updateProductId = (id) => {
+    this.setState({
+      productId: id
+    });
+  }
+  // when product id is updated fetch new product info before render
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.productId !== this.state.productId) {
+      this.getAllReviews()
+      .then(this.getCharacteristics)
+      .then(this.getProductInfo);
+    }
+  }
+
   componentDidMount () {
     this.getAllReviews()
       .then(this.getCharacteristics)
@@ -409,7 +424,7 @@ class App extends React.Component {
         <OverviewErrorBoundary>
           <Overview productId={this.state.productId} avgRating={this.state.avgRating} noOfReviews={this.state.noOfReviews}/>
         </OverviewErrorBoundary>
-        <RelatedItems />
+        <RelatedItems updateProductId={this.updateProductId}/>
         <QAndA productId={this.state.productId}/>
         <ReviewsErrorBoundary>
           <Reviews

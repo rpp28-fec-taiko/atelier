@@ -556,8 +556,12 @@
   font-weight: bold;
 }
 
+.card-category {
+  /* text-transform: uppercase; */
+}
+
 .card-price {
-  margin: 4px 0
+  margin: 4px 0;
 }
 
 .card-button {

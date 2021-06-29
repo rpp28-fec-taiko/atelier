@@ -365,6 +365,8 @@
   margin-right: 20px;
   margin-top: 8px;
   fill: rgb(129, 216, 243);
+  background-color: white;
+  border-radius: 5px;
 }
 
 .social-media-icon:hover {
@@ -414,6 +416,7 @@
   width: 55px;
   padding: 3px;
   border-radius: 55px;
+  background-color: white;
 }
 .style-thumbnail:hover {
   cursor: pointer;
@@ -515,10 +518,11 @@
   border: 1.5px solid black;
   margin-left: 15px;
   padding: 11px;
+  background-color: white;
 }
 
 .star-box:hover {
-  background-color: rgba(245, 244, 244, 0.911);
+  /* background-color: rgb(245, 245, 245); */
   cursor: pointer;
   fill: #FFDF00;
 }

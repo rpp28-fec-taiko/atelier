@@ -180,7 +180,7 @@ class RelatedItems extends React.Component {
           <div ref={ref_id => this.card_container = ref_id} className="card_container">
           {/* <div ref={ref_id => this.card_container = ref_id} className="cardContainer"> */}
           {/* <i class="fa fa-chevron-left"></i> */}
-          {this.state.relatedItems.map(item => <Item updateProductId={this.props.updateProductId} id={item.id} category={item.category} name={item.name} price={item.default_price} stars={item.stars} photo={item.url}/>)}
+          {this.state.relatedItems.map((item, idx) => <Item key={idx} updateProductId={this.props.updateProductId} id={item.id} category={item.category} name={item.name} price={item.default_price} stars={item.stars} photo={item.url}/>)}
             {/* <Item itemNumber={0}/>
             <Item itemNumber={1}/>
             <Item itemNumber={2}/>

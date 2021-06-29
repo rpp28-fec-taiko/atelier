@@ -113,7 +113,7 @@ class App extends React.Component {
 
   filterReviews = (criteria, isSelected) => {
     //Currently no filters applied applied.
-    if (this.state.filteredTotalReviews.length === 0) {
+    if (this.state.filteredTotalReviews.length === 0 && this.state.selectedFilters.length === 0) {
 
       let filteredSearchedTotalReviews = this.state.searchedTotalReviews.filter((review) => review.rating === criteria);
       let filteredSearchedCurrentReviewsLength = this.state.searchedCurrentReviews.length;
@@ -142,7 +142,7 @@ class App extends React.Component {
       let newFilteredReviews = this.state.totalReviews.filter((review) => review.rating === criteria);
       let unsortedFiteredTotalReviews = [...this.state.filteredTotalReviews, ...newFilteredReviews];
       let filteredTotalReviews = sortByCriteria(this.state.reviewCriteria, unsortedFiteredTotalReviews);
-      let currentReviewsLength = this.state.filteredCurrentReviews.length;
+      let currentReviewsLength = this.state.filteredCurrentReviews.length < 2 ? this.state.currentReviews.length : this.state.filteredCurrentReviews.length;
       let filteredCurrentReviews = filteredTotalReviews.slice(0, currentReviewsLength);
       let filteredNextReviews = filteredTotalReviews.slice(currentReviewsLength, currentReviewsLength + 2);
       let selectedFilters = [...this.state.selectedFilters, criteria]
@@ -150,7 +150,7 @@ class App extends React.Component {
       let newFilteredSearchedReviews = this.state.searchedTotalReviews.filter((review) => review.rating === criteria);
       let unsortedFilteredSearchedReviews = [...this.state.filteredSearchedTotalReviews, ...newFilteredSearchedReviews];
       let filteredSearchedTotalReviews = sortByCriteria(this.state.reviewCriteria, unsortedFilteredSearchedReviews);
-      let filteredSearchedCurrentReviewsLength = this.state.filteredSearchedCurrentReviews.length === 0 ? this.state.filteredCurrentReviews.length : this.state.filteredSearchedCurrentReviews.length;
+      let filteredSearchedCurrentReviewsLength = this.state.filteredSearchedCurrentReviews.length < 2 ? this.state.currentReviews.length : this.state.filteredSearchedCurrentReviews.length;
       var filteredSearchedCurrentReviews = filteredSearchedTotalReviews.slice(0, filteredSearchedCurrentReviewsLength);
       var filteredSearchedNextReviews = filteredSearchedTotalReviews.slice(filteredSearchedCurrentReviewsLength, filteredSearchedCurrentReviewsLength + 2);
 
@@ -400,7 +400,24 @@ class App extends React.Component {
   //  update product id from related items widget
   updateProductId = (id) => {
     this.setState({
-      productId: id
+      productId: id,
+      searchTerm: '',
+      totalReviews: [],
+      currentReviews: [],
+      nextReviews: [],
+      filteredTotalReviews: [],
+      filteredCurrentReviews: [],
+      filteredNextReviews: [],
+      searchedTotalReviews: [],
+      searchedCurrentReviews: [],
+      searchedNextReviews: [],
+      filteredSearchedTotalReviews: [],
+      filteredSearchedCurrentReviews: [],
+      filteredSearchedNextReviews: [],
+      reviewCriteria: 'relevant',
+      selectedFilters: [],
+      removedAllFilters: false,
+      characteristics: [],
     });
   }
   // when product id is updated fetch new product info before render
@@ -414,7 +431,25 @@ class App extends React.Component {
 
   handlePdtChange = (id) => {
     this.setState((prevState) => ({
-      productId: id
+      productId: id,
+      searchTerm: '',
+      totalReviews: [],
+      currentReviews: [],
+      nextReviews: [],
+      filteredTotalReviews: [],
+      filteredCurrentReviews: [],
+      filteredNextReviews: [],
+      searchedTotalReviews: [],
+      searchedCurrentReviews: [],
+      searchedNextReviews: [],
+      filteredSearchedTotalReviews: [],
+      filteredSearchedCurrentReviews: [],
+      filteredSearchedNextReviews: [],
+      reviewCriteria: 'relevant',
+      selectedFilters: [],
+      removedAllFilters: false,
+      characteristics: [],
+
     }), () => console.log('state after changing pdt', this.state))
   }
 
@@ -429,7 +464,7 @@ class App extends React.Component {
       <div className='app'>
         <div className='nav'><h1>Atelier</h1></div>
         <div className='main-container'>
-          <AppSearch handlePdtChange={this.handlePdtChange}/>
+          <AppSearch productId={this.state.productId} handlePdtChange={this.handlePdtChange}/>
 
           <div className='app-container'>
             <OverviewErrorBoundary>

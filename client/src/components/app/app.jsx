@@ -464,7 +464,7 @@ class App extends React.Component {
       <div className='app'>
         <div className='nav'><h1>Atelier</h1></div>
         <div className='main-container'>
-          <AppSearch handlePdtChange={this.handlePdtChange}/>
+          <AppSearch productId={this.state.productId} handlePdtChange={this.handlePdtChange}/>
 
           <div className='app-container'>
             <OverviewErrorBoundary>

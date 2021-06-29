@@ -27,7 +27,7 @@ class AppSearch extends React.Component {
       .then((resp) => resp.json())
       .then((products) => {
         this.setState((prevState) => ({
-          products
+          products,
         }), () => console.log('state after getting all pdts', this.state))
       })
   }
@@ -36,12 +36,21 @@ class AppSearch extends React.Component {
     this.getAllPdts()
   }
 
+  componentDidUpdate (prevProps, prevState) {
+    if (prevProps.productId !== this.props.productId) {
+      this.setState((prevState) => ({
+        term: '',
+        results: []
+      }), () => console.log('state after pdt change (APP SEARCH)', this.state))
+    }
+  }
+
   render () {
     return (
       <div className='app-search'>
         <div className='input-bar'>
           <label htmlFor='app-search'> SEARCH </label>
-          <input name='app-search' id='app-search' type='search' onChange={this.handleChange}/>
+          <input name='app-search' value={this.state.term} id='app-search' type='search' onChange={this.handleChange}/>
         </div>
 
         <div className='results'>

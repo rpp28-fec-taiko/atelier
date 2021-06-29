@@ -2,7 +2,7 @@
 .app {
   display: grid;
   grid-template-rows: auto;
-  margin: 0 10%;
+  margin-left: 0;
   background-color: rgba(226, 181, 181, 0.15);
 }
 
@@ -20,6 +20,12 @@
 
 .nav h1 {
   letter-spacing: 0.2em;
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 15% 85%;
+  grid-auto-flow: column;
 }
 
 /*------ PRODUCT OVERVIEW --------*/

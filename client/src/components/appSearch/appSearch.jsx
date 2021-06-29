@@ -15,11 +15,18 @@ class AppSearch extends React.Component {
 
   handleChange = (e) => {
     // console.log('search', e.target.value);
-    let results = this.state.products.filter((pdt) => pdt.name.toLowerCase().includes(e.target.value.toLowerCase())).slice(0, 10);
-    this.setState((prevState) => ({
-      term: e.target.value,
-      results
-    }), () => console.log('state after searching for pdts', this.state))
+    if (e.target.value === '') {
+      this.setState({
+        term: e.target.value,
+        results: []
+      });
+    } else {
+      let results = this.state.products.filter((pdt) => pdt.name.toLowerCase().includes(e.target.value.toLowerCase())).slice(0, 10);
+      this.setState((prevState) => ({
+        term: e.target.value,
+        results
+      }), () => console.log('state after searching for pdts', this.state))
+    }
   }
 
   getAllPdts = () => {
@@ -31,6 +38,8 @@ class AppSearch extends React.Component {
         }), () => console.log('state after getting all pdts', this.state))
       })
   }
+
+  // onclick for resetting search bar after search results click
 
   componentDidMount () {
     this.getAllPdts()

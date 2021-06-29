@@ -17,7 +17,7 @@ class Search extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.searchTerm !== ''  && this.props.searchTerm === '') {
+    if (prevProps.productId !== this.props.productId) {
       this.setState((prevState) => ({
         searchTerm: ''
       }), () => console.log('reviews search component update after changing pdt', this.state))

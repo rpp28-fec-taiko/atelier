@@ -522,11 +522,32 @@
   fill: #FFDF00;
 }
 
-/* related items */
+/* ------- RELATED ITEMS --------------------- */
 
 .related-items {
   width: 100%;
   /* margin-left: 8.6%; */
+}
+
+.card {
+  /* border: 1px solid red; */
+  background-color: rgb(248, 247, 247);
+  border: 1px solid black;
+  margin-top: 10px;
+  box-shadow: 1.5px 1px rgba(51, 51, 51, 0.438);
+}
+
+.card-text-box {
+  padding-left: 5px;
+}
+
+.card-name {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.card-price {
+  margin: 4px 0
 }
 
 

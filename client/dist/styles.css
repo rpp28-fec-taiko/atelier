@@ -3,6 +3,7 @@
   display: grid;
   grid-template-rows: auto;
   margin: 0 10%;
+  background-color: rgba(226, 181, 181, 0.15);
 }
 
 .nav {

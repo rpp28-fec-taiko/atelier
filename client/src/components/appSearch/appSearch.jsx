@@ -39,13 +39,7 @@ class AppSearch extends React.Component {
       })
   }
 
-  // componentDidUpdate() {
-  //   if (this.state.term === '') {
-  //     this.setState({
-  //       results: []
-  //     });
-  //   }
-  // }
+  // onclick for resetting search bar after search results click
 
   componentDidMount () {
     this.getAllPdts()

@@ -529,12 +529,22 @@
   /* margin-left: 8.6%; */
 }
 
+.related-items h2 {
+  color:rgb(48, 48, 48);
+  margin-bottom: 15px;
+}
+
 .card {
   /* border: 1px solid red; */
   background-color: rgb(248, 247, 247);
   border: 1px solid black;
   margin-top: 10px;
   box-shadow: 1.5px 1px rgba(51, 51, 51, 0.438);
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: 2.5px 2px rgb(83, 83, 83);
 }
 
 .card-text-box {
@@ -548,6 +558,19 @@
 
 .card-price {
   margin: 4px 0
+}
+
+.card-button {
+  border: 1px solid black;
+  border-radius: 3px;
+  height: 25px;
+  background-color: white;
+  margin-right: 10px;
+}
+
+.card-button:hover {
+  background-color: rgb(241, 241, 241);
+  cursor: pointer;
 }
 
 

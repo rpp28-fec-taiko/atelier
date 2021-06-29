@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Item from './Item.jsx';
+// import ChevronLeft from '../productOverview/icons/ChevronLeft.jsx';
+// import ChevronRight from '../productOverview/icons/ChevronRight.jsx';
 
 class RelatedItems extends React.Component {
   constructor(props) {
@@ -171,11 +173,9 @@ class RelatedItems extends React.Component {
   render() {
     return (
       <div className='related-items'>
-        <h1>Related Products</h1>
-        <div>
-        <button onClick={this.handle_previous}>Previous</button>
-        <button onClick={this.handle_next}>Next</button>
-        </div>
+        <h2 className='related-heading'>RELATED PRODUCTS</h2>
+        <button className='card-button' onClick={this.handle_previous}>Previous</button>
+        <button className='card-button' onClick={this.handle_next}>Next</button>
         <div className="viewPort">
           <div ref={ref_id => this.card_container = ref_id} className="card_container">
           {/* <div ref={ref_id => this.card_container = ref_id} className="cardContainer"> */}

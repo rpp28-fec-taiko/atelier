@@ -23,13 +23,22 @@ app.use(cors());
 // Products API --------------------------------------------------------
 
 app.get('/products', (req, res) => {
-  return axios.get(`${apiUrl}/products?page=4`, {
+  return axios.get(`${apiUrl}/products?count=100000`, {
     headers: {
       'Authorization': gitToken
     }
   })
   .then((results) => {
-    console.log('results', results.data);
+    // console.log('results', results.data);
+    let filteredData = results.data.map((pdt) => {
+      return {
+        id: pdt.id,
+        name: pdt.name
+      }
+    })
+    // console.log('results', filteredData);
+    res.status(200).send(filteredData);
+
   })
   .catch(() => {
     console.log('error fetching products');

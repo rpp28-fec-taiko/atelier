@@ -6,6 +6,7 @@ import RelatedItems from '../relatedItems/RelatedItems.jsx';
 import {findAvgRating, sortByCriteria} from '../../../../helper/reviewsHelper.js';
 import ReviewsErrorBoundary from '../errorBoundary/reviewsErrorBoundary.jsx';
 import OverviewErrorBoundary from '../errorBoundary/overviewErrorBoundary.jsx'
+import AppSearch from '../appSearch/appSearch.jsx';
 
 export const BACKEND_URL = process.env.NODE_ENV === 'development' ? `http://localhost:3000` : `http://34.225.154.204`;
 
@@ -411,6 +412,12 @@ class App extends React.Component {
     }
   }
 
+  handlePdtChange = (id) => {
+    this.setState((prevState) => ({
+      productId: id
+    }), () => console.log('state after changing pdt', this.state))
+  }
+
   componentDidMount () {
     this.getAllReviews()
       .then(this.getCharacteristics)
@@ -421,44 +428,50 @@ class App extends React.Component {
     return (
       <div className='app'>
         <div className='nav'><h1>Atelier</h1></div>
-        <OverviewErrorBoundary>
-          <Overview productId={this.state.productId} avgRating={this.state.avgRating} noOfReviews={this.state.noOfReviews}/>
-        </OverviewErrorBoundary>
-        <RelatedItems updateProductId={this.updateProductId}/>
-        {/* <QAndA productId={this.state.productId}/> */}
-        <ReviewsErrorBoundary>
-          <Reviews
-            productId={this.state.productId}
-            productName={this.state.productName}
-            totalReviews={this.state.totalReviews}
-            currentReviews={this.state.currentReviews}
-            nextReviews={this.state.nextReviews}
-            filteredTotalReviews={this.state.filteredTotalReviews}
-            filteredCurrentReviews={this.state.filteredCurrentReviews}
-            filteredNextReviews={this.state.filteredNextReviews}
-            selectedFilters={this.state.selectedFilters}
-            noOfReviews={this.state.noOfReviews}
-            avgRating={this.state.avgRating}
-            reviewCriteria={this.state.reviewCriteria}
-            removedAllFilters={this.state.removedAllFilters}
-            characteristics={this.state.characteristics}
-            searchedTotalReviews={this.state.searchedTotalReviews}
-            searchedCurrentReviews={this.state.searchedCurrentReviews}
-            searchedNextReviews={this.state.searchedNextReviews}
-            filteredSearchedTotalReviews={this.state.filteredSearchedTotalReviews}
-            filteredSearchedCurrentReviews={this.state.filteredSearchedCurrentReviews}
-            filteredSearchedNextReviews={this.state.filteredSearchedNextReviews}
-            helpfulReviews={this.state.helpfulReviews}
-            searchTerm={this.state.searchTerm}
-            increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss}
-            reportReview={this.reportReview}
-            get2Reviews={this.get2Reviews}
-            sortReviews={this.sortReviews}
-            filterReviews={this.filterReviews}
-            removeFilters={this.removeFilters}
-            onReviewsSearch={this.onReviewsSearch}
-          />
-        </ReviewsErrorBoundary>
+        <div className='main-container'>
+          <AppSearch handlePdtChange={this.handlePdtChange}/>
+
+          <div className='app-container'>
+            <OverviewErrorBoundary>
+              <Overview productId={this.state.productId} avgRating={this.state.avgRating} noOfReviews={this.state.noOfReviews}/>
+            </OverviewErrorBoundary>
+            <RelatedItems updateProductId={this.updateProductId}/>
+            {/* <QAndA productId={this.state.productId}/> */}
+            <ReviewsErrorBoundary>
+              <Reviews
+                productId={this.state.productId}
+                productName={this.state.productName}
+                totalReviews={this.state.totalReviews}
+                currentReviews={this.state.currentReviews}
+                nextReviews={this.state.nextReviews}
+                filteredTotalReviews={this.state.filteredTotalReviews}
+                filteredCurrentReviews={this.state.filteredCurrentReviews}
+                filteredNextReviews={this.state.filteredNextReviews}
+                selectedFilters={this.state.selectedFilters}
+                noOfReviews={this.state.noOfReviews}
+                avgRating={this.state.avgRating}
+                reviewCriteria={this.state.reviewCriteria}
+                removedAllFilters={this.state.removedAllFilters}
+                characteristics={this.state.characteristics}
+                searchedTotalReviews={this.state.searchedTotalReviews}
+                searchedCurrentReviews={this.state.searchedCurrentReviews}
+                searchedNextReviews={this.state.searchedNextReviews}
+                filteredSearchedTotalReviews={this.state.filteredSearchedTotalReviews}
+                filteredSearchedCurrentReviews={this.state.filteredSearchedCurrentReviews}
+                filteredSearchedNextReviews={this.state.filteredSearchedNextReviews}
+                helpfulReviews={this.state.helpfulReviews}
+                searchTerm={this.state.searchTerm}
+                increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss}
+                reportReview={this.reportReview}
+                get2Reviews={this.get2Reviews}
+                sortReviews={this.sortReviews}
+                filterReviews={this.filterReviews}
+                removeFilters={this.removeFilters}
+                onReviewsSearch={this.onReviewsSearch}
+              />
+            </ReviewsErrorBoundary>
+          </div>
+        </div>
       </div>
     );
   }

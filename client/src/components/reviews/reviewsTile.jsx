@@ -69,7 +69,7 @@ class ReviewsTile extends React.Component {
     return (
       <div className='reviews-tile'>
         <div className='reviews-tile-stars-date'>
-          <div className='reviews-tile-stars'> <Stars size={24} rating={rating}/> </div>
+          <div className='reviews-tile-stars'> <Stars size={18} rating={rating}/> </div>
           <div className='reviews-tile-usernameDate'>
             { getHighlightedText(reviewer_name, this.props.searchTerm) }, { new Date(date).toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) }
           </div>
@@ -101,7 +101,7 @@ class ReviewsTile extends React.Component {
 
         {response ? <Response response={response}/> : null}
 
-        <div>
+        <div className='reviews-tile-actions'>
           <p>WAS THIS REVIEW HELPFUL?
           <span className='reviews-tile-helpfulness' onClick={this.handleYesClick}> YES </span> ({helpfulness}) OR
           <span> NO </span> (#) |

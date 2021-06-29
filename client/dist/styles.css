@@ -650,7 +650,7 @@
 }
 
 .reviews-tile {
-  border-bottom: 1px solid blue;
+  border-bottom: 1px solid black;
   margin-top: 25px;
   margin-bottom: 5px;
   display: grid;
@@ -660,6 +660,7 @@
 .reviews-tile-stars-date {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin-bottom: 10px;
 }
 
 .reviews-tile-usernameDate {
@@ -669,6 +670,11 @@
 .reviews-tile-summary {
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.reviews-tile-body {
+  margin-bottom: 10px;
 }
 
 .reviews-tile-body-expand {
@@ -679,7 +685,8 @@
 .reviews-tile-body-images {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  /* cursor: pointer; */
+  margin-top: 10px;
+  width: 380px;
 }
 
 .reviews-tile-body-modal {
@@ -709,7 +716,8 @@
 }
 
 .reviews-tile-response {
-  background-color: rgba(112, 103, 103, 0.6);
+  background-color: #d3d3d3;
+  margin-top: 10px;
 }
 
 .reviews-tile-response-main {
@@ -718,13 +726,23 @@
   padding: 10px;
 }
 
+.reviews-tile-response-main .heading {
+  font-weight: bold;
+}
+
 .reviews-tile-response-main p{
   padding: 0;
   margin-bottom: 0;
 }
 
+.reviews-tile-actions {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
 .reviews-tile-helpfulness {
   cursor: pointer;
+  font-weight: bold;
 }
 
 .reviews-ratings-breakdown-summary {

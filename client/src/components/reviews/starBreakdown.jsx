@@ -12,7 +12,7 @@ const StarBreakdown = ({ totalReviews, filterReviews, selectedFilters, removeFil
           selectedFilters.length === 0 ? 0 :
           <div>
             {
-              selectedFilters.map((filter, idx, list) => {
+              selectedFilters.sort().map((filter, idx, list) => {
                 if (idx === list.length - 1) {
                   return `${filter} stars`
                 }

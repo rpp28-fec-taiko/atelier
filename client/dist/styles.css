@@ -892,6 +892,20 @@
   margin: 5px;
 }
 
+.reviews-ratings-breakdown-star button {
+  height: 20px;
+  width: 150px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(129, 216, 243);
+  color: white;
+}
+
+.reviews-ratings-breakdown-star button:hover {
+  cursor: pointer;
+  background-color: lightblue;
+}
+
 .bar {
   display: grid;
   grid-template-columns: 15% 70% 15%;

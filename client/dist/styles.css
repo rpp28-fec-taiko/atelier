@@ -647,6 +647,29 @@
 .reviews-btns {
   border: 1px solid green;
   margin: 5px;
+  display: grid;
+  grid-template-columns: auto;
+  grid-auto-flow: column;
+  width: 400px;
+  margin-top: 10px;
+}
+
+.more-reviews {
+  margin-right: 20px;
+}
+
+.more-reviews button {
+  height: 40px;
+  width: 150px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(129, 216, 243);
+  color: white;
+}
+
+.more-reviews button:hover {
+  cursor: pointer;
+  background-color: lightblue;
 }
 
 .reviews-tile {
@@ -929,6 +952,20 @@
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
+}
+
+.add-review button {
+  height: 40px;
+  width: 150px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(129, 216, 243);
+  color: white;
+}
+
+.add-review button:hover {
+  cursor: pointer;
+  background-color: lightblue;
 }
 
 .add-review-photos {

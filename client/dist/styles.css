@@ -20,7 +20,29 @@
 }
 
 .app-search {
-  margin-right: 10%;
+  /* margin-right: 10%; */
+  position: absolute;
+  right: 20%;
+  top: 20px;
+}
+
+.results {
+  z-index: 2;
+  background-color: white;
+  color: black;
+  border: 1px solid rgb(82, 82, 82);
+  margin-top: 2px;
+  position: absolute;
+  /* padding: 3px; */
+}
+
+.app-search-result {
+  padding: 2px 4px;
+}
+
+.app-search-result:hover {
+  cursor: pointer;
+  background-color: lightgrey;
 }
 
 .input-bar input {

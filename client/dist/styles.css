@@ -876,7 +876,7 @@
 
 .add-review-modal-main {
   display: grid;
-  grid-template-rows: 25px 25px auto;
+  grid-template-rows: 25px 25px  60px 30px auto;
   position:fixed;
   background: white;
   width: 70%;
@@ -898,10 +898,23 @@
   justify-self: center;
 }
 
+.add-review-rating {
+  margin-left: 10px;
+}
+
 .add-review-rating .description {
+  margin-top: 10px;
   display: grid;
   grid-template-columns: 95px 100px;
   grid-auto-flow: column;
+}
+
+.add-review-recommend {
+  margin-left: 10px;
+}
+
+.add-review-characteristics {
+  margin-left: 10px;
 }
 
 .add-review-characteristics .characteristic {
@@ -921,12 +934,28 @@
   justify-items: center;
 }
 
+.add-review-summary {
+  margin-left: 10px;
+}
+
+.add-review-body {
+  margin-left: 10px;
+}
+
 .add-review-body p {
   margin: 0;
 }
 
+.add-review-nickname {
+  margin-left: 10px;
+}
+
 .add-review-nickname p {
   margin: 0;
+}
+
+.add-review-email {
+  margin-left: 10px;
 }
 
 .add-review-email p {
@@ -954,6 +983,10 @@
   transform: translate(-50%,-50%);
 }
 
+.add-review-submit {
+  margin-left: 10px;
+}
+
 .add-review button {
   height: 40px;
   width: 150px;
@@ -971,6 +1004,7 @@
 .add-review-photos {
   display: grid;
   grid-template-rows: auto;
+  margin-left: 10px;
 }
 
 .add-review-photos .list img{

@@ -584,13 +584,13 @@
 .reviews-body {
   display: grid;
   grid-template-columns: 1fr 3fr;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .reviews-breakdown {
   display: grid;
   grid-template-rows: 1fr 1fr;
-  border: 2px solid red;
+  /* border: 2px solid red; */
   margin: 5px;
   height: 780px;
 }
@@ -598,7 +598,7 @@
 .reviews-main {
   display: grid;
   grid-template-rows: 30px 25px auto 60px;
-  border: 2px solid red;
+  /* border: 2px solid red; */
   margin: 5px;
 }
 
@@ -606,18 +606,18 @@
   display: grid;
   grid-template-rows: 2fr 1fr 4fr;
   height: 350px;
-  border: 1px solid green;
+  /* border: 1px solid green; */
   margin: 5px;
 }
 
 .reviews-pdt-breakdown {
-  border: 1px solid green;
+  /* border: 1px solid green; */
   margin: 5px;
   height: 400px;
 }
 
 .reviews-sort {
-  border: 1px solid green;
+  /* border: 1px solid green; */
   margin: 5px;
   font-size: 20px;
   font-weight: bold;
@@ -632,20 +632,20 @@
 }
 
 .reviews-search {
-  border: 1px solid green;
+  /* border: 1px solid green; */
   margin: 5px;
   height: 25px;
 }
 
 .reviews-list {
-  border: 1px solid green;
+  /* border: 1px solid green; */
   margin: 5px;
   max-height: 820px;
   overflow-y: scroll;
 }
 
 .reviews-btns {
-  border: 1px solid green;
+  /* border: 1px solid green; */
   margin: 5px;
   display: grid;
   grid-template-columns: auto;
@@ -772,7 +772,7 @@
   display: grid;
   grid-template-columns: 1fr 3fr;
   grid-auto-flow: column;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   margin: 5px;
   height: 70px;
 }
@@ -787,13 +787,13 @@
 }
 
 .reviews-ratings-breakdown-recommend {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   margin: 5px;
   height: 30px;
 }
 
 .reviews-ratings-breakdown-star {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   margin: 5px;
 }
 
@@ -847,7 +847,7 @@
 }
 
 .characteristic-range {
-  width: 82%;
+  width: 84%;
   -webkit-appearance: none;
   appearance: none;
   background: #d3d3d3;

@@ -31,15 +31,16 @@ export class Overview extends React.Component {
       .then(this.setDefaultStyle);
   }
 
-  componentDidUpdate (prevProps, prevState) {
-    if (this.props.productId !== prevProps.productId) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.productId !== this.props.productId) {
       this.fetchProductInfo()
-      .then(this.fetchStyles)
-      .then(this.setDefaultStyle);
+        .then(this.fetchStyles)
+        .then(this.setDefaultStyle);
     }
   }
 
   fetchProductInfo() {
+    console.log('fetch overview state', this.state)
     return fetch(`${BACKEND_URL}/productInfo?productId=${this.props.productId}`)
       .then((results) => {
         return results.json();

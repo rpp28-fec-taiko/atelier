@@ -14,7 +14,7 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      productId: '22161',
+      productId: '22134',
       productName: '',
       totalReviews: [],
       currentReviews: [],
@@ -397,6 +397,21 @@ class App extends React.Component {
     });
   }
 
+  //  update product id from related items widget
+  updateProductId = (id) => {
+    this.setState({
+      productId: id
+    });
+  }
+  // when product id is updated fetch new product info before render
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.productId !== this.state.productId) {
+      this.getAllReviews()
+      .then(this.getCharacteristics)
+      .then(this.getProductInfo);
+    }
+  }
+
   handlePdtChange = (id) => {
     this.setState((prevState) => ({
       productId: id
@@ -407,16 +422,6 @@ class App extends React.Component {
     this.getAllReviews()
       .then(this.getCharacteristics)
       .then(this.getProductInfo);
-  }
-
-  componentDidUpdate (prevProps, prevState) {
-    // console.log('prevState', prevState)
-    // console.log('thisState', this.state)
-    if (this.state.productId !== prevState.productId) {
-      this.getAllReviews()
-      .then(this.getCharacteristics)
-      .then(this.getProductInfo);
-    }
   }
 
   render () {
@@ -430,7 +435,7 @@ class App extends React.Component {
             <OverviewErrorBoundary>
               <Overview productId={this.state.productId} avgRating={this.state.avgRating} noOfReviews={this.state.noOfReviews}/>
             </OverviewErrorBoundary>
-            <RelatedItems />
+            <RelatedItems updateProductId={this.updateProductId}/>
             {/* <QAndA productId={this.state.productId}/> */}
             <ReviewsErrorBoundary>
               <Reviews

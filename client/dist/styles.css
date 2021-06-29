@@ -371,6 +371,8 @@
   margin-right: 20px;
   margin-top: 8px;
   fill: rgb(129, 216, 243);
+  background-color: white;
+  border-radius: 5px;
 }
 
 .social-media-icon:hover {
@@ -420,6 +422,7 @@
   width: 55px;
   padding: 3px;
   border-radius: 55px;
+  background-color: white;
 }
 .style-thumbnail:hover {
   cursor: pointer;
@@ -521,19 +524,68 @@
   border: 1.5px solid black;
   margin-left: 15px;
   padding: 11px;
+  background-color: white;
 }
 
 .star-box:hover {
-  background-color: rgba(245, 244, 244, 0.911);
+  /* background-color: rgb(245, 245, 245); */
   cursor: pointer;
   fill: #FFDF00;
 }
 
-/* related items */
+/* ------- RELATED ITEMS --------------------- */
 
 .related-items {
   width: 100%;
   /* margin-left: 8.6%; */
+}
+
+.related-items h2 {
+  color:rgb(48, 48, 48);
+  margin-bottom: 15px;
+}
+
+.card {
+  /* border: 1px solid red; */
+  background-color: rgb(248, 247, 247);
+  border: 1px solid black;
+  margin-top: 10px;
+  box-shadow: 1.5px 1px rgba(51, 51, 51, 0.438);
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: 2.5px 2px rgb(83, 83, 83);
+}
+
+.card-text-box {
+  padding-left: 5px;
+}
+
+.card-name {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.card-category {
+  /* text-transform: uppercase; */
+}
+
+.card-price {
+  margin: 4px 0;
+}
+
+.card-button {
+  border: 1px solid black;
+  border-radius: 3px;
+  height: 25px;
+  background-color: white;
+  margin-right: 10px;
+}
+
+.card-button:hover {
+  background-color: rgb(241, 241, 241);
+  cursor: pointer;
 }
 
 

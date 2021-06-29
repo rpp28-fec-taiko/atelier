@@ -52,6 +52,7 @@ app.get('/productInfo', (req, res) => {
     }
   })
   .then((results) => {
+    console.log('product', results.data)
     res.status(200);
     res.json(results.data);
   })
@@ -68,7 +69,7 @@ app.get('/styles', (req, res) => {
     }
   })
   .then((results) => {
-    // console.log('success styles', results.data)
+    console.log('success styles', results.data.results[0].photos[0])
     res.status(200);
     res.json(results.data);
   })

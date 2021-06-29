@@ -400,7 +400,24 @@ class App extends React.Component {
   //  update product id from related items widget
   updateProductId = (id) => {
     this.setState({
-      productId: id
+      productId: id,
+      searchTerm: '',
+      totalReviews: [],
+      currentReviews: [],
+      nextReviews: [],
+      filteredTotalReviews: [],
+      filteredCurrentReviews: [],
+      filteredNextReviews: [],
+      searchedTotalReviews: [],
+      searchedCurrentReviews: [],
+      searchedNextReviews: [],
+      filteredSearchedTotalReviews: [],
+      filteredSearchedCurrentReviews: [],
+      filteredSearchedNextReviews: [],
+      reviewCriteria: 'relevant',
+      selectedFilters: [],
+      removedAllFilters: false,
+      characteristics: [],
     });
   }
   // when product id is updated fetch new product info before render

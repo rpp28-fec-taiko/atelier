@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "jest": {
+    "preset": "jest-puppeteer",
     "setupFilesAfterEnv": [
       "<rootDir>/test/enzyme.config.js"
     ],
@@ -11,7 +12,6 @@
     "moduleNameMapper": {
       "\\.(css|less|sass|scss)$": "<rootDir>/test/CSSStub.js"
     },
-    "preset": "jest-puppeteer",
     "maxWorkers": 2
   },
   "scripts": {

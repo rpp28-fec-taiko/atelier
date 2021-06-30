@@ -35,7 +35,7 @@ const dummyProduct2 = {
 describe('Features', () => {
   const wrapper = shallow(<Features product={dummyProduct1}/>)
 
-  it('checks that component exist', () => {
+  it('checks that component exists', () => {
     const wrapper = shallow(<Features product={dummyProduct1}/>)
     expect(wrapper.exists('.features')).toBe(true);
   });

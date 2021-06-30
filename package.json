@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "jest": {
-    "preset": "jest-puppeteer",
     "setupFilesAfterEnv": [
       "<rootDir>/test/enzyme.config.js"
     ],
@@ -14,7 +13,7 @@
     }
   },
   "scripts": {
-    "test": "jest --runInBand",
+    "test": "jest",
     "test-w": "jest --watch",
     "coverage": "jest --coverage",
     "build": "webpack --mode development --watch",
@@ -57,8 +56,6 @@
   "devDependencies": {
     "css-loader": "^5.2.6",
     "eslint": "^7.27.0",
-    "jest-puppeteer": "^5.0.4",
-    "puppeteer": "^10.1.0",
     "style-loader": "^2.0.0"
   }
 }

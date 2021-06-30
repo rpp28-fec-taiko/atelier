@@ -985,7 +985,7 @@
 
 .add-review-modal-main {
   display: grid;
-  grid-template-rows: auto;
+  grid-template-rows: 20px 20px auto;
   position:fixed;
   background: white;
   width: 70%;

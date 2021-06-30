@@ -399,6 +399,11 @@ class App extends React.Component {
 
   //  update product id from related items widget
   updateProductId = (id) => {
+    id = String(id)
+    if (id === this.state.productId) {
+      return;
+    }
+
     this.setState({
       productId: id,
       searchTerm: '',
@@ -430,6 +435,10 @@ class App extends React.Component {
   }
 
   handlePdtChange = (id) => {
+    if (id === this.state.productId) {
+      return;
+    }
+
     this.setState((prevState) => ({
       productId: id,
       searchTerm: '',

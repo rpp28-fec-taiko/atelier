@@ -602,10 +602,10 @@
   font-size: 1.4em;
   font-weight: bold;
 }
-
+/*
 .card-category {
-  /* text-transform: uppercase; */
-}
+  text-transform: uppercase;
+} */
 
 .card-price {
   margin: 4px 0;
@@ -985,7 +985,7 @@
 
 .add-review-modal-main {
   display: grid;
-  grid-template-rows: 25px 25px  60px 30px 290px 50px auto 70px 70px;
+  grid-template-rows: 20px 20px auto;
   position:fixed;
   background: white;
   width: 70%;

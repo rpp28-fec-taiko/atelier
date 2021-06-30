@@ -11,7 +11,8 @@
     "verbose": true,
     "moduleNameMapper": {
       "\\.(css|less|sass|scss)$": "<rootDir>/test/CSSStub.js"
-    }
+    },
+    "maxWorkers": 2
   },
   "scripts": {
     "test": "jest",

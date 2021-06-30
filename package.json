@@ -4,15 +4,13 @@
   "description": "",
   "main": "index.js",
   "jest": {
-    "preset": "jest-puppeteer",
     "setupFilesAfterEnv": [
       "<rootDir>/test/enzyme.config.js"
     ],
     "verbose": true,
     "moduleNameMapper": {
       "\\.(css|less|sass|scss)$": "<rootDir>/test/CSSStub.js"
-    },
-    "maxWorkers": 2
+    }
   },
   "scripts": {
     "test": "jest",
@@ -47,11 +45,9 @@
     "enzyme": "^3.11.0",
     "express": "^4.17.1",
     "jest": "^27.0.3",
-    "jest-puppeteer": "^5.0.4",
     "multer": "^1.4.2",
     "multiparty": "^4.2.2",
     "nodemon": "^2.0.7",
-    "puppeteer": "^10.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "webpack": "^5.38.1",

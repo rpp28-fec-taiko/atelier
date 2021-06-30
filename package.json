@@ -11,7 +11,8 @@
     "moduleNameMapper": {
       "\\.(css|less|sass|scss)$": "<rootDir>/test/CSSStub.js"
     },
-    "preset": "jest-puppeteer"
+    "preset": "jest-puppeteer",
+    "maxWorkers": "2"
   },
   "scripts": {
     "test": "jest",

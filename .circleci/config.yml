@@ -36,7 +36,7 @@ jobs:
           command: npm test
       - run:
           name: Run cypress
-          command: npx cypress
+          command: npx cypress run
 
 workflows:
   # Below is the definition of your workflow.

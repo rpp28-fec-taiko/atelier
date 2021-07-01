@@ -110,15 +110,11 @@ class Cart extends React.Component {
   checkFavorite() {
     // check user storage to see if product id exists there
     let currentFavorites = JSON.parse(window.localStorage.getItem('favorites'));
-    // if it does
-    console.log('current favs in method', currentFavorites)
 
     // only check if local storage has any favorites
     if (currentFavorites) {
-      // console.log('id prod', this.props.product.id)
       if (currentFavorites.includes(this.props.product.id)) {
         // change favroite product state to true
-        // console.log('id found in favs')
         this.setState({
           favoriteProduct: true
         });
@@ -129,8 +125,6 @@ class Cart extends React.Component {
       }
     }
 
-
-    // this will have to be in component did update? mount?
   }
 
   handleToggleFavorite() {
@@ -151,7 +145,6 @@ class Cart extends React.Component {
 
     // otherwise if product is already in favorites, remove it and change state
     } else {
-      // handle unfavoriting an item
       let currentFavorites = JSON.parse(window.localStorage.getItem('favorites'));
       console.log('currfavs', currentFavorites);
       let idx = currentFavorites.indexOf(this.props.product.id);
@@ -161,7 +154,6 @@ class Cart extends React.Component {
         favoriteProduct: false
       });
     }
-
 
   }
 

@@ -14,14 +14,13 @@ describe ('Reivews', () => {
   describe('Sort Dropdown', () => {
     it('should display relevant on load', () => {
       let sort = cy.get('#sortSelect');
-      sort.should('have.value', 'relevant')
+      sort.should('have.value', 'relevant');
+      sort.select('Helpful').should('have.value', 'helpful');
 
-    //   sort.select('Helpful').should('have.value', 'helpful')
-    //   let helpfulPara = cy.get('.reviews-tile-actions');
-    //   let one = helpfulPara.children().first();
-    //   let two = helpfulPara.children().last();
-    // })
+      // let helpfulCount = cy.get('.reviews-tile-helpful-count');
+      // helpfulCount.invoke('text').then(parseFloat)
 
+    })
   })
 })
 

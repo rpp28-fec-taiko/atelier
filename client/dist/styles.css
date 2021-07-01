@@ -359,7 +359,7 @@
   flex-direction: row;
   justify-content: center;
   grid-area: 4 / 1 / span 1 / span 2;
-  width: 80%;
+  width: 88%;
   margin-left: 5%;
   margin-top: 15px;
 }
@@ -385,7 +385,7 @@
 .features {
   margin-top: 25px;
   align-self: center;
-  margin-left: 60px;
+  margin-left: 50px;
   border-left: 1px solid black;
   display: inline-block;
 }
@@ -435,6 +435,7 @@
 .styles-text {
   font-weight: bold;
   margin-bottom: 10px;
+  font-size: 1.1em;
 }
 
 .current-style-name {
@@ -444,6 +445,7 @@
 .style-name {
   font-size: 0.9em;
   color: rgb(54, 54, 54);
+  font-size: 1.1em;
 }
 
 .style-row {
@@ -457,10 +459,10 @@
   margin-top: 15px;
   margin-right: 7%;
   display: inline-block;
-  height: 55px;
-  width: 55px;
+  height: 52px;
+  width: 52px;
   padding: 3px;
-  border-radius: 55px;
+  border-radius: 52px;
   background-color: white;
 }
 .style-thumbnail:hover {
@@ -469,9 +471,9 @@
 }
 
 .style-thumbnail img {
-  height: 55px;
-  width: 55px;
-  border-radius: 55px;
+  height: 52px;
+  width: 52px;
+  border-radius: 52px;
 }
 
 .current-style-selection {
@@ -514,8 +516,8 @@
 }
 
 .cart-size-select select {
-  height: 45px;
-  width: 150px;
+  height: 50px;
+  width: 180px;
   border: 1.5px solid black;
   border-radius: 0;
   font-size: 13px;
@@ -527,9 +529,9 @@
 }
 
 .cart-quantity-select select {
-  height: 45px;
+  height: 50px;
   margin-left: 15px;
-  width: 60px;
+  width: 70px;
   border: 1.5px solid black;
   border-radius: 0;
 }
@@ -562,7 +564,7 @@
 .star-box {
   border: 1.5px solid black;
   margin-left: 15px;
-  padding: 11px;
+  padding: 13.5px;
   background-color: white;
 }
 

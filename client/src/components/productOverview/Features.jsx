@@ -22,7 +22,7 @@ const Features = (props) => {
       <ul>
       {filtered.map((item, idx) => {
          let val = item.value ? ': ' + item.value : null;
-         return <li key={idx}>  <b>{item.feature}</b>{val}</li>}
+         return <li key={idx}> <b> {item.feature}</b>{val}</li>}
       )}
       </ul>
     </div>

@@ -34,7 +34,9 @@ jobs:
       - run:
           name: Run tests
           command: npm test
-      - cypress/run
+      - cypress/run:
+          start: npm start
+          wait-on: 'http://localhost:3000'
 
 workflows:
   # Below is the definition of your workflow.

@@ -17,6 +17,9 @@ jobs:
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/node
     docker:
       - image: cimg/node:15.1
+    environment:
+      NODE_ENV: development
+      GIT_API_TOKEN: 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
     # Then run your tests!
     # CircleCI will report the results back to your VCS provider.
     steps:
@@ -47,6 +50,9 @@ workflows:
       - cypress/install:
           build: npm run build:ci
       - cypress/run:
+          requires:
+            - cypress/install
+          executor: node-15-1
           start: npm start
           wait-on: 'http://localhost:3000'
       # For running simple node tests, you could optionally use the node/test job from the orb to replicate and replace the job above in fewer lines.

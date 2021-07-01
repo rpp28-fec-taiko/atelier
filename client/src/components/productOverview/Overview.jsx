@@ -110,7 +110,7 @@ export class Overview extends React.Component {
           <ImageGallery currentStyle={this.state.currentStyle} expanded={this.state.expanded} toggleExpandedView={this.toggleExpandedView}/>
           <ProductInfo product={this.state.product} currentStyle={this.state.currentStyle} avgRating={this.props.avgRating} noOfReviews={this.props.noOfReviews}/>
           <StyleSelector updateStyle={this.updateStyle} styles={this.state.styles} currentStyle={this.state.currentStyle}/>
-          <Cart currStyle={this.state.currentStyle}/>
+          <Cart currStyle={this.state.currentStyle} product={this.state.product}/>
           <div className='slogan-feature-container'>
             <SloganDescription product={this.state.product}/>
             <Features product={this.state.product}/>

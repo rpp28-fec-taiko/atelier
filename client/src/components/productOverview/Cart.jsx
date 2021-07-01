@@ -9,12 +9,15 @@ class Cart extends React.Component {
     this.state = {
       size: null,
       quantity: 1,
-      clickNoSize: false
+      clickNoSize: false,
+      favoriteProduct: false
     }
 
     this.handleSizeChange = this.handleSizeChange.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
+    this.handleToggleFavorite= this.handleToggleFavorite.bind(this);
+    this.checkFavorite = this.checkFavorite.bind(this);
 
     this.selectBox = React.createRef();
   }
@@ -27,6 +30,11 @@ class Cart extends React.Component {
       })
       .then((cart) => {
         // console.log('success getting cart from server', cart);
+        return;
+      })
+      .then(() => {
+        // console.log('favs', window.localStorage.getItem('favorites'));
+        // this.checkFavorite();
       })
       .catch(() => {
         console.log('error getting Cart from server')
@@ -34,7 +42,7 @@ class Cart extends React.Component {
 
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     if (this.state.size && this.state.clickNoSize) {
       this.setState({ clickNoSize: false});
     }
@@ -43,6 +51,10 @@ class Cart extends React.Component {
       this.selectBox.focus();
       // document.body.addEventListener('click', () => this.setState({ clickNoSize: false}))
       // setTimeout(() => this.setState({ clickNoSize: false}), 5000);
+    }
+
+    if (this.props.product.id !== prevProps.product.id) {
+      this.checkFavorite();
     }
 
   }
@@ -93,6 +105,56 @@ class Cart extends React.Component {
     } else if (!this.state.size) {
       this.setState({ clickNoSize: true});
     }
+  }
+
+  checkFavorite() {
+    // check user storage to see if product id exists there
+    let currentFavorites = JSON.parse(window.localStorage.getItem('favorites'));
+
+    // only check if local storage has any favorites
+    if (currentFavorites) {
+      if (currentFavorites.includes(this.props.product.id)) {
+        // change favroite product state to true
+        this.setState({
+          favoriteProduct: true
+        });
+      } else {
+        this.setState({
+          favoriteProduct: false
+        });
+      }
+    }
+
+  }
+
+  handleToggleFavorite() {
+    // on click of star box
+
+    // if currently NOT favorite product
+    if (!this.state.favoriteProduct) {
+      let currentFavorites = JSON.parse(window.localStorage.getItem('favorites'));
+      if (!currentFavorites) {
+        currentFavorites = [];
+      }
+      currentFavorites.push(this.props.product.id);
+      // add to favroties in local storage array
+      window.localStorage.setItem('favorites', JSON.stringify(currentFavorites));
+      this.setState({
+        favoriteProduct: true
+      });
+
+    // otherwise if product is already in favorites, remove it and change state
+    } else {
+      let currentFavorites = JSON.parse(window.localStorage.getItem('favorites'));
+      console.log('currfavs', currentFavorites);
+      let idx = currentFavorites.indexOf(this.props.product.id);
+      currentFavorites.splice(idx, 1);
+      window.localStorage.setItem('favorites', JSON.stringify(currentFavorites));
+      this.setState({
+        favoriteProduct: false
+      });
+    }
+
   }
 
   render() {
@@ -172,6 +234,14 @@ class Cart extends React.Component {
       sizePrompt = null;
     }
 
+    // cart star, user favorite or not
+    let cartStar;
+    if (this.state.favoriteProduct) {
+      cartStar = <CartStar fill={'#FFDF00'} handleToggleFavorite={this.handleToggleFavorite}/>
+    } else {
+      cartStar = <CartStar handleToggleFavorite={this.handleToggleFavorite}/>
+    }
+
     return (
       <div className='cart'>
         <div className='size-qty-container'>
@@ -179,7 +249,7 @@ class Cart extends React.Component {
           <span className='cart-quantity-select'>
             {qtySelector}
           </span>
-          <CartStar />
+          {cartStar}
         </div>
         <div className='cart-button-container'>
           {addToCart}

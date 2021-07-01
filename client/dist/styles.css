@@ -314,7 +314,7 @@
 }
 
 .read-reviews a {
-  color: darkgray;
+  color: rgb(32, 32, 32);
   margin-left: 8px;
   font-size: 0.9em;
   position: relative;
@@ -323,13 +323,13 @@
 }
 
 .read-reviews a:hover {
-  color: black;
+  color: rgb(99, 99, 99);
   cursor: pointer;
 }
 
 .product-category {
-  text-transform: capitalize;
-  color: grey;
+  text-transform: uppercase;
+  color: rgb(56, 56, 56);
   font-size: 1.2em;
 }
 
@@ -442,8 +442,8 @@
 }
 
 .style-name {
-  font-size: 0.8em;
-  color: grey;
+  font-size: 0.9em;
+  color: rgb(54, 54, 54);
 }
 
 .style-row {

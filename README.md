@@ -24,13 +24,48 @@ Product Overview -
 
 
 # Installation
+Requirements:
+1. Github Personal Access Token
+2. AWS Access Key, Secret Key and region.
 
-run npm install to get dependecies
+## To run the project on your local machine, please fork the repo and clone it.
+```
+cd atelier
+npm install
+```
+Create a .env file at the root level of your project and add the following environment variables to the file:
+```
+GIT_API_TOKEN="YOUR_GITHUB_PERSONAL_ACCESS_TOKEN"
+AWS_REGION="YOUR_AWS_REGION"
+AWS_ACCESS_KEY_ID="YOUR_AWS_ACCESS_KEY"
+AWS_SECRET_ACCESS_KEY="YOUR_AWS_SECRET_KEY"
+NODE_ENV="development"
+```
 
-npm start to run nodemon
+Run the following commands:
+```
+npm run build
+npm start
+```
+Go to http://localhost:3000 to view the project.
 
-npm build to start webpack to watch
+## To make changes to the project, follow the above steps to intialize the project:
+Add an upstream remote to your project pointing to Project Atelier - Team Takio by runnning the following commands:
+```
+git remote add upstream https://github.com/rpp28-fec-taiko/atelier.git
+git pull upstream main
+```
 
+After making any changes, please run
+```
+npm test
+```
+If all tests pass, please run:
+```
+npx cypress run
+```
+If all tests pass, then make a commit and push to your origin.
+Create a PR explaining the changes made.
 
 # Contributors
 

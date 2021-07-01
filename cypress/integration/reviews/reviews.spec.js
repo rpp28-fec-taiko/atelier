@@ -53,8 +53,10 @@ describe ('Reivews', () => {
 
   describe('Search', () => {
     it('should search all reviews for the input text', () => {
+      //Before searching
       cy.get('.reviews-tile').should('have.length', 2)
       cy.get('#reviews-search').type('sequi')
+      //After searching
       cy.get('.reviews-tile').should('have.length', 1)
     })
   })

@@ -1,7 +1,7 @@
 
 
 # Title
-Project Atelier - Team Takio
+Project Atelier - Team Taiko
 
 # Overview
 Project Atelier provides an updated, elegant user interface for modern retailers and designers
@@ -22,6 +22,12 @@ Navigation / Search Bar -
 Product Overview -
   The topmost component featured on the home page is the product overview. The currently selected product will display a main image representing one of several availble styles. This main image can be expanded to provide a larger, more detailed perspective, as well as zoom functionality for the user. Customers may also click through various styles and images related to the current product before picking a size and adding it to their shopping bag. Other standard product information such as price, category, slogan and features are also displayed here.
 
+Reviews & Ratings -
+  Displays the total number of reviews and the average user rating given to a product. By default, the list of reviews will be sorted by 'Relevance' but can be changed to be sorted by 'Helpfulness' or 'Newest'. Initially only 2 reviews can be seen in the list. If there are more reviews for the product, then a 'More Reviews' can be clicked to load 2 more reviews.
+
+  Within each review, a user can see the name of the reviewer and the date it was posted. Also a user can mark if he/she found the review helpful or if he/she would like to report it.
+
+  A user can filter reviews by clicking the star bars on the left. Also a search bar is provided at the top of the reviews section but it will only start searching after the user types atleast 3 characters. For all products, an 'Add Review' button is provided and can be utilized to write a review and also post images related to the product.
 
 # Installation
 Requirements:
@@ -50,7 +56,7 @@ npm start
 Go to http://localhost:3000 to view the project.
 
 ## To make changes to the project, follow the above steps to intialize the project:
-Add an upstream remote to your project pointing to Project Atelier - Team Takio by runnning the following commands:
+Add an upstream remote to your project pointing to Project Atelier - Team Taiko by runnning the following commands:
 ```
 git remote add upstream https://github.com/rpp28-fec-taiko/atelier.git
 git pull upstream main

@@ -37,8 +37,9 @@ jobs:
       - run:
           name: Start server
           command: npm start
-    cypress-test:
-      - cypress/run
+
+  cypress-test:
+    - cypress/run
 
 
 workflows:

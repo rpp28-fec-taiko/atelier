@@ -173,7 +173,7 @@ class RelatedItems extends React.Component {
   render() {
     return (
       <div className='related-items'>
-        <h2 className='related-heading'>RELATED PRODUCTS</h2>
+        <h4 className='related-heading'>RELATED PRODUCTS</h4>
         <button className='card-button' onClick={this.handle_previous}>Previous</button>
         <button className='card-button' onClick={this.handle_next}>Next</button>
         <div className="viewPort">

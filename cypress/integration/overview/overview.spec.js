@@ -7,7 +7,7 @@ describe('Overview testing', () => {
     // so we must tell it to visit our website with the `cy.visit()` command.
     // Since we want to visit the same URL at the start of all our tests,
     // we include it in our beforeEach function so that it runs before each test
-    cy.visit('http://18.118.43.246')
+    cy.visit('/')
   })
 
   it('image gallery enters into expanded view on click of main image and goes back to default view on click of minimize icon', () => {

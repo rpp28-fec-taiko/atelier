@@ -1,6 +1,6 @@
 describe ('Reivews', () => {
   beforeEach(() => {
-    cy.visit('http://34.225.154.204')
+    cy.visit('/')
   });
 
   describe('More Reviews Btn', () => {

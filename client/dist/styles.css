@@ -443,9 +443,8 @@
 }
 
 .style-name {
-  font-size: 0.9em;
   color: rgb(54, 54, 54);
-  font-size: 1.1em;
+  font-size: 1.3em;
 }
 
 .style-row {
@@ -481,8 +480,8 @@
 }
 .current-style-selection svg {
   position: relative;
-  bottom: 62px;
-  left: 40px;
+  bottom: 60px;
+  left: 38px;
 }
 
 .non-current-style {

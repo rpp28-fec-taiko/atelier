@@ -80,6 +80,17 @@
 
 #lower-widgets {
   opacity: 1;
+  padding: 0 20px;
+  margin-top: 15px;
+  /* margin-left: 5%; */
+}
+
+#lower-widgets h4 {
+  font-size: 1.3em;
+}
+
+.related-items h4 {
+  margin-bottom: 20px;
 }
 
 /* default view ----------- */
@@ -596,12 +607,14 @@
 
 .related-items {
   width: 100%;
-  /* margin-left: 8.6%; */
 }
 
-.related-items h2 {
-  color:rgb(48, 48, 48);
-  margin-bottom: 15px;
+.related-items button:first-of-type {
+  margin-left: 20px;
+}
+
+.viewPort {
+  margin-left: 20px;
 }
 
 .card {

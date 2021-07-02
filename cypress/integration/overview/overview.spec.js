@@ -43,8 +43,10 @@ describe('Overview Testing', () => {
 
   it('should change current style image when image thumbnail clicked', () => {
 
-    let firstThumbnail = cy.get('.image-thumbnail').first();
-    firstThumbnail.should('have.class', 'current-image-selection')
+    if (cy.get('.image-thumbnail').length > 1) {
+      let firstThumbnail = cy.get('.image-thumbnail').first();
+      firstThumbnail.should('have.class', 'current-image-selection');
+    }
 
     // only check if more than one image thumbnail present
     if (cy.get('.image-thumbnail').length > 1) {

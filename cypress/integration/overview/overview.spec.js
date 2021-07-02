@@ -41,21 +41,21 @@ describe('Overview Testing', () => {
     }
   });
 
-  it('should change current style image when image thumbnail clicked', () => {
+  // it('should change current style image when image thumbnail clicked', () => {
 
-    if (cy.get('.image-thumbnail').length > 1) {
-      let firstThumbnail = cy.get('.image-thumbnail').first();
-      firstThumbnail.should('have.class', 'current-image-selection');
-    }
+  //   if (cy.get('.image-thumbnail').length > 1) {
+  //     let firstThumbnail = cy.get('.image-thumbnail').first();
+  //     firstThumbnail.should('have.class', 'current-image-selection');
+  //   }
 
-    // only check if more than one image thumbnail present
-    if (cy.get('.image-thumbnail').length > 1) {
-      let nextThumbnail = firstThumbnail.next();
-      nextThumbnail.should('have.class', 'non-current-image');
-      nextThumbnail.click();
-      nextThumbnail.should('have.class', 'current-image-selection');
-    }
-  });
+  //   // only check if more than one image thumbnail present
+  //   if (cy.get('.image-thumbnail').length > 1) {
+  //     let nextThumbnail = firstThumbnail.next();
+  //     nextThumbnail.should('have.class', 'non-current-image');
+  //     nextThumbnail.click();
+  //     nextThumbnail.should('have.class', 'current-image-selection');
+  //   }
+  // });
 
 
 });

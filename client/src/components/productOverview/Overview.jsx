@@ -83,6 +83,12 @@ export class Overview extends React.Component {
   }
 
   toggleExpandedView() {
+    if (!this.state.expandedView) {
+      // make lower widgets change opacity while in expanded view
+      document.getElementById('lower-widgets').style.opacity = 0.2;
+    } else {
+      document.getElementById('lower-widgets').style.opacity = 1;
+    }
     this.setState((prevState) => {
       return {
         expandedView: !prevState.expandedView

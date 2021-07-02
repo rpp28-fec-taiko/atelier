@@ -127,8 +127,14 @@ class ImageGallery extends React.Component {
     let mainImage;
     let imageList;
     if (this.props.currentStyle.photos) {
-      mainImage = <img className={`image-main-${view}`} alt={this.state.currentImage.url} src={this.state.currentImage.url} onClick={imageClickHandler}></img>
       imageList = <ImageList view={view} currentImage={this.state.currentImage} updateMainImage={this.updateMainImage} photos={this.state.photos} currentIndex={this.state.currentIndex} next={this.nextImage} prev={this.prevImage}/>
+      mainImage = <div className={`image-sub-container-${view}`}>
+        {leftArrow}
+        <img className={`image-main-${view}`} alt={this.state.currentImage.url} src={this.state.currentImage.url} onClick={imageClickHandler}></img>
+        {rightArrow}
+        {minMaxIcon}
+        {imageList}
+        </div>
     } else {
       mainImage = <div></div>
       imageList = <div></div>
@@ -145,11 +151,11 @@ class ImageGallery extends React.Component {
 
     return (
       <div className={`image-gallery-${view}`}>
-        {leftArrow}
+        {/* {leftArrow} */}
         {mainImage}
-        {rightArrow}
-        {minMaxIcon}
-        {imageList}
+        {/* {rightArrow} */}
+        {/* {minMaxIcon} */}
+        {/* {imageList} */}
       </div>
     );
   }

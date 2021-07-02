@@ -477,41 +477,43 @@ class App extends React.Component {
             <OverviewErrorBoundary>
               <Overview productId={this.state.productId} avgRating={this.state.avgRating} noOfReviews={this.state.noOfReviews}/>
             </OverviewErrorBoundary>
-            <RelatedItems updateProductId={this.updateProductId}/>
-            {/* <QAndA productId={this.state.productId}/> */}
-            <ReviewsErrorBoundary>
-              <Reviews
-                productId={this.state.productId}
-                productName={this.state.productName}
-                totalReviews={this.state.totalReviews}
-                currentReviews={this.state.currentReviews}
-                nextReviews={this.state.nextReviews}
-                filteredTotalReviews={this.state.filteredTotalReviews}
-                filteredCurrentReviews={this.state.filteredCurrentReviews}
-                filteredNextReviews={this.state.filteredNextReviews}
-                selectedFilters={this.state.selectedFilters}
-                noOfReviews={this.state.noOfReviews}
-                avgRating={this.state.avgRating}
-                reviewCriteria={this.state.reviewCriteria}
-                removedAllFilters={this.state.removedAllFilters}
-                characteristics={this.state.characteristics}
-                searchedTotalReviews={this.state.searchedTotalReviews}
-                searchedCurrentReviews={this.state.searchedCurrentReviews}
-                searchedNextReviews={this.state.searchedNextReviews}
-                filteredSearchedTotalReviews={this.state.filteredSearchedTotalReviews}
-                filteredSearchedCurrentReviews={this.state.filteredSearchedCurrentReviews}
-                filteredSearchedNextReviews={this.state.filteredSearchedNextReviews}
-                helpfulReviews={this.state.helpfulReviews}
-                searchTerm={this.state.searchTerm}
-                increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss}
-                reportReview={this.reportReview}
-                get2Reviews={this.get2Reviews}
-                sortReviews={this.sortReviews}
-                filterReviews={this.filterReviews}
-                removeFilters={this.removeFilters}
-                onReviewsSearch={this.onReviewsSearch}
-              />
-            </ReviewsErrorBoundary>
+            <div id='lower-widgets'>
+              <RelatedItems updateProductId={this.updateProductId}/>
+              {/* <QAndA productId={this.state.productId}/> */}
+              <ReviewsErrorBoundary>
+                <Reviews
+                  productId={this.state.productId}
+                  productName={this.state.productName}
+                  totalReviews={this.state.totalReviews}
+                  currentReviews={this.state.currentReviews}
+                  nextReviews={this.state.nextReviews}
+                  filteredTotalReviews={this.state.filteredTotalReviews}
+                  filteredCurrentReviews={this.state.filteredCurrentReviews}
+                  filteredNextReviews={this.state.filteredNextReviews}
+                  selectedFilters={this.state.selectedFilters}
+                  noOfReviews={this.state.noOfReviews}
+                  avgRating={this.state.avgRating}
+                  reviewCriteria={this.state.reviewCriteria}
+                  removedAllFilters={this.state.removedAllFilters}
+                  characteristics={this.state.characteristics}
+                  searchedTotalReviews={this.state.searchedTotalReviews}
+                  searchedCurrentReviews={this.state.searchedCurrentReviews}
+                  searchedNextReviews={this.state.searchedNextReviews}
+                  filteredSearchedTotalReviews={this.state.filteredSearchedTotalReviews}
+                  filteredSearchedCurrentReviews={this.state.filteredSearchedCurrentReviews}
+                  filteredSearchedNextReviews={this.state.filteredSearchedNextReviews}
+                  helpfulReviews={this.state.helpfulReviews}
+                  searchTerm={this.state.searchTerm}
+                  increaseReviewHelpfulnesss={this.increaseReviewHelpfulnesss}
+                  reportReview={this.reportReview}
+                  get2Reviews={this.get2Reviews}
+                  sortReviews={this.sortReviews}
+                  filterReviews={this.filterReviews}
+                  removeFilters={this.removeFilters}
+                  onReviewsSearch={this.onReviewsSearch}
+                />
+              </ReviewsErrorBoundary>
+            </div>
           </div>
         </div>
       // </div>

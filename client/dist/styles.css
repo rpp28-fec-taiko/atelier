@@ -136,18 +136,32 @@
   stroke: lightgrey;
 }
 
+/* sub image container for position arrows absolutely regardless of image size */
+.image-sub-container-default {
+  position: relative;
+  width: 100%;
+}
+
+.image-sub-container-expanded {
+  position: relative;
+  width: 90%;
+}
 
 /* expanded view ----------------- */
 .image-gallery-expanded {
   grid-area: 1 / 1 / span 3 / span 2;
-  height: 570px;
-  position: relative;
+  height: 800px;
+  /* position: relative; */
+  width: auto;
+  display: flex;
+  justify-content: center;
 }
 .image-main-expanded {
   /* need this grid-area bc its nested in image gallery */
   grid-area: 1 / 1 / span 3 / span 2;
-  height: 570px;
+  height: 800px;
   width: 100%;
+  /* object-fit: cover; */
   object-fit: cover;
 }
 .image-main-expanded:hover {
@@ -159,14 +173,14 @@
 #image-zoom-wrap {
   grid-area: 1 / 1 / span 3 / span 2;
   width: 100%;
-  height: 555px;
+  height: 800px;
   position: relative;
   overflow: hidden;
 }
 
 #image-main-zoom {
   grid-area: 1 / 1 / span 3 / span 2;
-  height: 555px;
+  height: 800px;
   max-width: 100%;
   min-width: 100%;
   /* object-fit: contain; */
@@ -262,9 +276,9 @@
 
 .maximize-image {
   position: absolute;
-  bottom: 92%;
-  left: 94%;
-  z-index: 1;
+  top: 2%;
+  right: 1.5%;
+  z-index: 3;
 }
 .maximize-image:hover {
   cursor: pointer;
@@ -273,9 +287,9 @@
 
 .minimize-image {
   position: absolute;
-  bottom: 92.5%;
-  left: 96.5%;
-  z-index: 1;
+  top: 2%;
+  right: 1.5%;
+  z-index: 3;
 }
 
 .minimize-image:hover {

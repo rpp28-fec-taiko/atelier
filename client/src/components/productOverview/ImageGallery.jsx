@@ -143,19 +143,17 @@ class ImageGallery extends React.Component {
     // zoom view
     if (this.state.zoomView) {
       return (
-        <div id={`image-zoom-wrap`} onMouseMove={this.zoomImage} onMouseOver={this.zoomImage} onClick={this.toggleZoomView}>
-          <img id={`image-main-zoom`} src={this.state.currentImage.url} ></img>
+        <div className='image-gallery-expanded'>
+            <div id={`image-zoom-wrap`} onMouseMove={this.zoomImage} onMouseOver={this.zoomImage} onClick={this.toggleZoomView}>
+              <img id={`image-main-zoom`} src={this.state.currentImage.url} ></img>
+            </div>
         </div>
       );
     }
 
     return (
       <div className={`image-gallery-${view}`}>
-        {/* {leftArrow} */}
         {mainImage}
-        {/* {rightArrow} */}
-        {/* {minMaxIcon} */}
-        {/* {imageList} */}
       </div>
     );
   }

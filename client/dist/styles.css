@@ -175,15 +175,15 @@
 /* handle zoom  ----------------------*/
 
 #image-zoom-wrap {
-  grid-area: 1 / 1 / span 3 / span 2;
-  width: 100%;
+  /* grid-area: 1 / 1 / span 3 / span 2; */
+  width: 85%;
   height: 750px;
   position: relative;
   overflow: hidden;
 }
 
 #image-main-zoom {
-  grid-area: 1 / 1 / span 3 / span 2;
+  /* grid-area: 1 / 1 / span 3 / span 2; */
   height: 750px;
   max-width: 100%;
   min-width: 100%;

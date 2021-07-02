@@ -71,18 +71,13 @@
   display: grid;
   grid-template-columns: 65% 35%;
   grid-template-rows: auto;
-  /* grid-template-rows: 1fr 1fr 1fr 20%; */
-  /* gap: 1%; */
-  /* min-height: 600px; */
   margin-bottom: 50px;
-  /* width: 100%; */
 }
 
 #lower-widgets {
   opacity: 1;
   padding: 0 20px;
   margin-top: 15px;
-  /* margin-left: 5%; */
 }
 
 #lower-widgets h4 {
@@ -129,7 +124,6 @@
 .image-right-arrow-default {
   position: absolute;
   bottom: 50%;
-  /* left: 690px; */
   right: 1%;
   z-index: 1;
 }
@@ -157,13 +151,13 @@
 
 .image-sub-container-expanded {
   position: relative;
-  width: 85%;
+  width: 90%;
 }
 
 /* expanded view ----------------- */
 .image-gallery-expanded {
   grid-area: 1 / 1 / span 3 / span 2;
-  height: 750px;
+  height: 725px;
   /* position: relative; */
   width: auto;
   display: flex;
@@ -172,7 +166,7 @@
 .image-main-expanded {
   /* need this grid-area bc its nested in image gallery */
   grid-area: 1 / 1 / span 3 / span 2;
-  height: 750px;
+  height: 725px;
   width: 100%;
   /* object-fit: cover; */
   object-fit: cover;
@@ -187,15 +181,15 @@
 
 #image-zoom-wrap {
   /* grid-area: 1 / 1 / span 3 / span 2; */
-  width: 85%;
-  height: 750px;
+  width: 90%;
+  height: 725px;
   position: relative;
   overflow: hidden;
 }
 
 #image-main-zoom {
   /* grid-area: 1 / 1 / span 3 / span 2; */
-  height: 750px;
+  height: 725px;
   max-width: 100%;
   min-width: 100%;
   /* object-fit: contain; */
@@ -607,10 +601,16 @@
 
 .related-items {
   width: 100%;
+  margin-top: 75px;
 }
 
 .related-items button:first-of-type {
   margin-left: 20px;
+}
+
+.related-items button {
+  /* background-color: rgb(129, 216, 243); */
+  background-color: white;
 }
 
 .viewPort {

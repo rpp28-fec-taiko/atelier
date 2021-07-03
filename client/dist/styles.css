@@ -56,13 +56,12 @@
 }
 
 .nav h1 {
-  letter-spacing: 0.2em;
+  letter-spacing: 0.1em;
 }
 
-.main-container {
-  display: grid;
-  grid-template-columns: 15% 85%;
-  grid-auto-flow: column;
+#navbar {
+  opacity: 1;
+  transition: opacity 0.5s;
 }
 
 /*------ PRODUCT OVERVIEW --------*/
@@ -78,6 +77,7 @@
   opacity: 1;
   padding: 0 20px;
   margin-top: 15px;
+  transition: opacity 0.5s
 }
 
 #lower-widgets h4 {

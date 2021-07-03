@@ -57,6 +57,14 @@ class Cart extends React.Component {
       this.checkFavorite();
     }
 
+    // reset size and quantity if style is changed
+    if (this.props.currStyle.style_id !== prevProps.currStyle.style_id) {
+      this.setState({
+        size: null,
+        quantity: 1,
+        clickNoSize: false
+      }, () => console.log('update cart state', this.state));
+    }
   }
 
   handleSizeChange(e) {
@@ -94,10 +102,10 @@ class Cart extends React.Component {
       Promise.all(fetchPromises)
         .then(() => {
           console.log('success posting one or more items to server')
-          // this.setState({
-          //   size: null,
-          //   quantity: 1
-          // });
+          this.setState({
+            size: null,
+            quantity: 1
+          });
         })
         .catch(() => {
           console.log('error posting one item to server')
@@ -183,7 +191,7 @@ class Cart extends React.Component {
     // console.log('nosize', this.state.clickNoSize);
     let cartSizeSelect =
       <span className='cart-size-select'>
-        <select ref={input => this.selectBox = input} autoFocus={this.state.clickNoSize} id='size-select' defaultValue='SELECT SIZE' onChange={this.handleSizeChange}>
+        <select ref={input => this.selectBox = input} autoFocus={this.state.clickNoSize} id='size-select' value={this.state.size ? this.state.size : 'SELECT SIZE'} onChange={this.handleSizeChange}>
         <option disabled>SELECT SIZE</option>
         {availableSizes.map((size, idx) => <option value={size} key={idx}>{size}</option>)}
         </select>
@@ -202,7 +210,7 @@ class Cart extends React.Component {
     // default qty before style is selected
     if (!this.state.size) {
       qtySelector =
-      <select defaultValue='-' onChange={this.handleQuantityChange}>
+      <select onChange={this.handleQuantityChange} value={this.state.size ? this.state.quantity : '-'}>
         <option disabled> - </option>
       </select>
     // after style is selected default to one

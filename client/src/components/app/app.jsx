@@ -471,8 +471,8 @@ class App extends React.Component {
   render () {
     return (
       <div className='app'>
-        <div className='nav'>
-          <h1>Atelier</h1>
+        <div className='nav' id='navbar'>
+          <h1>Taiko Designs</h1>
           <AppSearch productId={this.state.productId} handlePdtChange={this.handlePdtChange}/>
         </div>
         <div className='app-container'>

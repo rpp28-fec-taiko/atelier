@@ -102,10 +102,10 @@ class Cart extends React.Component {
       Promise.all(fetchPromises)
         .then(() => {
           console.log('success posting one or more items to server')
-          // this.setState({
-          //   size: null,
-          //   quantity: 1
-          // });
+          this.setState({
+            size: null,
+            quantity: 1
+          });
         })
         .catch(() => {
           console.log('error posting one item to server')
